@@ -21,9 +21,9 @@ return new class extends Migration
             $table->enum('status', ['single', 'menikah']);
             $table->string('nik', 16)->unique();
             $table->string('provinsi');
-            $table->string('kab/kota');
+            $table->string('kab_kota');
             $table->string('kecamatan');
-            $table->string('desa/kelurahan');
+            $table->string('desa_kelurahan');
             $table->string('kode_pos');
             $table->string('alamat');
             $table->enum('alamat_pengirim_modul', ['ya', 'tidak']);
