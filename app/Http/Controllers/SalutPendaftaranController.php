@@ -16,7 +16,7 @@ class SalutPendaftaranController extends Controller
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
+        $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
@@ -30,6 +30,7 @@ class SalutPendaftaranController extends Controller
             'desa_kelurahan' => 'required|string|max:255',
             'kode_pos' => 'required|string|max:10',
             'alamat' => 'required|string|max:500',
+            'alamat_lain' => 'nullable|string|max:500',
             'alamat_pengirim_modul' => ['required', Rule::in(['ya', 'tidak'])],
             'ukuran_almat' => 'required|string|max:10',
             'nama_ibu_kandung' => 'required|string|max:255',
@@ -38,6 +39,13 @@ class SalutPendaftaranController extends Controller
             'email' => 'required|email|max:255',
             'jalur_program' => ['required', Rule::in(['RPL', 'Non-RPL'])],
         ]);
+
+        if ($validatedData['alamat_pengirim_modul'] === 'ya') {
+            $validatedData['alamat_lain'] = null;
+        }
+
+        SalutPendaftaran::create($validatedData);
+
         return redirect('/pendaftaran-calon-mahasiswa')->with('success', 'Pendaftaran berhasil dikirim!');
     }
 }
