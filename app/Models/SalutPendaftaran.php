@@ -25,6 +25,7 @@ class SalutPendaftaran extends Model
         'desa_kelurahan',
         'kode_pos',
         'alamat',
+        'alamat_lain',
         'alamat_pengirim_modul',
         'ukuran_almat',
         'nama_ibu_kandung',
