@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu']);
             $table->enum('gender', ['laki-laki', 'perempuan']);
-            $table->enum('status', ['single', 'menikah']);
+            $table->enum('status', ['single', 'menikah', 'duda', 'janda']);
             $table->string('nik', 16)->unique();
             $table->string('provinsi');
             $table->string('kab_kota');
@@ -26,8 +26,9 @@ return new class extends Migration
             $table->string('desa_kelurahan');
             $table->string('kode_pos');
             $table->string('alamat');
+            $table->string('alamat_lain')->nullable();
             $table->enum('alamat_pengirim_modul', ['ya', 'tidak']);
-            $table->string('ukuran_almat');
+            $table->enum('ukuran_almat', ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
             $table->string('nama_ibu_kandung');
             $table->string('no_hp', 16);
             $table->string('no_hp_alternatif', 16);
