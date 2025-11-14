@@ -11,7 +11,9 @@ class SalutPendaftaranController extends Controller
 {
     public function index()
     {
-        return view('pendaftaran-calon-mahasiswa');
+        return view('pendaftaran-calon-mahasiswa', [
+            'existingCvUrl' => 'files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx'
+        ]);
     }
 
     public function store(Request $request)
@@ -38,14 +40,32 @@ class SalutPendaftaranController extends Controller
             'no_hp_alternatif' => 'required|string|max:16',
             'email' => 'required|email|max:255',
             'jalur_program' => ['required', Rule::in(['RPL', 'Non-RPL'])],
+            'file_ijazah' => 'required|file|mimes:pdf|max:2048',
+            'no_ijazah' => 'required|string|max:255',
+            'ipk'=>'numeric|nullable|min:2.00|max:4.00',
+            'file_bukti_pembayaran' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'surat_pernyataan' => 'required|file|mimes:pdf|max:2048',
+            'form_tanda_tangan' => 'required|file|mimes:pdf|max:2048',
+            'file_foto' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'file_ktp' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'file_ss_pddikti' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
+            'file_transkrip' => 'nullable|file|mimes:pdf|max:2048',
+            'file_rpl_pembelajaran' => 'nullable|file|mimes:pdf|max:2048',
+            'file_rpl_administrasi' => 'nullable|file|mimes:pdf|max:2048',
+            'file_rpl_ekstrakulikuler' => 'nullable|file|mimes:pdf|max:2048',
+            'file_rpl_prestasi' => 'nullable|file|mimes:pdf|max:2048',
+            'surat_keterangan_pindah' => 'nullable|file|mimes:pdf|max:2048',
+            'file_cv' => 'nullable|file|mimes:pdf|max:2048',
         ]);
 
         if ($validatedData['alamat_pengirim_modul'] === 'ya') {
             $validatedData['alamat_lain'] = null;
         }
 
+
         SalutPendaftaran::create($validatedData);
 
         return redirect('/pendaftaran-calon-mahasiswa')->with('success', 'Pendaftaran berhasil dikirim!');
+
     }
 }

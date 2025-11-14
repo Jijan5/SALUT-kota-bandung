@@ -91,7 +91,7 @@
                 <p class="text-2xl font-bold">SALUT Kota Bandung</p>
             </div>
             <div class="p-10">
-                <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6">
+                <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6" enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-500/20 border border-red-400 text-red-900 px-4 py-3 rounded mb-4">
@@ -368,11 +368,251 @@
                     <div>
                         <label for="jalur_program" class="block text-sm font-medium text-gray-700">Jalur
                             Program</label>
-                        <select id="jalur_program" name="jalur_program"
-                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <option value="RPL">RPL</option>
-                            <option value="Non-RPL">Non-RPL</option>
-                        </select>
+                        <div class="mt-2 flex items-center space-x-6">
+                            <label for="jalur_program" class="flex items-center">
+                                <input id="jalur_program_rpl" name="jalur_program" type="radio" value="RPL"
+                                    class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">RPL</span>
+                            </label>
+                            <label for="jalur_program" class="flex items-center">
+                                <input id="jalur_program_nonrpl" name="jalur_program" type="radio" value="Non-RPL"
+                                    class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="ml-2 text-sm text-gray-700">Non-RPL</span>
+                            </label>
+                        </div>
+                        <!-- Hidden input kept for existing validation script (id="jalur_program") -->
+                        <input type="hidden" id="jalur_program" name="jalur_program" value="RPL">
+                        <!-- jalur RPL -->
+                        <div id="rpl_fields" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
+                                <p class="text-sm text-gray-800">Upload File Ijazah D2/D3/D4/S1 Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
+                                <input type="file" id="file_ijazah_rpl" name="file_ijazah"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
+                                    Ijazah</label>
+                                <input type="text" id="no_ijazah" name="no_ijazah"
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    placeholder="Masukkan Nomor Ijazah">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
+                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
+                                <input type="file" id="file_ijazah_rpl" name="file_transkrip"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <label for="ipk" class="block text-sm font-medium text-gray-700">IPK</label>
+                                <input type="number" step="0.01" min="0.00" max="4.00" id="ipk" name="ipk"
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    placeholder="Contoh: 3.79">
+                            </div>
+                            <div>
+                                <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                    Download surat pernyataan kebenaran dan keabsahan dokumen
+                                </a>
+                                <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan Keabsahan
+                                    Dokumen Format: PDF Maks. 2MB</p>
+                                <input type="file" id="surat_pernyataan" name="surat_pernyataan"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                    Download form tanda tangan
+                                </a>
+                                <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF Maks.
+                                    2MB</p>
+                                <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <a href="https://pddikti.kemdiktisaintek.go.id/"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                    Cek PDDIKTI
+                                </a>
+                                <p class="text-sm text-gray-800">Upload Bukti Tangkap Layar PDDIKTI Format: JPG, PNG Maks.
+                                    2MB</p>
+                                <input type="file" id="file_ss_pddikti" name="file_ss_pddikti"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Foto (3x4/4x6)</label>
+                                <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
+                                <input type="file" id="file_foto" name="file_foto"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
+                                <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
+                                <input type="file" id="file_ktp" name="file_ktp"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Surat Keterangan Pindah
+                                    (OPSIONAL)</label>
+                                <p class="text-sm text-gray-800">Upload File Surat Keterangan Pindah Format: PDF Maks. 2MB</p>
+                                <input type="file" id="surat_keterangan_pindah" name="surat_keterangan_pindah"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div class="border border-gray-400 rounded-md p-4 space-y-4">
+                                <h2 class="text-lg font-medium text-gray-900 mb-2">Khusus Untuk RPL Pengalaman Kerja
+                                    (OPSIONAL)</h2>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Perangkat Pembelajaran (RPP,
+                                        Media, Bahan Pembelajaran)</label>
+                                    <p class="text-sm text-gray-800">Bukti Perangkat Pembelajaran Format: PDF Maks. 2MB</p>
+                                    <input type="file" id="file_rpl_pembelajaran" name="file_rpl_pembelajaran"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Administrasi Kelas (Buku
+                                        Catatan)</label>
+                                    <p class="text-sm text-gray-800">Bukti Administrasi Kelas Format: PDF Maks. 2MB</p>
+                                    <input type="file" id="file_rpl_administrasi" name="file_rpl_administrasi"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Ekstrakurikuler (Surat
+                                        Keterangan Pembina Ekstrakurikuler)</label>
+                                    <p class="text-sm text-gray-800">Bukti Ekstrakurikuler Format: PDF Maks. 2MB
+                                    </p>
+                                    <input type="file" id="file_rpl_ekstrakulikuler"
+                                        name="file_rpl_ekstrakulikuler"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Bukti Prestasi (Jika tidak
+                                        ada,
+                                        unggah kertas dengan tulisan tidak memiliki bukti prestasi)</label>
+                                    <p class="text-sm text-gray-800">Bukti Prestasi Format: PDF Maks. 2MB
+                                    </p>
+                                    <input type="file" id="file_rpl_prestasi" name="file_rpl_prestasi"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Unggah CV</label>
+                                <p class="text-sm text-gray-800">CV Format: PDF Maks. 2MB</p>
+                                <a href="{{ asset('files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx') }}" download
+                                    class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                    Unduh Formulir
+                                </a>
+                                <input type="file" id="file_cv" name="file_cv"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran</label>
+                                <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG Maks. 2MB</p>
+                                <input type="file" id="file_bukti_pembayaran_rpl" name="file_bukti_pembayaran"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                        </div>
+
+                        <!-- jalur Non-RPL -->
+                        <div id="non_rpl_fields" class="space-y-6 hidden">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
+                                <p class="text-sm text-gray-800">Upload File Ijazah SMA/K Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
+                                <input type="file" id="file_ijazah" name="file_ijazah"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
+                                    Ijazah</label>
+                                <input type="text" id="no_ijazah" name="no_ijazah"
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    placeholder="Masukkan Nomor Ijazah">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
+                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF, JPG,
+                                    JPEG, PNG Maks. 2MB (Legalisir Cap Basah)</p>
+                                <input type="file" id="file_transkrip" name="file_transkrip"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                    Download surat pernyataan kebenaran dan keabsahan dokumen
+                                </a>
+                                <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan Keabsahan
+                                    Dokumen Format: PDF, JPG Maks. 2MB</p>
+                                <input type="file" id="surat_pernyataan" name="surat_pernyataan"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                    Download form tanda tangan
+                                </a>
+                                <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF, JPG Maks.
+                                    2MB</p>
+                                <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".pdf" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Foto (3x4/4x6)</label>
+                                <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
+                                <input type="file" id="file_foto" name="file_foto"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
+                                <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
+                                <input type="file" id="file_ktp" name="file_ktp"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran Format: JPG, PNG Maks. 2MB</label>
+                                <input type="file" id="file_bukti_pembayaran" name="file_bukti_pembayaran"
+                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                    accept=".jpg,.png,.jpeg" required>
+                            </div>
+                        </div>
+                        <div class="border border-gray-400 rounded-md p-4 mt-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
+                                Terbuka)</h2>
+                            <p class="text-gray-700 mb-4 leading-relaxed">
+                                adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
+                                Priangan berlokasi di Kota Bandung.<br>
+                                Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
+                                40251.
+                            </p>
+                            <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
+                                transfer ke PIC SALUT:</h2>
+                            <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                                Bank BRI*
+                                an. Ugan Suganda
+                                400201017687536
+                                Konfirmasi bukti pembayaran ke no Cs :\
+                                081211121855.
+                                Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                            </p>
+                        </div>
                     </div>
                     <!-- Submit Button -->
                     <div class="text-center">
@@ -387,68 +627,83 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const flashMessage = document.getElementById('flash-message');
-            if (flashMessage) {
-                setTimeout(() => {
-                    flashMessage.style.display = 'none';
-                }, 3000);
+            const radios = document.getElementsByName('jalur_program');
+            const rplFields = document.getElementById('rpl_fields');
+            const nonRplFields = document.getElementById('non_rpl_fields');
+
+            // Helper to set disabled/required based on visibility and a marker attribute.
+            // Use data-required-when-visible on inputs that must be required when their section is visible.
+            function setControlsForSection(sectionEl, visible) {
+                const controls = sectionEl.querySelectorAll('input, select, textarea');
+                controls.forEach(el => {
+                    if (el.type === 'hidden') return;
+
+                    // When a section is hidden, disable its controls so browser won't validate them.
+                    el.disabled = !visible;
+
+                    // Only make required when visible AND the control is explicitly marked to be required.
+                    if (visible && el.hasAttribute('data-required-when-visible')) {
+                        el.required = true;
+                    } else {
+                        el.required = false;
+                    }
+                });
             }
 
-            const radioYa = document.getElementById('alamat_pengirim_modul_ya');
-            const radioTidak = document.getElementById('alamat_pengirim_modul_tidak');
-            const alamatLainContainer = document.getElementById('alamat_lain');
+            function toggleProgramFields() {
+                if (document.getElementById('jalur_program_rpl').checked) {
+                    rplFields.classList.remove('hidden');
+                    nonRplFields.classList.add('hidden');
 
-            function toggleAlamatLain() {
-                if (radioTidak.checked) {
-                    alamatLainContainer.classList.remove('hidden');
+                    setControlsForSection(rplFields, true);
+                    setControlsForSection(nonRplFields, false);
                 } else {
-                    alamatLainContainer.classList.add('hidden');
+                    rplFields.classList.add('hidden');
+                    nonRplFields.classList.remove('hidden');
+
+                    setControlsForSection(rplFields, false);
+                    setControlsForSection(nonRplFields, true);
                 }
             }
 
-            radioYa.addEventListener('change', toggleAlamatLain);
-            radioTidak.addEventListener('change', toggleAlamatLain);
-            toggleAlamatLain(); // Check on page load
+            Array.from(radios).forEach(radio => {
+                radio.addEventListener('change', toggleProgramFields);
+            });
 
-            const form = document.querySelector('form');
-            form.addEventListener('submit', function(event) {
-                const requiredFields = [
-                    'nama', 'tempat_lahir', 'tanggal_lahir', 'agama', 'gender', 'alamat', 'provinsi',
-                    'nik', 'nama_ibu_kandung', 'status',
-                    'kab_kota', 'kecamatan', 'desa_kelurahan', 'no_hp', 'email', 'jalur_program',
-                    'ukuran_almat', 'no_hp_alternatif', 'kode_pos'
-                ];
+            // Initial call
+            toggleProgramFields();
 
-                let firstInvalidField = null;
+            // --- Photo format validation (jpg, jpeg, png) ---
+            function isValidImageFile(file) {
+                if (!file) return false;
+                const allowedMime = ['image/jpeg', 'image/png'];
+                const allowedExt = ['jpg', 'jpeg', 'png'];
+                const mimeOk = allowedMime.includes(file.type);
+                const parts = file.name.split('.');
+                const ext = parts.length > 1 ? parts.pop().toLowerCase() : '';
+                const extOk = allowedExt.includes(ext);
+                return mimeOk || extOk;
+            }
 
-                for (const fieldId of requiredFields) {
-                    const field = document.getElementById(fieldId);
-                    if (field && !field.value) {
-                        firstInvalidField = field;
-                        break;
+            // Select all photo file inputs by name (handles duplicated ids in form)
+            const photoInputs = document.querySelectorAll('input[type="file"][name="file_foto", "file_ktp", "file_ss_pddikti", "file_bukti_pembayaran", "file_bukti_pembayaran_rpl"]');
+            photoInputs.forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const file = this.files && this.files[0];
+                    if (!file) return;
+                    if (!isValidImageFile(file)) {
+                        alert('Format foto tidak valid. Harap unggah file JPG, JPEG, atau PNG.');
+                        // Clear the invalid file
+                        try {
+                            this.value = '';
+                        } catch (err) {
+                            // fallback for some browsers
+                            const form = this.form;
+                            const newInput = this.cloneNode(true);
+                            this.parentNode.replaceChild(newInput, this);
+                        }
                     }
-                }
-
-                if (!firstInvalidField) {
-                    const radio = document.querySelector('input[name="alamat_pengirim_modul"]:checked');
-                    if (!radio) {
-                        firstInvalidField = document.getElementById('alamat_pengirim_modul_ya');
-                    }
-                }
-
-                if (firstInvalidField) {
-                    event.preventDefault();
-                    firstInvalidField.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                    firstInvalidField.focus();
-                    // Add a visual indicator for the invalid field
-                    firstInvalidField.classList.add('border-red-500');
-                    setTimeout(() => {
-                        firstInvalidField.classList.remove('border-red-500');
-                    }, 3000);
-                }
+                });
             });
         });
     </script>
