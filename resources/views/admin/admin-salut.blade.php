@@ -57,32 +57,29 @@
             <main class="flex-1 overflow-x-auto overflow-y-auto bg-blue-900">
                 <div class="container mx-auto px-6 py-8">
                     <div class="bg-white p-6 rounded-lg shadow-lg">
+                        @if (session('success'))
+                            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show"
+                                x-transition:enter="transform ease-out duration-300 transition"
+                                x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                                x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
+                                x-transition:leave="transition ease-in duration-100"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                class="fixed top-0 right-0 mt-4 mr-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50">
+                                <p>{{ session('success') }}</p>
+                            </div>
+                        @endif
                         <!-- Search and Export -->
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="relative w-full max-w-xs">
-                                <form action="{{ route('admin.index') }}" method="GET">
-                                    <input type="text" name="search"
-                                        class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        placeholder="Search..." value="{{ request('search') }}">
-                                    <div class="absolute top-0 left-0 inline-flex items-center p-2">
-                                        <button type="submit">
-                                            <span class="material-icons-outlined text-gray-400">search</span>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="flex space-x-2">
-                                <a href="{{ route('admin.export.excel') }}"
-                                    class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 flex items-center">
-                                    <span class="material-icons-outlined mr-2">description</span>
-                                    Export Excel
-                                </a>
-                                <a href="{{ route('admin.export.pdf') }}"
-                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 flex items-center">
-                                    <span class="material-icons-outlined mr-2">picture_as_pdf</span>
-                                    Export PDF
-                                </a>
-                            </div>
+                        <div class="flex justify-between items-center mb-6">
+                            <form action="{{ route('admin.index') }}" method="GET" class="w-full max-w-md">
+                                <input type="text" name="search"
+                                    class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="Search..." value="{{ request('search') }}">
+                                <div class="absolute top-0 left-0 inline-flex items-center p-2">
+                                    <button type="submit">
+                                        <span class="material-icons-outlined text-gray-400">search</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
 
                         <!-- Data Table -->
@@ -257,31 +254,137 @@
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->no_ijazah }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->file_transkrip }}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_transkrip)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_transkrip) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->ipk }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->file_foto }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->file_ktp }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->file_ss_pddikti }}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_foto)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_foto) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->form_tanda_tangan }}
+                                                @if ($pendaftar->file_ktp)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_ktp) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->surat_pernyataan }}
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_ss_pddikti)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_ss_pddikti) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->surat_keterangan_pindah }}</td>
+                                                @if ($pendaftar->form_tanda_tangan)
+                                                    <a href="{{ asset('storage/' . $pendaftar->form_tanda_tangan) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->file_rpl_pembelajaran }}</td>
+                                                @if ($pendaftar->surat_pernyataan)
+                                                    <a href="{{ asset('storage/' . $pendaftar->surat_pernyataan) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->file_rpl_administrasi }}</td>
+                                                @if ($pendaftar->surat_keterangan_pindah)
+                                                    <a href="{{ asset('storage/' . $pendaftar->surat_keterangan_pindah) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->file_rpl_ekstrakulikuler }}</td>
+                                                @if ($pendaftar->file_rpl_pembelajaran)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_rpl_pembelajaran) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->file_rpl_prestasi }}</td>
-                                            <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->file_cv }}</td>
+                                                @if ($pendaftar->file_rpl_administrasi)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_rpl_administrasi) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $pendaftar->file_bukti_pembayaran }}</td>
+                                                @if ($pendaftar->file_rpl_ekstrakulikuler)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_rpl_ekstrakulikuler) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_rpl_prestasi)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_rpl_prestasi) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_cv)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_cv) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                @if ($pendaftar->file_bukti_pembayaran)
+                                                    <a href="{{ asset('storage/' . $pendaftar->file_bukti_pembayaran) }}"
+                                                        target="_blank" class="text-blue-500 hover:underline">
+                                                        Lihat File
+                                                    </a>
+                                                @else
+                                                    <span class="text-gray-400"> tidak ada file</span>
+                                                @endif
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex items-center justify-center gap-2">
                                                     <a href="{{ route('admin.edit', $pendaftar->id) }}"

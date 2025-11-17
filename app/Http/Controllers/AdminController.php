@@ -63,7 +63,7 @@ class AdminController extends Controller
             'nama' => 'nullable|string|max:255',
             'tempat_lahir' => 'nullable|string|max:255',
             'tanggal_lahir' => 'nullable|date',
-            'agama' => 'nullable|in:islam, kristen, katolik, hindu, budha, konghucu',
+            'agama' => 'nullable|in:islam,kristen,katolik,hindu,buddha,konghucu',
             'gender' => 'nullable|string',
             'status' => 'nullable|string',
             'nik' => 'nullable|string|size:16',
@@ -100,7 +100,22 @@ class AdminController extends Controller
         ]);
 
         // Proses upload file baru jika ada
-        $fileFields = ['file_kip', 'file_ijazah', 'file_transkrip', 'file_foto'];
+        $fileFields = [
+            'file_ijazah',
+            'file_transkrip',
+            'file_foto',
+            'file_ktp',
+            'file_ss_pddikti',
+            'form_tanda_tangan',
+            'surat_pernyataan',
+            'surat_keterangan_pindah',
+            'file_rpl_pembelajaran',
+            'file_rpl_administrasi',
+            'file_rpl_ekstrakulikuler',
+            'file_rpl_prestasi',
+            'file_cv',
+            'file_bukti_pembayaran',
+        ];
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 $validated[$field] = $request->file($field)->store('uploads', 'public');
@@ -109,7 +124,7 @@ class AdminController extends Controller
 
         $record->update($validated);
 
-        return redirect()->route('admin.admin-salut')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function delete($id)
@@ -117,6 +132,6 @@ class AdminController extends Controller
         $data = SalutPendaftaran::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('admin.admin-salut')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus!');
     }
 }

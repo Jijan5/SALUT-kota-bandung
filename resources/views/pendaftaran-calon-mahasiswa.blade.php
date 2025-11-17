@@ -152,12 +152,12 @@
                         <label for="agama" class="block text-sm font-medium text-gray-700">Agama</label>
                         <select id="agama" name="agama"
                             class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <option value="islam" >Islam</option>
-                            <option value="kristen" >Kristen</option>
-                            <option value="katolik" >Katolik</option>
-                            <option value="hindu" >Hindu</option>
-                            <option value="buddha" >Buddha</option>
-                            <option value="konghucu" >Konghucu</option>
+                            <option value="islam">Islam</option>
+                            <option value="kristen">Kristen</option>
+                            <option value="katolik">Katolik</option>
+                            <option value="hindu">Hindu</option>
+                            <option value="buddha">Buddha</option>
+                            <option value="konghucu">Konghucu</option>
                         </select>
                     </div>
                     <div>

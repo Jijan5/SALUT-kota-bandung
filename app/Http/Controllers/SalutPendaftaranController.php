@@ -22,7 +22,7 @@ class SalutPendaftaranController extends Controller
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
-            'agama' => 'required|in:islam, kristen, katolik, hindu, buddha, konghucu',
+            'agama' => 'required|in:islam,kristen,katolik,hindu,buddha,konghucu',
             'gender' => 'required|string',
             'status' => 'required|string',
             'nik' => 'required|string|size:16',

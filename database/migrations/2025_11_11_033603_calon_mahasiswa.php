@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu']);
+            $table->enum('agama', ['islam','kristen','katolik','hindu','buddha','konghucu']);
             $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->enum('status', ['single', 'menikah', 'duda', 'janda']);
             $table->string('nik', 16)->unique();
