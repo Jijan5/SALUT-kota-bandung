@@ -21,7 +21,7 @@ class SalutPendaftaranFactory extends Factory
             'nama' => $this->faker->name(),
             'tempat_lahir' => $this->faker->city(),
             'tanggal_lahir' => $this->faker->date(),
-            'agama' => $this->faker->randomElement(['islam','kristen','hindu','buddha','konghucu']),
+            'agama' => $this->faker->randomElement(['islam','kristen','katolik','hindu','buddha','konghucu']),
             'gender' => $this->faker->randomElement(['laki-laki','perempuan']),
             'status' => $this->faker->randomElement(['single','menikah','duda','janda']),
             'nik' => $this->faker->unique()->numerify('################'),

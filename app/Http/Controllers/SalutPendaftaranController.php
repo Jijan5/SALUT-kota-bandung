@@ -22,7 +22,7 @@ class SalutPendaftaranController extends Controller
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
-            'agama' => 'required|in:islam, kristen, katolik, hindu, budha, konghucu',
+            'agama' => 'required|in:islam, kristen, katolik, hindu, buddha, konghucu',
             'gender' => 'required|string',
             'status' => 'required|string',
             'nik' => 'required|string|size:16',
@@ -62,6 +62,18 @@ class SalutPendaftaranController extends Controller
             $validatedData['alamat_lain'] = null;
         }
 
+        $fileFields = [
+            'file_ijazah', 'file_bukti_pembayaran', 'surat_pernyataan', 'form_tanda_tangan',
+            'file_foto', 'file_ktp', 'file_ss_pddikti', 'file_transkrip', 'file_rpl_pembelajaran',
+            'file_rpl_administrasi', 'file_rpl_ekstrakulikuler', 'file_rpl_prestasi',
+            'surat_keterangan_pindah', 'file_cv'
+        ];
+
+        foreach ($fileFields as $field) {
+            if ($request->hasFile($field)) {
+                $validatedData[$field] = $request->file($field)->store('pendaftar', 'public');
+            }
+        }
 
         SalutPendaftaran::create($validatedData);
 

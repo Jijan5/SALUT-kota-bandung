@@ -91,7 +91,8 @@
                 <p class="text-2xl font-bold">SALUT Kota Bandung</p>
             </div>
             <div class="p-10">
-                <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6" enctype="multipart/form-data">
+                <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6"
+                    enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-500/20 border border-red-400 text-red-900 px-4 py-3 rounded mb-4">
@@ -151,12 +152,12 @@
                         <label for="agama" class="block text-sm font-medium text-gray-700">Agama</label>
                         <select id="agama" name="agama"
                             class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            <option value="islam">Islam</option>
-                            <option value="kristen">Kristen</option>
-                            <option value="katolik">Katolik</option>
-                            <option value="hindu">Hindu</option>
-                            <option value="buddha">Buddha</option>
-                            <option value="konghucu">Konghucu</option>
+                            <option value="islam" >Islam</option>
+                            <option value="kristen" >Kristen</option>
+                            <option value="katolik" >Katolik</option>
+                            <option value="hindu" >Hindu</option>
+                            <option value="buddha" >Buddha</option>
+                            <option value="konghucu" >Konghucu</option>
                         </select>
                     </div>
                     <div>
@@ -197,10 +198,10 @@
                                 class="ml-2 block text-sm text-gray-900">Tidak</label>
                         </div>
                     </div>
-                    <div id="alamat_lain" class="hidden">
-                        <label for="alamat_lain" class="block text-sm font-medium text-gray-700"> Masukan Alamat
+                    <div id="alamat_lain_field" class="hidden">
+                        <label for="alamat_lain_input" class="block text-sm font-medium text-gray-700"> Masukan Alamat
                             Lain</label>
-                        <textarea id="alamat_lain" name="alamat_lain" rows="3"
+                        <textarea id="alamat_lain_input" name="alamat_lain" rows="3"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Masukkan Alamat Lain"></textarea>
                     </div>
@@ -374,19 +375,20 @@
                                     class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500" checked>
                                 <span class="ml-2 text-sm text-gray-700">RPL</span>
                             </label>
-                            <label for="jalur_program" class="flex items-center">
+                            <label for="jalur_program_nonrpl" class="flex items-center">
                                 <input id="jalur_program_nonrpl" name="jalur_program" type="radio" value="Non-RPL"
                                     class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500">
                                 <span class="ml-2 text-sm text-gray-700">Non-RPL</span>
                             </label>
                         </div>
                         <!-- Hidden input kept for existing validation script (id="jalur_program") -->
-                        <input type="hidden" id="jalur_program" name="jalur_program" value="RPL">
+                        {{-- <input type="hidden" id="jalur_program" name="jalur_program" value="RPL"> --}}
                         <!-- jalur RPL -->
                         <div id="rpl_fields" class="space-y-6">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
-                                <p class="text-sm text-gray-800">Upload File Ijazah D2/D3/D4/S1 Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
+                                <p class="text-sm text-gray-800">Upload File Ijazah D2/D3/D4/S1 Format: PDF Maks. 2MB
+                                    (Legalisir Cap Basah)</p>
                                 <input type="file" id="file_ijazah_rpl" name="file_ijazah"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".pdf" required>
@@ -396,18 +398,20 @@
                                     Ijazah</label>
                                 <input type="text" id="no_ijazah" name="no_ijazah"
                                     class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    placeholder="Masukkan Nomor Ijazah">
+                                    placeholder="Masukkan Nomor Ijazah" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
-                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_ijazah_rpl" name="file_transkrip"
+                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF Maks.
+                                    2MB (Legalisir Cap Basah)</p>
+                                <input type="file" id="file_transkrip_rpl" name="file_transkrip"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".pdf" required>
                             </div>
                             <div>
                                 <label for="ipk" class="block text-sm font-medium text-gray-700">IPK</label>
-                                <input type="number" step="0.01" min="0.00" max="4.00" id="ipk" name="ipk"
+                                <input type="number" step="0.01" min="0.00" max="4.00" id="ipk"
+                                    name="ipk"
                                     class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                     placeholder="Contoh: 3.79">
                             </div>
@@ -438,11 +442,12 @@
                                     class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
                                     Cek PDDIKTI
                                 </a>
-                                <p class="text-sm text-gray-800">Upload Bukti Tangkap Layar PDDIKTI Format: JPG, PNG Maks.
+                                <p class="text-sm text-gray-800">Upload Bukti Tangkap Layar PDDIKTI Format: JPG, PNG
+                                    Maks.
                                     2MB</p>
                                 <input type="file" id="file_ss_pddikti" name="file_ss_pddikti"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
+                                    accept=".jpg,.png,.jpeg">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Foto (3x4/4x6)</label>
@@ -461,10 +466,11 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Surat Keterangan Pindah
                                     (OPSIONAL)</label>
-                                <p class="text-sm text-gray-800">Upload File Surat Keterangan Pindah Format: PDF Maks. 2MB</p>
+                                <p class="text-sm text-gray-800">Upload File Surat Keterangan Pindah Format: PDF Maks.
+                                    2MB</p>
                                 <input type="file" id="surat_keterangan_pindah" name="surat_keterangan_pindah"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
+                                    accept=".pdf">
                             </div>
                             <div class="border border-gray-400 rounded-md p-4 space-y-4">
                                 <h2 class="text-lg font-medium text-gray-900 mb-2">Khusus Untuk RPL Pengalaman Kerja
@@ -472,10 +478,11 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Perangkat Pembelajaran (RPP,
                                         Media, Bahan Pembelajaran)</label>
-                                    <p class="text-sm text-gray-800">Bukti Perangkat Pembelajaran Format: PDF Maks. 2MB</p>
+                                    <p class="text-sm text-gray-800">Bukti Perangkat Pembelajaran Format: PDF Maks. 2MB
+                                    </p>
                                     <input type="file" id="file_rpl_pembelajaran" name="file_rpl_pembelajaran"
                                         class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf" required>
+                                        accept=".pdf">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Administrasi Kelas (Buku
@@ -483,7 +490,7 @@
                                     <p class="text-sm text-gray-800">Bukti Administrasi Kelas Format: PDF Maks. 2MB</p>
                                     <input type="file" id="file_rpl_administrasi" name="file_rpl_administrasi"
                                         class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf" required>
+                                        accept=".pdf">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Ekstrakurikuler (Surat
@@ -493,7 +500,7 @@
                                     <input type="file" id="file_rpl_ekstrakulikuler"
                                         name="file_rpl_ekstrakulikuler"
                                         class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf" required>
+                                        accept=".pdf">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Bukti Prestasi (Jika tidak
@@ -503,7 +510,7 @@
                                     </p>
                                     <input type="file" id="file_rpl_prestasi" name="file_rpl_prestasi"
                                         class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf" required>
+                                        accept=".pdf">
                                 </div>
                             </div>
                             <div>
@@ -515,11 +522,12 @@
                                 </a>
                                 <input type="file" id="file_cv" name="file_cv"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
+                                    accept=".pdf">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran</label>
-                                <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG Maks. 2MB</p>
+                                <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG Maks.
+                                    2MB</p>
                                 <input type="file" id="file_bukti_pembayaran_rpl" name="file_bukti_pembayaran"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".jpg,.png,.jpeg" required>
@@ -530,7 +538,8 @@
                         <div id="non_rpl_fields" class="space-y-6 hidden">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
-                                <p class="text-sm text-gray-800">Upload File Ijazah SMA/K Format: PDF Maks. 2MB (Legalisir Cap Basah)</p>
+                                <p class="text-sm text-gray-800">Upload File Ijazah SMA/K Format: PDF Maks. 2MB
+                                    (Legalisir Cap Basah)</p>
                                 <input type="file" id="file_ijazah" name="file_ijazah"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".pdf" required>
@@ -539,14 +548,14 @@
                                 <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
                                     Ijazah</label>
                                 <input type="text" id="no_ijazah" name="no_ijazah"
-                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    placeholder="Masukkan Nomor Ijazah">
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    placeholder="Masukkan Nomor Ijazah" required>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
                                 <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF, JPG,
                                     JPEG, PNG Maks. 2MB (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_transkrip" name="file_transkrip"
+                                <input type="file" id="file_transkrip_nonrpl" name="file_transkrip"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".pdf" required>
                             </div>
@@ -587,7 +596,8 @@
                                     accept=".jpg,.png,.jpeg" required>
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran Format: JPG, PNG Maks. 2MB</label>
+                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran Format:
+                                    JPG, PNG Maks. 2MB</label>
                                 <input type="file" id="file_bukti_pembayaran" name="file_bukti_pembayaran"
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".jpg,.png,.jpeg" required>
@@ -673,6 +683,28 @@
             // Initial call
             toggleProgramFields();
 
+            // --- Alamat Lain Toggle ---
+            const alamatPengirimModulRadios = document.getElementsByName('alamat_pengirim_modul');
+            const alamatLainDiv = document.getElementById('alamat_lain_field');
+            const alamatLainTextarea = document.getElementById('alamat_lain_input');
+
+            function toggleAlamatLain() {
+                if (document.getElementById('alamat_pengirim_modul_tidak').checked) {
+                    alamatLainDiv.classList.remove('hidden');
+                    alamatLainTextarea.required = true;
+                } else {
+                    alamatLainDiv.classList.add('hidden');
+                    alamatLainTextarea.required = false;
+                }
+            }
+
+            Array.from(alamatPengirimModulRadios).forEach(radio => {
+                radio.addEventListener('change', toggleAlamatLain);
+            });
+
+            // Initial call to set the correct state on page load
+            toggleAlamatLain();
+
             // --- Photo format validation (jpg, jpeg, png) ---
             function isValidImageFile(file) {
                 if (!file) return false;
@@ -686,7 +718,9 @@
             }
 
             // Select all photo file inputs by name (handles duplicated ids in form)
-            const photoInputs = document.querySelectorAll('input[type="file"][name="file_foto", "file_ktp", "file_ss_pddikti", "file_bukti_pembayaran", "file_bukti_pembayaran_rpl"]');
+            const photoInputs = document.querySelectorAll(
+                'input[type="file"][name="file_foto", "file_ktp", "file_ss_pddikti", "file_bukti_pembayaran", "file_bukti_pembayaran_rpl"]'
+                );
             photoInputs.forEach(input => {
                 input.addEventListener('change', function(e) {
                     const file = this.files && this.files[0];
