@@ -46,7 +46,7 @@
                         <label for="agama" class="block text-sm font-medium text-gray-700">Agama</label>
                         <select name="agama" id="agama"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                            @foreach (['islam','kristen','katolik','hindu','buddha','konghucu'] as $agama)
+                            @foreach (['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu'] as $agama)
                                 <option value="{{ $agama }}" @if (old('agama', $data->agama) == $agama) selected @endif>
                                     {{ ucfirst($agama) }}</option>
                             @endforeach
@@ -54,13 +54,23 @@
                     </div>
                     <div>
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-                        <input type="text" name="gender" id="gender" value="{{ old('gender', $data->gender) }}"
+                        <select name="gender" id="gender"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <option value="laki-laki" @if (old('gender', $data->gender) == 'laki-laki') selected @endif>Laki-laki
+                            </option>
+                            <option value="perempuan" @if (old('gender', $data->gender) == 'perempuan') selected @endif>Perempuan
+                            </option>
+                        </select>
                     </div>
                     <div>
                         <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                        <input type="text" name="status" id="status" value="{{ old('status', $data->status) }}"
+                        <select name="status" id="status"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <option value="single" @if (old('status', $data->status) == 'single') selected @endif>Single</option>
+                            <option value="menikah" @if (old('status', $data->status) == 'menikah') selected @endif>Menikah</option>
+                            <option value="duda" @if (old('status', $data->status) == 'duda') selected @endif>Duda</option>
+                            <option value="janda" @if (old('status', $data->status) == 'janda') selected @endif>Janda</option>
+                        </select>
                     </div>
                     <div>
                         <label for="nik" class="block text-sm font-medium text-gray-700">NIK</label>

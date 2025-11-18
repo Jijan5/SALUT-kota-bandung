@@ -74,12 +74,17 @@
                                 <input type="text" name="search"
                                     class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     placeholder="Search..." value="{{ request('search') }}">
-                                <div class="absolute top-0 left-0 inline-flex items-center p-2">
-                                    <button type="submit">
-                                        <span class="material-icons-outlined text-gray-400">search</span>
-                                    </button>
-                                </div>
                             </form>
+                            <div class="flex space-x-2">
+                                <a href="{{ route('admin.export.excel') }}"
+                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                    Export Excel↗
+                                </a>
+                                <a href="{{ route('admin.export.pdf') }}"
+                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                    Export PDF↗
+                                </a>
+                            </div>
                         </div>
 
                         <!-- Data Table -->

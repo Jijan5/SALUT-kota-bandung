@@ -17,3 +17,4 @@ class AdminMiddleware
         return redirect()->route('login');
     }
 }
+// Compare this snippet from app/Models/SalutPendaftaran.php:

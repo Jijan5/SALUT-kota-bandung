@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="{{ asset('images/icon-web.png') }}">
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-blue-800 flex items-center justify-center h-screen">
     <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <h1 class="text-2xl font-bold text-center text-gray-900">Admin Login</h1>
 

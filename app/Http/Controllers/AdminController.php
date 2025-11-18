@@ -15,7 +15,7 @@ class AdminController extends Controller
         $datapendaftar = SalutPendaftaran::all();
         $pdf = Pdf::loadView('admin.export-pdf', compact('datapendaftar'))->setPaper('a2', 'landscape');
 
-        return $pdf->stream('data_pendaftar.pdf');
+        return $pdf->stream('data_pendaftar_salut.pdf');
     }
 
     public function admin()
