@@ -12,7 +12,7 @@ class Admin extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // protected $guard = 'admins';
+    protected $guard = 'Admins';
     protected $table = 'admin';
     /**
      * The attributes that are mass assignable.
@@ -40,11 +40,4 @@ class Admin extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }
