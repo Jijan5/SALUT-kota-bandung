@@ -35,17 +35,63 @@ class AdminController extends Controller
         $search = $request->input('search');
 
         $pendaftar = SalutPendaftaran::query()
+            ->where('status_pendaftaran', 'pending')
             ->when($search, function ($query, $search) {
-                return $query->where('nama', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('jalur_program', 'like', "%{$search}%")
-                    ->orWhere('nik', 'like', "%{$search}%")
-                    ->orWhere('no_ijazah', 'like', "%{$search}%");
+                return $query->where(function ($q) use ($search) {
+                    $q->where('nama', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('jalur_program', 'like', "%{$search}%")
+                        ->orWhere('nik', 'like', "%{$search}%")
+                        ->orWhere('no_ijazah', 'like', "%{$search}%");
+                });
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('admin.admin-salut', ['datapendaftar' => $pendaftar]);
+    }
+
+    public function dashboard()
+    {
+        $totalPendaftar = SalutPendaftaran::count();
+        $jumlahDiterima = SalutPendaftaran::where('status_pendaftaran', 'diterima')->count();
+        $jumlahPending = SalutPendaftaran::where('status_pendaftaran', 'pending')->count();
+
+        return view('admin.admin-dashboard', [
+            'totalPendaftar' => $totalPendaftar,
+            'jumlahDiterima' => $jumlahDiterima,
+            'jumlahPending' => $jumlahPending,
+        ]);
+    }
+
+    public function diterimaIndex(Request $request)
+    {
+        $search = $request->input('search');
+
+        $pendaftarDiterima = SalutPendaftaran::query()
+            ->where('status_pendaftaran', 'diterima')
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($q) use ($search) {
+                    $q->where('nama', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('updated_at', 'desc') // Urutkan berdasarkan kapan mereka diterima
+            ->paginate(10);
+
+        return view('admin.admin-diterima', ['datapendaftar' => $pendaftarDiterima]);
+    }
+
+    /**
+     * Mengubah status pendaftar menjadi 'diterima'.
+     */
+    public function terima($id)
+    {
+        $pendaftar = SalutPendaftaran::findOrFail($id);
+        $pendaftar->status_pendaftaran = 'diterima';
+        $pendaftar->save();
+
+        return redirect()->route('admin.index')->with('success', 'Siswa telah diterima dan dipindahkan ke halaman Siswa Diterima.');
     }
 
     public function edit($id)

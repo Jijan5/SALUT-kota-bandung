@@ -22,4 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
     Route::get('/admin/export/pdf', [AdminController::class, 'exportPdf'])->name('admin.export.pdf');
     Route::get('/admin/export/excel', [AdminController::class, 'exportExcel'])->name('admin.export.excel');
+    Route::post('/admin/pendaftar/{id}/terima', [AdminController::class, 'terima'])->name('admin.terima');
+    Route::get('/admin/diterima', [AdminController::class, 'diterimaIndex'])->name('admin.diterima');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
