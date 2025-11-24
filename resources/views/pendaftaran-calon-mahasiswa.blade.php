@@ -417,7 +417,12 @@
                             class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Masukkan No. HP Alternatif">
                     </div>
-
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Masukkan Email">
+                    </div>
                     <!-- Program Selection -->
                     <div>
                         <label for="jalur_program" class="block text-sm font-medium text-gray-700">Jalur

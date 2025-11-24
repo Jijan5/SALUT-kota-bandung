@@ -9,7 +9,7 @@ Route::get('/', function () {
     return view('pendaftaran-calon-mahasiswa');
 });
 
-Route::post('/pendaftaran-calon-mahasiswa', [SalutPendaftaranController::class, 'store']);
+Route::post('/', [SalutPendaftaranController::class, 'store']);
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.submit');

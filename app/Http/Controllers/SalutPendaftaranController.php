@@ -79,7 +79,7 @@ class SalutPendaftaranController extends Controller
 
         SalutPendaftaran::create($validatedData);
 
-        return redirect('/pendaftaran-calon-mahasiswa')->with('success', 'Pendaftaran berhasil dikirim!');
+        return redirect('/')->with('success', 'Pendaftaran berhasil dikirim!');
 
     }
 }
