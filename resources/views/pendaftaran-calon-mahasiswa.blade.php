@@ -423,6 +423,17 @@
                             class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Masukkan Email">
                     </div>
+                    <div class="border border-gray-400 rounded-md p-4 mt-6">
+                        <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
+                        <p class="text-gray-700 mb-3">
+                            Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
+                            calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
+                        </p>
+                        <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
+                        <p class="text-gray-700 mb-3">
+                            Calon mahasiswa dikenakan biaya admisi Rp200.000.
+                        </p>
+                    </div>
                     <!-- Program Selection -->
                     <div>
                         <label for="jalur_program" class="block text-sm font-medium text-gray-700">Jalur
@@ -439,8 +450,14 @@
                                 <span class="ml-2 text-sm text-gray-700">Non-RPL</span>
                             </label>
                         </div>
-                        <!-- Hidden input kept for existing validation script (id="jalur_program") -->
-                        {{-- <input type="hidden" id="jalur_program" name="jalur_program" value="RPL"> --}}
+                        <div id="rpl_description" class="mt-2 text-sm text-gray-600">
+                            <p>RPL untuk calon Mahasiwa yang memiliki riwayat akademik dengan ijsah dari D1,D2,D3 atau
+                                S1. Atau Pindah/melanjutkan kuliah di UT.</p>
+                        </div>
+                        <div id="non_rpl_description" class="mt-2 text-sm text-gray-600 hidden">
+                            <p>Non RPL ditujukan bagi calon mahasiswa yang mendaftar menggunakan ijazah pendidikan
+                                terakhir SMA/SMK/Paket (C).</p>
+                        </div>
                         <!-- jalur RPL -->
                         <div id="rpl_fields" class="space-y-6">
                             <div>
@@ -591,15 +608,6 @@
                                     Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
                                     40251.
                                 </p>
-                                <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
-                                <p class="text-gray-700 mb-3">
-                                    Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
-                                    calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
-                                </p>
-                                <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
-                                <p class="text-gray-700 mb-3">
-                                    Calon mahasiswa dikenakan biaya admisi Rp200.000.
-                                </p>
                                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
                                     transfer ke PIC SALUT:</h2>
                                 <p class="text-gray-700 leading-relaxed whitespace-pre-line">
@@ -691,15 +699,6 @@
                                     Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
                                     40251.
                                 </p>
-                                <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
-                                <p class="text-gray-700 mb-3">
-                                    Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
-                                    calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
-                                </p>
-                                <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
-                                <p class="text-gray-700 mb-3">
-                                    Calon mahasiswa dikenakan biaya admisi Rp200.000.
-                                </p>
                                 <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
                                     transfer ke PIC SALUT:</h2>
                                 <p class="text-gray-700 leading-relaxed whitespace-pre-line">
@@ -736,19 +735,23 @@
             const radios = document.getElementsByName('jalur_program');
             const rplFields = document.getElementById('rpl_fields');
             const nonRplFields = document.getElementById('non_rpl_fields');
+            const rplDescription = document.getElementById('rpl_description');
+            const nonRplDescription = document.getElementById('non_rpl_description');
 
             // Helper to set disabled/required based on visibility and a marker attribute.
             // Use data-required-when-visible on inputs that must be required when their section is visible.
             function setControlsForSection(sectionEl, visible) {
                 const controls = sectionEl.querySelectorAll('input, select, textarea');
                 controls.forEach(el => {
-                    if (el.type === 'hidden') return;
+                    if (el.type ===
+                        'hidden') return;
 
                     // When a section is hidden, disable its controls so browser won't validate them.
                     el.disabled = !visible;
 
                     // Only make required when visible AND the control is explicitly marked to be required.
-                    if (visible && el.hasAttribute('data-required-when-visible')) {
+                    if (visible && el.hasAttribute(
+                            'data-required-when-visible')) {
                         el.required = true;
                     } else {
                         el.required = false;
@@ -760,12 +763,16 @@
                 if (document.getElementById('jalur_program_rpl').checked) {
                     rplFields.classList.remove('hidden');
                     nonRplFields.classList.add('hidden');
+                    rplDescription.classList.remove('hidden');
+                    nonRplDescription.classList.add('hidden');
 
                     setControlsForSection(rplFields, true);
                     setControlsForSection(nonRplFields, false);
                 } else {
                     rplFields.classList.add('hidden');
                     nonRplFields.classList.remove('hidden');
+                    rplDescription.classList.add('hidden');
+                    nonRplDescription.classList.remove('hidden');
 
                     setControlsForSection(rplFields, false);
                     setControlsForSection(nonRplFields, true);

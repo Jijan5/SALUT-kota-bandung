@@ -21,9 +21,9 @@ return new class extends Migration
             $table->enum('status', ['single', 'menikah', 'duda', 'janda']);
             $table->string('nik', 16)->unique();
             $table->string('provinsi');
-            $table->string('kab_kota');
-            $table->string('kecamatan');
-            $table->string('desa_kelurahan');
+            $table->string('kab_kota')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('desa_kelurahan')->nullable();
             $table->string('kode_pos');
             $table->string('alamat');
             $table->string('alamat_lain')->nullable();
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->enum('jalur_program', ['RPL', 'Non-RPL']);
             $table->string('lokasi_ujian_provinsi');
-            $table->string('lokasi_ujian_kab_kota');
+            $table->string('lokasi_ujian_kab_kota')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
