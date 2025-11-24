@@ -30,6 +30,10 @@
                             <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">No. Hp</th>
                             <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Jalur Program
                             </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Lokasi Ujian Provinsi
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Lokasi Ujian Kab/Kota
+                            </th>
                             <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tanggal
                                 Diterima</th>
                             <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Status</th>
@@ -44,6 +48,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->email }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->no_hp }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->jalur_program }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->lokasi_ujian_provinsi }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->lokasi_ujian_kab_kota }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $pendaftar->updated_at->format('d F Y H:i') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">

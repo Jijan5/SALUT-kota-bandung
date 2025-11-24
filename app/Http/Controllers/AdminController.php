@@ -121,6 +121,8 @@ class AdminController extends Controller
             'alamat' => 'nullable|string|max:500',
             'alamat_lain' => 'nullable|string|max:500',
             'alamat_pengirim_modul' => 'nullable|string|max:3',
+            'lokasi_ujian_provinsi' => 'nullable|string|max:255',
+            'lokasi_ujian_kab_kota' => 'nullable|string|max:255',
             'ukuran_almat' => 'nullable|string|max:10',
             'nama_ibu_kandung' => 'nullable|string|max:255',
             'no_hp' => 'nullable|string|max:16',

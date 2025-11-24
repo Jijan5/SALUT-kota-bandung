@@ -27,6 +27,8 @@ class SalutPendaftaran extends Model
         'alamat',
         'alamat_lain',
         'alamat_pengirim_modul',
+        'lokasi_ujian_provinsi',
+        'lokasi_ujian_kab_kota',
         'ukuran_almat',
         'nama_ibu_kandung',
         'no_hp',

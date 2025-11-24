@@ -33,6 +33,8 @@ class SalutPendaftaranController extends Controller
             'kode_pos' => 'required|string|max:10',
             'alamat' => 'required|string|max:500',
             'alamat_lain' => 'nullable|string|max:500',
+            'lokasi_ujian_provinsi' => 'required|string|max:255',
+            'lokasi_ujian_kab_kota' => 'required|string|max:255',
             'alamat_pengirim_modul' => ['required', Rule::in(['ya', 'tidak'])],
             'ukuran_almat' => 'required|string|max:10',
             'nama_ibu_kandung' => 'required|string|max:255',

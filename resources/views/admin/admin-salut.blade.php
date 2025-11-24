@@ -76,6 +76,10 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 Alamat Lain</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                Lokasi Ujian Provinsi</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                Lokasi Ujian Kab/Kota</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 Ukuran Almamater</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 Nama Ibu Kandung</th>
@@ -105,9 +109,11 @@
                                 Surat Pernyataan</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 Surat Keterangan Pindah</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 File RPL Pembelajaran</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                 File RPL Administrasi</th>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -155,6 +161,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     {{ $pendaftar->alamat_pengirim_modul }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->alamat_lain }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->lokasi_ujian_provinsi }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->lokasi_ujian_kab_kota }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->ukuran_almat }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $pendaftar->nama_ibu_kandung }}
@@ -337,7 +345,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="45" class="text-center py-4">No data available.</td>
+                                <td colspan="47" class="text-center py-4">No data available.</td>
                             </tr>
                         @endforelse
                     </tbody>

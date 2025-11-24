@@ -151,6 +151,29 @@
 
                 <hr class="my-8">
 
+                <!-- Lokasi Ujian -->
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Lokasi Ujian</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="lokasi_ujian_provinsi" class="block text-sm font-medium text-gray-700">Provinsi
+                            Ujian</label>
+                        <select name="lokasi_ujian_provinsi" id="lokasi_ujian_provinsi"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <option value="">Pilih Provinsi Ujian</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="lokasi_ujian_kab_kota" class="block text-sm font-medium text-gray-700">Kab/Kota
+                            Ujian</label>
+                        <select name="lokasi_ujian_kab_kota" id="lokasi_ujian_kab_kota"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <option value="">Pilih Kab/Kota Ujian</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="my-8">
+
                 <!-- Program and Files -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -236,11 +259,17 @@
             const kabKotaDropdown = document.getElementById('kab_kota');
             const kecamatanDropdown = document.getElementById('kecamatan');
             const desaKelurahanDropdown = document.getElementById('desa_kelurahan');
+            const lokasiUjianProvinsiDropdown = document.getElementById('lokasi_ujian_provinsi');
+            const lokasiUjianKabKotaDropdown = document.getElementById('lokasi_ujian_kab_kota');
 
             const existingProvinsi = "{{ old('provinsi', $data->provinsi) }}";
             const existingKabKota = "{{ old('kab_kota', $data->kab_kota) }}";
             const existingKecamatan = "{{ old('kecamatan', $data->kecamatan) }}";
             const existingDesaKelurahan = "{{ old('desa_kelurahan', $data->desa_kelurahan) }}";
+            const existingLokasiUjianProvinsi =
+                "{{ old('lokasi_ujian_provinsi', $data->lokasi_ujian_provinsi) }}";
+            const existingLokasiUjianKabKota =
+                "{{ old('lokasi_ujian_kab_kota', $data->lokasi_ujian_kab_kota) }}";
 
             function populateDropdown(dropdown, data, defaultOptionText, selectedValue) {
                 dropdown.innerHTML = `<option value="">${defaultOptionText}</option>`;
@@ -267,6 +296,11 @@
                         existingProvinsi);
                     if (selectedProvinsiId) {
                         provinsiDropdown.dispatchEvent(new Event('change'));
+                    }
+                    const selectedLokasiUjianProvinsiId = populateDropdown(lokasiUjianProvinsiDropdown,
+                        data, 'Pilih Provinsi Ujian', existingLokasiUjianProvinsi);
+                    if (selectedLokasiUjianProvinsiId) {
+                        lokasiUjianProvinsiDropdown.dispatchEvent(new Event('change'));
                     }
                 });
 
@@ -334,6 +368,23 @@
                             populateDropdown(desaKelurahanDropdown, data,
                                 'Pilih Desa/Kelurahan', existingDesaKelurahan);
                             desaKelurahanDropdown.disabled = false;
+                        });
+                }
+            });
+            lokasiUjianProvinsiDropdown.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const selectedProvinsiId = selectedOption.dataset.id;
+
+                lokasiUjianKabKotaDropdown.innerHTML = '<option value="">Pilih Kab/Kota Ujian</option>';
+                lokasiUjianKabKotaDropdown.disabled = true;
+
+                if (selectedProvinsiId) {
+                    fetch(`${GITHUB_URL}kabupaten/${selectedProvinsiId}.json`)
+                        .then(response => response.json())
+                        .then(data => {
+                            populateDropdown(lokasiUjianKabKotaDropdown, data,
+                                'Pilih Kab/Kota Ujian', existingLokasiUjianKabKota);
+                            lokasiUjianKabKotaDropdown.disabled = false;
                         });
                 }
             });

@@ -56,6 +56,8 @@
                 <th>Alamat</th>
                 <th>Alamat Pengirim Modul</th>
                 <th>Alamat Lain</th>
+                <th>Lokasi Ujian Provinsi</th>
+                <th>Lokasi Ujian Kab/Kota</th>
                 <th>Ukuran Almamater</th>
                 <th>Nama Ibu Kandung</th>
                 <th>No. HP</th>

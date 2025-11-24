@@ -100,6 +100,7 @@
                     class="w-80 mx-auto mb-2">
                 <h1 class="text-2xl font-bold">Pendaftaran Calon Mahasiswa</h1>
                 <p class="text-2xl font-bold">SALUT Kota Bandung</p>
+                <p class="text-1xl font-bold">Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat 40251.</p>
             </div>
             <div class="p-10">
                 <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6"
@@ -180,42 +181,6 @@
                         </select>
                     </div>
                     <!-- Address Information -->
-                    <div>
-                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
-                        <textarea id="alamat" name="alamat" rows="3"
-                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            placeholder="Masukkan Alamat"></textarea>
-                    </div>
-                    <div>
-                        <label for="kode_pos" class="block text-sm font-medium text-gray-700">Kode Pos</label>
-                        <input type="text" id="kode_pos" name="kode_pos"
-                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            placeholder="Masukkan Kode Pos">
-                    </div>
-
-                    <label class="block text-sm font-medium text-gray-700">Alamat Pengirim Modul Sama Seperti Di Kolom
-                        Alamat?</label>
-                    <div class="mt-2 flex space-x-4">
-                        <div class="flex items-center">
-                            <input id="alamat_pengirim_modul_ya" name="alamat_pengirim_modul" type="radio"
-                                value="ya" class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
-                                checked>
-                            <label for="alamat_pengirim_modul_ya" class="ml-2 block text-sm text-gray-900">Ya</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input id="alamat_pengirim_modul_tidak" name="alamat_pengirim_modul" type="radio"
-                                value="tidak" class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500">
-                            <label for="alamat_pengirim_modul_tidak"
-                                class="ml-2 block text-sm text-gray-900">Tidak</label>
-                        </div>
-                    </div>
-                    <div id="alamat_lain_field" class="hidden">
-                        <label for="alamat_lain_input" class="block text-sm font-medium text-gray-700"> Masukan Alamat
-                            Lain</label>
-                        <textarea id="alamat_lain_input" name="alamat_lain" rows="3"
-                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            placeholder="Masukkan Alamat Lain"></textarea>
-                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="provinsi" class="block text-sm font-medium text-gray-700">Provinsi</label>
@@ -252,6 +217,65 @@
                             </select>
                         </div>
                     </div>
+                    <div>
+                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
+                        <textarea id="alamat" name="alamat" rows="3"
+                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Masukkan Alamat"></textarea>
+                    </div>
+                    <div>
+                        <label for="kode_pos" class="block text-sm font-medium text-gray-700">Kode Pos</label>
+                        <input type="text" id="kode_pos" name="kode_pos"
+                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Masukkan Kode Pos">
+                    </div>
+
+                    <label class="block text-sm font-medium text-gray-700">Alamat Pengirim Modul Sama Seperti Di Kolom
+                        Alamat?</label>
+                    <div class="mt-2 flex space-x-4">
+                        <div class="flex items-center">
+                            <input id="alamat_pengirim_modul_ya" name="alamat_pengirim_modul" type="radio"
+                                value="ya" class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
+                                checked>
+                            <label for="alamat_pengirim_modul_ya" class="ml-2 block text-sm text-gray-900">Ya</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="alamat_pengirim_modul_tidak" name="alamat_pengirim_modul" type="radio"
+                                value="tidak" class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <label for="alamat_pengirim_modul_tidak"
+                                class="ml-2 block text-sm text-gray-900">Tidak</label>
+                        </div>
+                    </div>
+                    <div id="alamat_lain_field" class="hidden">
+                        <label for="alamat_lain_input" class="block text-sm font-medium text-gray-700"> Masukan Alamat
+                            Lain</label>
+                        <textarea id="alamat_lain_input" name="alamat_lain" rows="3"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            placeholder="Masukkan Alamat Lain"></textarea>
+                    </div>
+                    <!-- Lokasi Ujian -->
+                    <div class="pt-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-2">Lokasi Ujian</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="lokasi_ujian_provinsi"
+                                    class="block text-sm font-medium text-gray-700">Provinsi Ujian</label>
+                                <select id="lokasi_ujian_provinsi" name="lokasi_ujian_provinsi"
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    placeholder="Pilih Provinsi Ujian">
+                                </select>
+                            </div>
+                            <div>
+                                <label for="lokasi_ujian_kab_kota"
+                                    class="block text-sm font-medium text-gray-700">Kab/Kota Ujian</label>
+                                <select id="lokasi_ujian_kab_kota" name="lokasi_ujian_kab_kota"
+                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    placeholder="Pilih Kab/Kota Ujian">
+                                    <option value="">Pilih Kab/Kota Ujian</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <!-- script for provinsi, kab/kota, kecamatan, desa/kelurahan -->
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
@@ -261,6 +285,9 @@
                             const kabKotaDropdown = document.getElementById('kab_kota');
                             const kecamatanDropdown = document.getElementById('kecamatan');
                             const desaKelurahanDropdown = document.getElementById('desa_kelurahan');
+
+                            const lokasiUjianProvinsiDropdown = document.getElementById('lokasi_ujian_provinsi');
+                            const lokasiUjianKabKotaDropdown = document.getElementById('lokasi_ujian_kab_kota');
 
                             function populateDropdown(dropdown, data, defaultOptionText) {
                                 dropdown.innerHTML = `<option value="">${defaultOptionText}</option>`;
@@ -273,11 +300,12 @@
                                 });
                             }
 
-                            // Fetch and populate Provinsi
+                            // Fetch and populate all Provinsi dropdowns
                             fetch(GITHUB_URL + 'provinsi.json')
                                 .then(response => response.json())
                                 .then(data => {
                                     populateDropdown(provinsiDropdown, data, 'Pilih Provinsi');
+                                    populateDropdown(lokasiUjianProvinsiDropdown, data, 'Pilih Provinsi Ujian');
                                 });
 
                             provinsiDropdown.addEventListener('change', function() {
@@ -298,6 +326,25 @@
                                         .then(data => {
                                             populateDropdown(kabKotaDropdown, data, 'Pilih Kab/Kota');
                                             kabKotaDropdown.disabled = false;
+                                        });
+                                }
+                            });
+
+                            lokasiUjianProvinsiDropdown.addEventListener('change', function() {
+                                const selectedOption = this.options[this.selectedIndex];
+                                const selectedProvinsiId = selectedOption.dataset.id;
+
+                                lokasiUjianKabKotaDropdown.innerHTML =
+                                    '<option value="">Pilih Kab/Kota Ujian</option>';
+                                lokasiUjianKabKotaDropdown.disabled = true;
+
+                                if (selectedProvinsiId) {
+                                    fetch(`${GITHUB_URL}kabupaten/${selectedProvinsiId}.json`)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            populateDropdown(lokasiUjianKabKotaDropdown, data,
+                                                'Pilih Kab/Kota Ujian');
+                                            lokasiUjianKabKotaDropdown.disabled = false;
                                         });
                                 }
                             });
@@ -535,6 +582,35 @@
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".pdf">
                             </div>
+                            <div class="border border-gray-400 rounded-md p-4 mt-6">
+                                <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
+                                    Terbuka)</h2>
+                                <p class="text-gray-700 mb-4 leading-relaxed">
+                                    adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
+                                    Priangan berlokasi di Kota Bandung.<br>
+                                    Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
+                                    40251.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
+                                <p class="text-gray-700 mb-3">
+                                    Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
+                                    calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
+                                <p class="text-gray-700 mb-3">
+                                    Calon mahasiswa dikenakan biaya admisi Rp200.000.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
+                                    transfer ke PIC SALUT:</h2>
+                                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                                    Bank BRI*
+                                    an. Ugan Suganda
+                                    400201017687536
+                                    Konfirmasi bukti pembayaran ke no Cs :\
+                                    081211121855.
+                                    Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                                </p>
+                            </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran</label>
                                 <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG Maks.
@@ -606,6 +682,35 @@
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".jpg,.png,.jpeg" required>
                             </div>
+                            <div class="border border-gray-400 rounded-md p-4 mt-6">
+                                <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
+                                    Terbuka)</h2>
+                                <p class="text-gray-700 mb-4 leading-relaxed">
+                                    adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
+                                    Priangan berlokasi di Kota Bandung.<br>
+                                    Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
+                                    40251.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
+                                <p class="text-gray-700 mb-3">
+                                    Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
+                                    calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
+                                <p class="text-gray-700 mb-3">
+                                    Calon mahasiswa dikenakan biaya admisi Rp200.000.
+                                </p>
+                                <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
+                                    transfer ke PIC SALUT:</h2>
+                                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                                    Bank BRI*
+                                    an. Ugan Suganda
+                                    400201017687536
+                                    Konfirmasi bukti pembayaran ke no Cs :\
+                                    081211121855.
+                                    Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                                </p>
+                            </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran Format:
                                     JPG, PNG Maks. 2MB</label>
@@ -613,26 +718,6 @@
                                     class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
                                     accept=".jpg,.png,.jpeg" required>
                             </div>
-                        </div>
-                        <div class="border border-gray-400 rounded-md p-4 mt-6">
-                            <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
-                                Terbuka)</h2>
-                            <p class="text-gray-700 mb-4 leading-relaxed">
-                                adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
-                                Priangan berlokasi di Kota Bandung.<br>
-                                Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
-                                40251.
-                            </p>
-                            <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
-                                transfer ke PIC SALUT:</h2>
-                            <p class="text-gray-700 leading-relaxed whitespace-pre-line">
-                                Bank BRI*
-                                an. Ugan Suganda
-                                400201017687536
-                                Konfirmasi bukti pembayaran ke no Cs :\
-                                081211121855.
-                                Serta upload juga bukti pembayaran pada form pendaftaran diatas.
-                            </p>
                         </div>
                     </div>
                     <!-- Submit Button -->

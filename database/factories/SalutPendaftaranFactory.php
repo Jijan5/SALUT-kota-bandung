@@ -33,6 +33,8 @@ class SalutPendaftaranFactory extends Factory
             'alamat' => $this->faker->address(),
             'alamat_lain' => $this->faker->address(),
             'alamat_pengirim_modul' => $this->faker->randomElement(['ya','tidak']),
+            'lokasi_ujian_provinsi' => $this->faker->state(),
+            'lokasi_ujian_kab_kota' => $this->faker->city(),
             'ukuran_almat' => $this->faker->randomElement(['S','M','L','XL','XXL','XXXL']),
             'nama_ibu_kandung' => $this->faker->name(),
             'no_hp' => $this->faker->unique()->numerify('08##############'),

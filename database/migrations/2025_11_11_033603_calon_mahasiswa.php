@@ -50,6 +50,8 @@ return new class extends Migration
             $table->string('form_tanda_tangan');
             $table->string('email')->unique();
             $table->enum('jalur_program', ['RPL', 'Non-RPL']);
+            $table->string('lokasi_ujian_provinsi');
+            $table->string('lokasi_ujian_kab_kota');
             $table->rememberToken();
             $table->timestamps();
         });
