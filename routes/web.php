@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SalutPendaftaranController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/pendaftaran-calon-mahasiswa', function () {
+Route::get('/', function () {
     return view('pendaftaran-calon-mahasiswa');
 });
 
