@@ -100,11 +100,11 @@
                     class="w-80 mx-auto mb-2">
                 <h1 class="text-2xl font-bold">Pendaftaran Calon Mahasiswa</h1>
                 <p class="text-2xl font-bold">SALUT Kota Bandung</p>
-                <p class="text-1xl font-bold">Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat 40251.</p>
+                <p class="text-1xl font-bold">Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung,
+                    Jawa Barat 40251.</p>
             </div>
             <div class="p-10">
-                <form action="/" method="POST" class="space-y-6"
-                    enctype="multipart/form-data">
+                <form action="/" method="POST" class="space-y-6" enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-500/20 border border-red-400 text-red-900 px-4 py-3 rounded mb-4">
@@ -417,23 +417,7 @@
                             class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="Masukkan No. HP Alternatif">
                     </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email"
-                            class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            placeholder="Masukkan Email">
-                    </div>
-                    <div class="border border-gray-400 rounded-md p-4 mt-6">
-                        <h2 class="text-xl font-semibold text-gray-900">RPL</h2>
-                        <p class="text-gray-700 mb-3">
-                            Pengusulan RPL dikenalkan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
-                            calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
-                        </p>
-                        <h2 class="text-xl font-semibold text-gray-900">Non-RPL</h2>
-                        <p class="text-gray-700 mb-3">
-                            Calon mahasiswa dikenakan biaya admisi Rp200.000.
-                        </p>
-                    </div>
+
                     <!-- Program Selection -->
                     <div>
                         <label for="jalur_program" class="block text-sm font-medium text-gray-700">Jalur
@@ -450,282 +434,323 @@
                                 <span class="ml-2 text-sm text-gray-700">Non-RPL</span>
                             </label>
                         </div>
-                        <div id="rpl_description" class="mt-2 text-sm text-gray-600">
+                        <div id="rpl_description" class="mt-2 text-sm text-gray-600 space-y-3">
                             <p>RPL untuk calon Mahasiwa yang memiliki riwayat akademik dengan ijsah dari D1,D2,D3 atau
                                 S1. Atau Pindah/melanjutkan kuliah di UT.</p>
+                            <div class="border border-gray-300 rounded-md p-3">
+                                <h2 class="text-base font-semibold text-gray-800">Rincian Biaya Jalur RPL</h2>
+                                <p class="text-gray-700 mt-1">
+                                    Pengusulan RPL dikenakan biaya Rp300.000 dan biaya admisi Rp200.000. Jika ajuan RPL
+                                    calon mahasiswa tidak disetujui maka biaya RPL tidak dapat dikembalikan.
+                                </p>
+                            </div>
                         </div>
-                        <div id="non_rpl_description" class="mt-2 text-sm text-gray-600 hidden">
+                        <div id="non_rpl_description" class="mt-2 text-sm text-gray-600 space-y-3 hidden">
                             <p>Non RPL ditujukan bagi calon mahasiswa yang mendaftar menggunakan ijazah pendidikan
                                 terakhir SMA/SMK/Paket (C).</p>
-                        </div>
-                        <!-- jalur RPL -->
-                        <div id="rpl_fields" class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
-                                <p class="text-sm text-gray-800">Upload File Ijazah D2/D3/D4/S1 Format: PDF Maks. 2MB
-                                    (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_ijazah_rpl" name="file_ijazah"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
-                                    Ijazah</label>
-                                <input type="text" id="no_ijazah" name="no_ijazah"
-                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    placeholder="Masukkan Nomor Ijazah" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
-                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF Maks.
-                                    2MB (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_transkrip_rpl" name="file_transkrip"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <label for="ipk" class="block text-sm font-medium text-gray-700">IPK</label>
-                                <input type="number" step="0.01" min="0.00" max="4.00" id="ipk"
-                                    name="ipk"
-                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    placeholder="Contoh: 3.79">
-                            </div>
-                            <div>
-                                <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
-                                    Download surat pernyataan kebenaran dan keabsahan dokumen
-                                </a>
-                                <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan Keabsahan
-                                    Dokumen Format: PDF Maks. 2MB</p>
-                                <input type="file" id="surat_pernyataan" name="surat_pernyataan"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
-                                    Download form tanda tangan
-                                </a>
-                                <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF Maks.
-                                    2MB</p>
-                                <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <a href="https://pddikti.kemdiktisaintek.go.id/"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
-                                    Cek PDDIKTI
-                                </a>
-                                <p class="text-sm text-gray-800">Upload Bukti Tangkap Layar PDDIKTI Format: JPG, PNG
-                                    Maks.
-                                    2MB</p>
-                                <input type="file" id="file_ss_pddikti" name="file_ss_pddikti"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Foto (3x4/4x6)</label>
-                                <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
-                                <input type="file" id="file_foto" name="file_foto"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
-                                <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
-                                <input type="file" id="file_ktp" name="file_ktp"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Surat Keterangan Pindah
-                                    (OPSIONAL)</label>
-                                <p class="text-sm text-gray-800">Upload File Surat Keterangan Pindah Format: PDF Maks.
-                                    2MB</p>
-                                <input type="file" id="surat_keterangan_pindah" name="surat_keterangan_pindah"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf">
-                            </div>
-                            <div class="border border-gray-400 rounded-md p-4 space-y-4">
-                                <h2 class="text-lg font-medium text-gray-900 mb-2">Khusus Untuk RPL Pengalaman Kerja
-                                    (OPSIONAL)</h2>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Perangkat Pembelajaran (RPP,
-                                        Media, Bahan Pembelajaran)</label>
-                                    <p class="text-sm text-gray-800">Bukti Perangkat Pembelajaran Format: PDF Maks. 2MB
-                                    </p>
-                                    <input type="file" id="file_rpl_pembelajaran" name="file_rpl_pembelajaran"
-                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Administrasi Kelas (Buku
-                                        Catatan)</label>
-                                    <p class="text-sm text-gray-800">Bukti Administrasi Kelas Format: PDF Maks. 2MB</p>
-                                    <input type="file" id="file_rpl_administrasi" name="file_rpl_administrasi"
-                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Ekstrakurikuler (Surat
-                                        Keterangan Pembina Ekstrakurikuler)</label>
-                                    <p class="text-sm text-gray-800">Bukti Ekstrakurikuler Format: PDF Maks. 2MB
-                                    </p>
-                                    <input type="file" id="file_rpl_ekstrakulikuler"
-                                        name="file_rpl_ekstrakulikuler"
-                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700">Bukti Prestasi (Jika tidak
-                                        ada,
-                                        unggah kertas dengan tulisan tidak memiliki bukti prestasi)</label>
-                                    <p class="text-sm text-gray-800">Bukti Prestasi Format: PDF Maks. 2MB
-                                    </p>
-                                    <input type="file" id="file_rpl_prestasi" name="file_rpl_prestasi"
-                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                        accept=".pdf">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Unggah CV</label>
-                                <p class="text-sm text-gray-800">CV Format: PDF Maks. 2MB</p>
-                                <a href="{{ asset('files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx') }}" download
-                                    class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                    Unduh Formulir
-                                </a>
-                                <input type="file" id="file_cv" name="file_cv"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf">
-                            </div>
-                            <div class="border border-gray-400 rounded-md p-4 mt-6">
-                                <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
-                                    Terbuka)</h2>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
-                                    Priangan berlokasi di Kota Bandung.<br>
-                                    Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
-                                    40251.
-                                </p>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
-                                    transfer ke PIC SALUT:</h2>
-                                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
-                                    Bank BRI*
-                                    an. Ugan Suganda
-                                    400201017687536
-                                    Konfirmasi bukti pembayaran ke no Cs :\
-                                    081211121855.
-                                    Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                            <div class="border border-gray-300 rounded-md p-3">
+                                <h2 class="text-base font-semibold text-gray-800">Rincian Biaya Jalur Non-RPL</h2>
+                                <p class="text-gray-700 mt-1">
+                                    Calon mahasiswa dikenakan biaya admisi Rp200.000.
                                 </p>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran</label>
-                                <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG Maks.
-                                    2MB</p>
-                                <input type="file" id="file_bukti_pembayaran_rpl" name="file_bukti_pembayaran"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
+                            <!-- jalur RPL -->
+                            <div id="rpl_fields" class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
+                                    <p class="text-sm text-gray-800">Upload File Ijazah D2/D3/D4/S1 Format: PDF Maks.
+                                        2MB
+                                        (Legalisir Cap Basah)</p>
+                                    <input type="file" id="file_ijazah_rpl" name="file_ijazah"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
+                                        Ijazah</label>
+                                    <input type="text" id="no_ijazah" name="no_ijazah"
+                                        class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        placeholder="Masukkan Nomor Ijazah" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Transkrip
+                                        Nilai</label>
+                                    <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF
+                                        Maks.
+                                        2MB (Legalisir Cap Basah)</p>
+                                    <input type="file" id="file_transkrip_rpl" name="file_transkrip"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label for="ipk" class="block text-sm font-medium text-gray-700">IPK</label>
+                                    <input type="number" step="0.01" min="0.00" max="4.00"
+                                        id="ipk" name="ipk"
+                                        class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        placeholder="Contoh: 3.79">
+                                </div>
+                                <div>
+                                    <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                        Download surat pernyataan kebenaran dan keabsahan dokumen
+                                    </a>
+                                    <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan
+                                        Keabsahan
+                                        Dokumen Format: PDF Maks. 2MB</p>
+                                    <input type="file" id="surat_pernyataan" name="surat_pernyataan"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                        Download form tanda tangan
+                                    </a>
+                                    <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF Maks.
+                                        2MB</p>
+                                    <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <a href="https://pddikti.kemdiktisaintek.go.id/"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                        Cek PDDIKTI
+                                    </a>
+                                    <p class="text-sm text-gray-800">Upload Bukti Tangkap Layar PDDIKTI Format: JPG,
+                                        PNG
+                                        Maks.
+                                        2MB</p>
+                                    <input type="file" id="file_ss_pddikti" name="file_ss_pddikti"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Foto
+                                        (3x4/4x6)</label>
+                                    <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
+                                    <input type="file" id="file_foto" name="file_foto"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
+                                    <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
+                                    <input type="file" id="file_ktp" name="file_ktp"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Surat Keterangan Pindah
+                                        (OPSIONAL)</label>
+                                    <p class="text-sm text-gray-800">Upload File Surat Keterangan Pindah Format: PDF
+                                        Maks.
+                                        2MB</p>
+                                    <input type="file" id="surat_keterangan_pindah" name="surat_keterangan_pindah"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf">
+                                </div>
+                                <div class="border border-gray-400 rounded-md p-4 space-y-4">
+                                    <h2 class="text-lg font-medium text-gray-900 mb-2">Khusus Untuk RPL Pengalaman
+                                        Kerja
+                                        (OPSIONAL)</h2>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Perangkat Pembelajaran
+                                            (RPP,
+                                            Media, Bahan Pembelajaran)</label>
+                                        <p class="text-sm text-gray-800">Bukti Perangkat Pembelajaran Format: PDF Maks.
+                                            2MB
+                                        </p>
+                                        <input type="file" id="file_rpl_pembelajaran" name="file_rpl_pembelajaran"
+                                            class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                            accept=".pdf">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Administrasi Kelas (Buku
+                                            Catatan)</label>
+                                        <p class="text-sm text-gray-800">Bukti Administrasi Kelas Format: PDF Maks. 2MB
+                                        </p>
+                                        <input type="file" id="file_rpl_administrasi" name="file_rpl_administrasi"
+                                            class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                            accept=".pdf">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Ekstrakurikuler (Surat
+                                            Keterangan Pembina Ekstrakurikuler)</label>
+                                        <p class="text-sm text-gray-800">Bukti Ekstrakurikuler Format: PDF Maks. 2MB
+                                        </p>
+                                        <input type="file" id="file_rpl_ekstrakulikuler"
+                                            name="file_rpl_ekstrakulikuler"
+                                            class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                            accept=".pdf">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Bukti Prestasi (Jika
+                                            tidak
+                                            ada,
+                                            unggah kertas dengan tulisan tidak memiliki bukti prestasi)</label>
+                                        <p class="text-sm text-gray-800">Bukti Prestasi Format: PDF Maks. 2MB
+                                        </p>
+                                        <input type="file" id="file_rpl_prestasi" name="file_rpl_prestasi"
+                                            class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                            accept=".pdf">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Unggah CV</label>
+                                    <p class="text-sm text-gray-800">CV Format: PDF Maks. 2MB</p>
+                                    <a href="{{ asset('files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx') }}"
+                                        download
+                                        class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                                        Unduh Formulir
+                                    </a>
+                                    <input type="file" id="file_cv" name="file_cv"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf">
+                                </div>
+                                <div class="border border-gray-400 rounded-md p-4 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan
+                                        Universitas
+                                        Terbuka)</h2>
+                                    <p class="text-gray-700 mb-4 leading-relaxed">
+                                        adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT
+                                        Mitra
+                                        Priangan berlokasi di Kota Bandung.<br>
+                                        Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa
+                                        Barat
+                                        40251.
+                                    </p>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan
+                                        SALUT
+                                        transfer ke PIC SALUT:</h2>
+                                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                                        Bank BRI*
+                                        an. Ugan Suganda
+                                        400201017687536
+                                        Konfirmasi bukti pembayaran ke no Cs :\
+                                        081211121855.
+                                        Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                                    </p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Bukti
+                                        Pembayaran</label>
+                                    <p class="text-sm text-gray-800">Upload File Bukti Pembayaran Format: JPG, PNG
+                                        Maks.
+                                        2MB</p>
+                                    <input type="file" id="file_bukti_pembayaran_rpl" name="file_bukti_pembayaran"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- jalur Non-RPL -->
-                        <div id="non_rpl_fields" class="space-y-6 hidden">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
-                                <p class="text-sm text-gray-800">Upload File Ijazah SMA/K Format: PDF Maks. 2MB
-                                    (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_ijazah" name="file_ijazah"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
-                                    Ijazah</label>
-                                <input type="text" id="no_ijazah" name="no_ijazah"
-                                    class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    placeholder="Masukkan Nomor Ijazah" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Transkrip Nilai</label>
-                                <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF, JPG,
-                                    JPEG, PNG Maks. 2MB (Legalisir Cap Basah)</p>
-                                <input type="file" id="file_transkrip_nonrpl" name="file_transkrip"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
-                                    Download surat pernyataan kebenaran dan keabsahan dokumen
-                                </a>
-                                <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan Keabsahan
-                                    Dokumen Format: PDF, JPG Maks. 2MB</p>
-                                <input type="file" id="surat_pernyataan" name="surat_pernyataan"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
-                                    Download form tanda tangan
-                                </a>
-                                <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF, JPG Maks.
-                                    2MB</p>
-                                <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".pdf" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Foto (3x4/4x6)</label>
-                                <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
-                                <input type="file" id="file_foto" name="file_foto"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
-                                <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
-                                <input type="file" id="file_ktp" name="file_ktp"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
-                            </div>
-                            <div class="border border-gray-400 rounded-md p-4 mt-6">
-                                <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan Universitas
-                                    Terbuka)</h2>
-                                <p class="text-gray-700 mb-4 leading-relaxed">
-                                    adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT Mitra
-                                    Priangan berlokasi di Kota Bandung.<br>
-                                    Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat
-                                    40251.
-                                </p>
-                                <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan SALUT
-                                    transfer ke PIC SALUT:</h2>
-                                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
-                                    Bank BRI*
-                                    an. Ugan Suganda
-                                    400201017687536
-                                    Konfirmasi bukti pembayaran ke no Cs :\
-                                    081211121855.
-                                    Serta upload juga bukti pembayaran pada form pendaftaran diatas.
-                                </p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran Format:
-                                    JPG, PNG Maks. 2MB</label>
-                                <input type="file" id="file_bukti_pembayaran" name="file_bukti_pembayaran"
-                                    class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
-                                    accept=".jpg,.png,.jpeg" required>
+                            <!-- jalur Non-RPL -->
+                            <div id="non_rpl_fields" class="space-y-6 hidden">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Ijazah</label>
+                                    <p class="text-sm text-gray-800">Upload File Ijazah SMA/K Format: PDF Maks. 2MB
+                                        (Legalisir Cap Basah)</p>
+                                    <input type="file" id="file_ijazah" name="file_ijazah"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label for="no_ijazah" class="block text-sm font-medium text-gray-700">Nomor
+                                        Ijazah</label>
+                                    <input type="text" id="no_ijazah" name="no_ijazah"
+                                        class="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                        placeholder="Masukkan Nomor Ijazah" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Transkrip
+                                        Nilai</label>
+                                    <p class="text-sm text-gray-800">Upload File Transkrip Nilai Teakhir Format: PDF,
+                                        JPG,
+                                        JPEG, PNG Maks. 2MB (Legalisir Cap Basah)</p>
+                                    <input type="file" id="file_transkrip_nonrpl" name="file_transkrip"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <a href="https://www.ut.ac.id/wp-content/uploads/2024/11/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.pdf"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                        Download surat pernyataan kebenaran dan keabsahan dokumen
+                                    </a>
+                                    <p class="text-sm text-gray-800">Upload File Surat Pernyataan Kebenaran dan
+                                        Keabsahan
+                                        Dokumen Format: PDF, JPG Maks. 2MB</p>
+                                    <input type="file" id="surat_pernyataan" name="surat_pernyataan"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <a href="https://www.ut.ac.id/wp-content/uploads/2015/01/FORM_TANDA_TANGAN.pdf"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-600 mb-2 inline-block">
+                                        Download form tanda tangan
+                                    </a>
+                                    <p class="text-sm text-gray-800">Upload File Form Tanda Tangan Format: PDF, JPG
+                                        Maks.
+                                        2MB</p>
+                                    <input type="file" id="form_tanda_tangan" name="form_tanda_tangan"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".pdf" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Foto
+                                        (3x4/4x6)</label>
+                                    <p class="text-sm text-gray-800">Upload File Foto Format: JPG, PNG Maks. 2MB</p>
+                                    <input type="file" id="file_foto" name="file_foto"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload KTP</label>
+                                    <p class="text-sm text-gray-800">Upload File KTP Format: JPG, PNG Maks. 2MB</p>
+                                    <input type="file" id="file_ktp" name="file_ktp"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
+                                <div class="border border-gray-400 rounded-md p-4 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-2">SALUT (Sentra layanan
+                                        Universitas
+                                        Terbuka)</h2>
+                                    <p class="text-gray-700 mb-4 leading-relaxed">
+                                        adalah kepanjangan tangan untuk membantu teknis operasional di UT Bandung. SALUT
+                                        Mitra
+                                        Priangan berlokasi di Kota Bandung.<br>
+                                        Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa
+                                        Barat
+                                        40251.
+                                    </p>
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-2">Bukti Pembayaran Jasa Layanan
+                                        SALUT
+                                        transfer ke PIC SALUT:</h2>
+                                    <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                                        Bank BRI*
+                                        an. Ugan Suganda
+                                        400201017687536
+                                        Konfirmasi bukti pembayaran ke no Cs :\
+                                        081211121855.
+                                        Serta upload juga bukti pembayaran pada form pendaftaran diatas.
+                                    </p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Upload Bukti Pembayaran
+                                        Format:
+                                        JPG, PNG Maks. 2MB</label>
+                                    <input type="file" id="file_bukti_pembayaran" name="file_bukti_pembayaran"
+                                        class="mt-1 block w-full h-20 bg-gray-200 rounded-md border-gray-900 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm cursor-pointer"
+                                        accept=".jpg,.png,.jpeg" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="text-center">
-                        <button type="submit"
-                            class="w-full bg-blue-700 text-white py-2 px-4 rounded-md shadow hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                            Submit
-                        </button>
-                    </div>
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit"
+                                class="w-full bg-blue-700 text-white py-2 px-4 rounded-md shadow hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                Submit
+                            </button>
+                        </div>
                 </form>
             </div>
         </div>
