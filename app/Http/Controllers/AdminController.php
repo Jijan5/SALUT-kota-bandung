@@ -178,6 +178,6 @@ class AdminController extends Controller
         $data = SalutPendaftaran::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus!');
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }
