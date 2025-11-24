@@ -103,7 +103,7 @@
                 <p class="text-1xl font-bold">Alamat Kantor: Jl. Pungkur No.151, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat 40251.</p>
             </div>
             <div class="p-10">
-                <form action="/pendaftaran-calon-mahasiswa" method="POST" class="space-y-6"
+                <form action="/" method="POST" class="space-y-6"
                     enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
