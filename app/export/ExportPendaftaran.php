@@ -70,6 +70,8 @@ class ExportPendaftaran implements FromCollection, WithHeadings
             'kode_pos',
             'alamat',
             'alamat_lain',
+            'lokasi_ujian_provinsi',
+            'lokasi_ujian_kab_kota',
             'alamat_pengirim_modul',
             'ukuran_almat',
             'nama_ibu_kandung',

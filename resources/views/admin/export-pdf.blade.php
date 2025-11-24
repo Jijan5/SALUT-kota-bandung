@@ -100,6 +100,8 @@
                     <td>{{ $pendaftar->alamat }}</td>
                     <td>{{ $pendaftar->alamat_pengirim_modul }}</td>
                     <td>{{ $pendaftar->alamat_lain }}</td>
+                    <td>{{ $pendaftar->lokasi_ujian_provinsi }}</td>
+                    <td>{{ $pendaftar->lokasi_ujian_kab_kota }}</td>
                     <td>{{ $pendaftar->ukuran_almat }}</td>
                     <td>{{ $pendaftar->nama_ibu_kandung }}</td>
                     <td>{{ $pendaftar->no_hp }}</td>
