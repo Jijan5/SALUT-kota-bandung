@@ -3754,9 +3754,7 @@
                                                         class="premium-bullet-list-content elementor-repeater-item-852514d">
                                                         <div class="premium-bullet-list-text">
                                                             <div class="premium-bullet-list-wrapper">
-                                                                <div class="premium-drawable-icon"><i
-                                                                        class="premium-svg-nodraw icon icon-right-arrow1"
-                                                                        aria-hidden="true"></i></div>
+                                                                <div class="premium-drawable-icon"></div>
                                                             </div>
                                                             <div class="premium-bullet-list-text-wrapper">
                                                                 <span class="premium-bullet-text"
