@@ -4048,43 +4048,6 @@
             </div>
         </section>
         <section
-            class="elementor-section elementor-top-section elementor-element elementor-element-3f00a3d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-            data-id="3f00a3d" data-element_type="section"
-            data-settings="{&quot;animation&quot;:&quot;none&quot;,&quot;_ha_eqh_enable&quot;:false}">
-            <div class="elementor-container elementor-column-gap-default">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-67904fd"
-                    data-id="67904fd" data-element_type="column">
-                    <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-89c4833 elementor-widget elementor-widget-heading"
-                            data-id="89c4833" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Rekognisi Nasional dan
-                                    Internasional</h2>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-d2d0711 elementor-widget elementor-widget-text-editor"
-                            data-id="d2d0711" data-element_type="widget" data-widget_type="text-editor.default">
-                            <div class="elementor-widget-container">
-                                <p><span style="font-family: Inter;">Universitas Terbuka telah mendapatkan sertifikat
-                                        bertaraf nasional dan internasional</span></p>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-ab5ecc7 elementor-widget elementor-widget-image"
-                            data-id="ab5ecc7" data-element_type="widget" data-widget_type="image.default">
-                            <div class="elementor-widget-container">
-                                <a href="https://www.ut.ac.id/rekognisi-nasional-dan-internasional/">
-                                    <img loading="lazy" decoding="async" width="900" height="100"
-                                        src="https://www.ut.ac.id/wp-content/uploads/2025/07/Rekognisi-Nasional-Internasional.webp"
-                                        class="attachment-full size-full wp-image-49470" alt=""
-                                        srcset="https://www.ut.ac.id/wp-content/uploads/2025/07/Rekognisi-Nasional-Internasional.webp 900w, https://www.ut.ac.id/wp-content/uploads/2025/07/Rekognisi-Nasional-Internasional-300x33.webp 300w, https://www.ut.ac.id/wp-content/uploads/2025/07/Rekognisi-Nasional-Internasional-768x85.webp 768w"
-                                        sizes="(max-width: 900px) 100vw, 900px"> </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section
             class="elementor-section elementor-top-section elementor-element elementor-element-887fa1e elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="887fa1e" data-element_type="section"
             data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;_ha_eqh_enable&quot;:false}">
