@@ -3511,33 +3511,12 @@
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif
         }
     </style>
-    <style id="custom-advance-chaty-css"></style>
-    <style id="dark-reader-style" type="text/css">
-        @media screen {
-            html {
-                -webkit-transition: -webkit-filter 300ms linear;
-            }
-        }
-    </style>
-    <link href="https://cdn.userway.org/styles/2025-10-28-13-04-58/widget_base.css?v=1761656698068" type="text/css"
-        rel="stylesheet">
 </head>
 
 <body
     class="home wp-singular page-template page-template-elementor_header_footer page page-id-28 wp-custom-logo wp-embed-responsive wp-theme-education-center layout-1 rightsidebar elementor-default elementor-template-full-width elementor-kit-10 elementor-page elementor-page-28 e--ua-blink e--ua-chrome e--ua-webkit cht-in-desktop cht-landscape"
     data-elementor-device-mode="tablet" cz-shortcut-listen="true">
 
-    <!-- Meta Pixel Code -->
-    <div class="uw-s10-bottom-ruler-guide"></div>
-    <div class="uw-s10-right-ruler-guide"></div>
-    <div class="uw-s10-left-ruler-guide"></div>
-    <div class="uw-s10-reading-guide">
-        <div class="uw-s10-reading-guide__arrow"></div>
-    </div>
-    <div class="uw-s12-tooltip" aria-hidden="true"></div><noscript>
-        <img height="1" width="1" style="display:none" alt="fbpx"
-            src="https://www.facebook.com/tr?id=627388176231022&ev=PageView&noscript=1" />
-    </noscript>
     <!-- End Meta Pixel Code -->
     <div data-elementor-type="wp-page" data-elementor-id="28" class="elementor elementor-28"
         data-elementor-settings="{&quot;ha_cmc_init_switcher&quot;:&quot;no&quot;}" data-elementor-post-type="page">
@@ -3586,8 +3565,7 @@
                                     <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('program-studi') }}"
                                         target="_blank">
                                         <span class="elementor-button-content-wrapper">
-                                            <span class="elementor-button-icon"></span>
-                                            <span class="elementor-button-text">Pilih Prodimu</span>
+                                            <span class="elementor-button-text">Pilih Prodi Kuliah Jurusan Di UT</span>
                                         </span>
                                     </a>
                                 </div>
@@ -3971,10 +3949,9 @@
                                             data-widget_type="button.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-button-wrapper">
-                                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('kurikulum-ut') }}"
-                                                        target="_blank">
+                                                    <a class="elementor-button elementor-button-link elementor-size-sm"
+                                                        href="{{ route('kurikulum-ut') }}" target="_blank">
                                                         <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-icon"></span>
                                                             <span class="elementor-button-text">Kurikulum Baru
                                                                 UT</span>
                                                         </span>
@@ -3998,11 +3975,7 @@
                                             data-id="9bb9e23" data-element_type="widget"
                                             data-widget_type="image.default">
                                             <div class="elementor-widget-container">
-                                                <img loading="lazy" decoding="async" width="625" height="186"
-                                                    src="https://www.ut.ac.id/wp-content/uploads/2025/03/button-UT-Daerah-02.jpg"
-                                                    class="attachment-large size-large wp-image-47605" alt=""
-                                                    srcset="https://www.ut.ac.id/wp-content/uploads/2025/03/button-UT-Daerah-02.jpg 625w, https://www.ut.ac.id/wp-content/uploads/2025/03/button-UT-Daerah-02-300x89.jpg 300w"
-                                                    sizes="(max-width: 625px) 100vw, 625px">
+                                                <img src="{{asset("/images/salut-kota-bandung.png")}}">
                                             </div>
                                         </div>
                                     </div>
@@ -4029,11 +4002,10 @@
                                             data-widget_type="button.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-button-wrapper">
-                                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('pendaftaran') }}"
-                                                        target="_blank">
+                                                    <a class="elementor-button elementor-button-link elementor-size-sm"
+                                                        href="{{ route('pendaftaran') }}" target="_blank">
                                                         <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-icon"></span>
-                                                            <span class="elementor-button-text">Daftar SALUT</span>
+                                                            <span class="elementor-button-text">Pendaftaran Calon Mahasiswa Baru</span>
                                                         </span>
                                                     </a>
                                                 </div>
@@ -4721,15 +4693,6 @@
     <script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/education-center\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-    <script>
-        (function(e) {
-            var el = document.createElement('script');
-            el.setAttribute('data-account', 'uksTI9xJos');
-            el.setAttribute('src', 'https://cdn.userway.org/widget.js');
-            document.body.appendChild(el);
-        })();
-    </script>
-    <script data-account="uksTI9xJos" src="https://cdn.userway.org/widget.js"></script> <!-- Meta Pixel Event Code -->
     <script type="text/javascript">
         document.addEventListener('wpcf7mailsent', function(event) {
             if ("fb_pxl_code" in event.detail.apiResponse) {
@@ -5018,138 +4981,6 @@
     <script
         src="https://www.ut.ac.id/wp-content/plugins/elementskit-lite/widgets/init/assets/js/widget-scripts.js?ver=3.7.6"
         id="ekit-widget-scripts-js"></script>
-    <script id="chaty-front-end-js-extra">
-        var chaty_settings = {
-            "ajax_url": "https:\/\/www.ut.ac.id\/wp-admin\/admin-ajax.php",
-            "analytics": "0",
-            "capture_analytics": "0",
-            "token": "b5f854c4e2",
-            "chaty_widgets": [{
-                "id": 0,
-                "identifier": 0,
-                "settings": {
-                    "cta_type": "simple-view",
-                    "cta_body": "",
-                    "cta_head": "",
-                    "cta_head_bg_color": "",
-                    "cta_head_text_color": "",
-                    "show_close_button": 1,
-                    "position": "right",
-                    "custom_position": 1,
-                    "bottom_spacing": "25",
-                    "side_spacing": "25",
-                    "icon_view": "vertical",
-                    "default_state": "hover",
-                    "cta_text": "<p>Hubungi Kami!<\/p>",
-                    "cta_text_color": "#333333",
-                    "cta_bg_color": "#ffffff",
-                    "show_cta": "first_click",
-                    "is_pending_mesg_enabled": "off",
-                    "pending_mesg_count": "1",
-                    "pending_mesg_count_color": "#ffffff",
-                    "pending_mesg_count_bgcolor": "#dd0000",
-                    "widget_icon": "chat-db",
-                    "widget_icon_url": "",
-                    "font_family": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                    "widget_size": "54",
-                    "custom_widget_size": "54",
-                    "is_google_analytics_enabled": 0,
-                    "close_text": "Hide",
-                    "widget_color": "#4F6ACA",
-                    "widget_icon_color": "#ffffff",
-                    "widget_rgb_color": "79,106,202",
-                    "has_custom_css": 0,
-                    "custom_css": "",
-                    "widget_token": "5912359379",
-                    "widget_index": "",
-                    "attention_effect": ""
-                },
-                "triggers": {
-                    "has_time_delay": 1,
-                    "time_delay": "0",
-                    "exit_intent": 0,
-                    "has_display_after_page_scroll": 0,
-                    "display_after_page_scroll": "0",
-                    "auto_hide_widget": 0,
-                    "hide_after": 0,
-                    "show_on_pages_rules": [],
-                    "time_diff": 0,
-                    "has_date_scheduling_rules": 0,
-                    "date_scheduling_rules": {
-                        "start_date_time": "",
-                        "end_date_time": ""
-                    },
-                    "date_scheduling_rules_timezone": 0,
-                    "day_hours_scheduling_rules_timezone": 0,
-                    "has_day_hours_scheduling_rules": [],
-                    "day_hours_scheduling_rules": [],
-                    "day_time_diff": 0,
-                    "show_on_direct_visit": 0,
-                    "show_on_referrer_social_network": 0,
-                    "show_on_referrer_search_engines": 0,
-                    "show_on_referrer_google_ads": 0,
-                    "show_on_referrer_urls": [],
-                    "has_show_on_specific_referrer_urls": 0,
-                    "has_traffic_source": 0,
-                    "has_countries": 0,
-                    "countries": [],
-                    "has_target_rules": 0
-                },
-                "channels": [{
-                    "channel": "Whatsapp",
-                    "value": "6281141500024",
-                    "hover_text": "WhatsApp",
-                    "chatway_position": "",
-                    "svg_icon": "<svg width=\"39\" height=\"39\" viewBox=\"0 0 39 39\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\"><circle class=\"color-element\" cx=\"19.4395\" cy=\"19.4395\" r=\"19.4395\" fill=\"#49E670\"\/><path d=\"M12.9821 10.1115C12.7029 10.7767 11.5862 11.442 10.7486 11.575C10.1902 11.7081 9.35269 11.8411 6.84003 10.7767C3.48981 9.44628 1.39593 6.25317 1.25634 6.12012C1.11674 5.85403 2.13001e-06 4.39053 2.13001e-06 2.92702C2.13001e-06 1.46351 0.83755 0.665231 1.11673 0.399139C1.39592 0.133046 1.8147 1.01506e-06 2.23348 1.01506e-06C2.37307 1.01506e-06 2.51267 1.01506e-06 2.65226 1.01506e-06C2.93144 1.01506e-06 3.21063 -2.02219e-06 3.35022 0.532183C3.62941 1.19741 4.32736 2.66092 4.32736 2.79397C4.46696 2.92702 4.46696 3.19311 4.32736 3.32616C4.18777 3.59225 4.18777 3.59224 3.90858 3.85834C3.76899 3.99138 3.6294 4.12443 3.48981 4.39052C3.35022 4.52357 3.21063 4.78966 3.35022 5.05576C3.48981 5.32185 4.18777 6.38622 5.16491 7.18449C6.42125 8.24886 7.39839 8.51496 7.81717 8.78105C8.09636 8.91409 8.37554 8.9141 8.65472 8.648C8.93391 8.38191 9.21309 7.98277 9.49228 7.58363C9.77146 7.31754 10.0507 7.1845 10.3298 7.31754C10.609 7.45059 12.2841 8.11582 12.5633 8.38191C12.8425 8.51496 13.1217 8.648 13.1217 8.78105C13.1217 8.78105 13.1217 9.44628 12.9821 10.1115Z\" transform=\"translate(12.9597 12.9597)\" fill=\"#FAFAFA\"\/><path d=\"M0.196998 23.295L0.131434 23.4862L0.323216 23.4223L5.52771 21.6875C7.4273 22.8471 9.47325 23.4274 11.6637 23.4274C18.134 23.4274 23.4274 18.134 23.4274 11.6637C23.4274 5.19344 18.134 -0.1 11.6637 -0.1C5.19344 -0.1 -0.1 5.19344 -0.1 11.6637C-0.1 13.9996 0.624492 16.3352 1.93021 18.2398L0.196998 23.295ZM5.87658 19.8847L5.84025 19.8665L5.80154 19.8788L2.78138 20.8398L3.73978 17.9646L3.75932 17.906L3.71562 17.8623L3.43104 17.5777C2.27704 15.8437 1.55796 13.8245 1.55796 11.6637C1.55796 6.03288 6.03288 1.55796 11.6637 1.55796C17.2945 1.55796 21.7695 6.03288 21.7695 11.6637C21.7695 17.2945 17.2945 21.7695 11.6637 21.7695C9.64222 21.7695 7.76778 21.1921 6.18227 20.039L6.17557 20.0342L6.16817 20.0305L5.87658 19.8847Z\" transform=\"translate(7.7758 7.77582)\" fill=\"white\" stroke=\"white\" stroke-width=\"0.2\"\/><\/svg>",
-                    "is_desktop": 1,
-                    "is_mobile": 1,
-                    "icon_color": "#1E88E5",
-                    "icon_rgb_color": "30,136,229",
-                    "channel_type": "Whatsapp",
-                    "custom_image_url": "",
-                    "order": "",
-                    "pre_set_message": "",
-                    "is_use_web_version": "1",
-                    "is_open_new_tab": "1",
-                    "is_default_open": "0",
-                    "has_welcome_message": "0",
-                    "emoji_picker": "1",
-                    "input_placeholder": "Write your message...",
-                    "chat_welcome_message": "<p>How can I help you? :)<\/p>",
-                    "wp_popup_headline": "Let&#039;s chat on WhatsApp",
-                    "wp_popup_nickname": "",
-                    "wp_popup_profile": "",
-                    "wp_popup_head_bg_color": "#4AA485",
-                    "qr_code_image_url": "",
-                    "mail_subject": "",
-                    "channel_account_type": "personal",
-                    "contact_form_settings": [],
-                    "contact_fields": [],
-                    "url": "https:\/\/web.whatsapp.com\/send?phone=6281141500024",
-                    "mobile_target": "",
-                    "desktop_target": "_blank",
-                    "target": "_blank",
-                    "is_agent": 0,
-                    "agent_data": [],
-                    "header_text": "",
-                    "header_sub_text": "",
-                    "header_bg_color": "",
-                    "header_text_color": "",
-                    "widget_token": "5912359379",
-                    "widget_index": "",
-                    "click_event": "",
-                    "viber_url": ""
-                }]
-            }],
-            "data_analytics_settings": "off",
-            "lang": {
-                "whatsapp_label": "WhatsApp Message",
-                "hide_whatsapp_form": "Hide WhatsApp Form",
-                "emoji_picker": "Show Emojis"
-            },
-            "has_chatway": ""
-        };
-    </script>
     <script defer="" src="https://www.ut.ac.id/wp-content/plugins/chaty/js/cht-front-script.min.js?ver=3.5.01755815606"
         id="chaty-front-end-js"></script>
     <script
@@ -5294,6 +5125,51 @@
             'text direction\u0004ltr': ['ltr']
         });
     </script>
+    <script id="chaty-front-end-js-extra">
+        var chaty_settings = {
+            "chaty_widgets": [{
+                "settings": {
+                    "show_close_button": 1,
+                    "position": "right",
+                    "custom_position": 1,
+                    "bottom_spacing": "25",
+                    "side_spacing": "25",
+                    "widget_size": "54",
+                    "custom_widget_size": "54",
+                    "widget_color": "#25D366",
+                    "widget_icon_color": "#ffffff",
+                },
+                "triggers": {
+                    "has_time_delay": 1,
+                    "time_delay": "0",
+                    "exit_intent": 0,
+                    "has_display_after_page_scroll": 0,
+                    "display_after_page_scroll": "0",
+                    "auto_hide_widget": 0,
+                    "hide_after": 0,
+                    "show_on_pages_rules": [],
+                    "time_diff": 0,
+                    "has_date_scheduling_rules": 0,
+                    "date_scheduling_rules": {
+                        "start_date_time": "",
+                        "end_date_time": ""
+                    },
+                },
+                "channels": [{
+                    "channel": "Whatsapp",
+                    "value": "6281211121855",
+                    "chatway_position": "",
+                    "svg_icon": "<svg width=\"39\" height=\"39\" viewBox=\"0 0 39 39\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\"><circle class=\"color-element\" cx=\"19.4395\" cy=\"19.4395\" r=\"19.4395\" fill=\"#49E670\"\/><path d=\"M12.9821 10.1115C12.7029 10.7767 11.5862 11.442 10.7486 11.575C10.1902 11.7081 9.35269 11.8411 6.84003 10.7767C3.48981 9.44628 1.39593 6.25317 1.25634 6.12012C1.11674 5.85403 2.13001e-06 4.39053 2.13001e-06 2.92702C2.13001e-06 1.46351 0.83755 0.665231 1.11673 0.399139C1.39592 0.133046 1.8147 1.01506e-06 2.23348 1.01506e-06C2.37307 1.01506e-06 2.51267 1.01506e-06 2.65226 1.01506e-06C2.93144 1.01506e-06 3.21063 -2.02219e-06 3.35022 0.532183C3.62941 1.19741 4.32736 2.66092 4.32736 2.79397C4.46696 2.92702 4.46696 3.19311 4.32736 3.32616C4.18777 3.59225 4.18777 3.59224 3.90858 3.85834C3.76899 3.99138 3.6294 4.12443 3.48981 4.39052C3.35022 4.52357 3.21063 4.78966 3.35022 5.05576C3.48981 5.32185 4.18777 6.38622 5.16491 7.18449C6.42125 8.24886 7.39839 8.51496 7.81717 8.78105C8.09636 8.91409 8.37554 8.9141 8.65472 8.648C8.93391 8.38191 9.21309 7.98277 9.49228 7.58363C9.77146 7.31754 10.0507 7.1845 10.3298 7.31754C10.609 7.45059 12.2841 8.11582 12.5633 8.38191C12.8425 8.51496 13.1217 8.648 13.1217 8.78105C13.1217 8.78105 13.1217 9.44628 12.9821 10.1115Z\" transform=\"translate(12.9597 12.9597)\" fill=\"#FAFAFA\"\/><path d=\"M0.196998 23.295L0.131434 23.4862L0.323216 23.4223L5.52771 21.6875C7.4273 22.8471 9.47325 23.4274 11.6637 23.4274C18.134 23.4274 23.4274 18.134 23.4274 11.6637C23.4274 5.19344 18.134 -0.1 11.6637 -0.1C5.19344 -0.1 -0.1 5.19344 -0.1 11.6637C-0.1 13.9996 0.624492 16.3352 1.93021 18.2398L0.196998 23.295ZM5.87658 19.8847L5.84025 19.8665L5.80154 19.8788L2.78138 20.8398L3.73978 17.9646L3.75932 17.906L3.71562 17.8623L3.43104 17.5777C2.27704 15.8437 1.55796 13.8245 1.55796 11.6637C1.55796 6.03288 6.03288 1.55796 11.6637 1.55796C17.2945 1.55796 21.7695 6.03288 21.7695 11.6637C21.7695 17.2945 17.2945 21.7695 11.6637 21.7695C9.64222 21.7695 7.76778 21.1921 6.18227 20.039L6.17557 20.0342L6.16817 20.0305L5.87658 19.8847Z\" transform=\"translate(7.7758 7.77582)\" fill=\"white\" stroke=\"white\" stroke-width=\"0.2\"\/><\/svg>",
+                    "is_desktop": 1,
+                    "is_mobile": 1,
+                    "icon_color": "#25D366",
+                    "icon_rgb_color": "30,136,229",
+                    "channel_type": "Whatsapp",
+                    "custom_image_url": "",
+                }]
+            }],
+        };
+    </script>
     <script id="elementor-pro-frontend-js-before">
         var ElementorProFrontendConfig = {
             "ajaxurl": "https:\/\/www.ut.ac.id\/wp-admin\/admin-ajax.php",
@@ -5403,77 +5279,7 @@
     </script>
     <script src="https://www.ut.ac.id/wp-content/plugins/elementskit-lite/widgets/init/assets/js/elementor.js?ver=3.7.6"
         id="elementskit-elementor-js"></script>
-
-
-
-    <script src="https://cdn.userway.org/widgetapp/2025-10-28-13-04-58/widget_app_base_1761656698068.js" async=""
-        id="a11yWidgetSrc" crossorigin="anonymous" integrity="sha256-KLkFO8i6GonFrV8nkktFRyw31hfHQoTLK/avt/C+eiU="></script><svg width="39" height="39" viewBox="0 0 39 39" class="hide-cht-svg-bg"
-        fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="linear-gradient" x1="0.892" y1="0.192" x2="0.128" y2="0.85"
-                gradientUnits="objectBoundingBox">
-                <stop offset="0" stop-color="#4a64d5"></stop>
-                <stop offset="0.322" stop-color="#9737bd"></stop>
-                <stop offset="0.636" stop-color="#f15540"></stop>
-                <stop offset="1" stop-color="#fecc69"></stop>
-            </linearGradient>
-            <linearGradient id="linear-gradient-insta-dm" x1="0.892" y1="0.192" x2="0.128"
-                y2="0.85" gradientUnits="objectBoundingBox">
-                <stop offset="0" stop-color="#4A64D5"></stop>
-                <stop offset="0.322" stop-color="#9737BD"></stop>
-                <stop offset="0.636" stop-color="#F15540"></stop>
-                <stop offset="1" stop-color="#FECC69"></stop>
-            </linearGradient>
-        </defs>
-    </svg>
-    <div style="display: none" class="chaty chaty-id-0 chaty-widget-0 chaty-key-0 first_click open-on-hover active"
-        id="chaty-widget-0" data-key="0" data-id="0" data-identifier="0" data-nonce="5912359379">
-        <div class="chaty-widget right-position has-single">
-            <div class="chaty-channels">
-                <div class="chaty-channel-list" id="csaas-channels-0"></div>
-                <div class="chaty-i-trigger csaas-widget-trigger single-channel">
-                    <div class="chaty-channel Whatsapp-channel-link single active chaty-tooltip pos-left has-on-hover"
-                        id="Whatsapp-0-channel" data-id="Whatsapp-0" data-widget="0" data-channel="Whatsapp"><a
-                            href="https://web.whatsapp.com/send?phone=6281141500024&amp;text=" target="_blank"
-                            rel="nofollow noopener" aria-label="Whatsapp"
-                            class="Whatsapp-channel chaty-link chaty-whatsapp-channel pos-left has-on-hover"
-                            data-form="chaty-form-0-Whatsapp" data-hover="WhatsApp"
-                            data-text="<p>Hubungi Kami!</p>"><span class="chaty-icon channel-icon-Whatsapp"><span
-                                    class="chaty-svg"><svg width="39" height="39" viewBox="0 0 39 39"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle class="color-element" cx="19.4395" cy="19.4395" r="19.4395"
-                                            fill="#49E670"></circle>
-                                        <path
-                                            d="M12.9821 10.1115C12.7029 10.7767 11.5862 11.442 10.7486 11.575C10.1902 11.7081 9.35269 11.8411 6.84003 10.7767C3.48981 9.44628 1.39593 6.25317 1.25634 6.12012C1.11674 5.85403 2.13001e-06 4.39053 2.13001e-06 2.92702C2.13001e-06 1.46351 0.83755 0.665231 1.11673 0.399139C1.39592 0.133046 1.8147 1.01506e-06 2.23348 1.01506e-06C2.37307 1.01506e-06 2.51267 1.01506e-06 2.65226 1.01506e-06C2.93144 1.01506e-06 3.21063 -2.02219e-06 3.35022 0.532183C3.62941 1.19741 4.32736 2.66092 4.32736 2.79397C4.46696 2.92702 4.46696 3.19311 4.32736 3.32616C4.18777 3.59225 4.18777 3.59224 3.90858 3.85834C3.76899 3.99138 3.6294 4.12443 3.48981 4.39052C3.35022 4.52357 3.21063 4.78966 3.35022 5.05576C3.48981 5.32185 4.18777 6.38622 5.16491 7.18449C6.42125 8.24886 7.39839 8.51496 7.81717 8.78105C8.09636 8.91409 8.37554 8.9141 8.65472 8.648C8.93391 8.38191 9.21309 7.98277 9.49228 7.58363C9.77146 7.31754 10.0507 7.1845 10.3298 7.31754C10.609 7.45059 12.2841 8.11582 12.5633 8.38191C12.8425 8.51496 13.1217 8.648 13.1217 8.78105C13.1217 8.78105 13.1217 9.44628 12.9821 10.1115Z"
-                                            transform="translate(12.9597 12.9597)" fill="#FAFAFA"></path>
-                                        <path
-                                            d="M0.196998 23.295L0.131434 23.4862L0.323216 23.4223L5.52771 21.6875C7.4273 22.8471 9.47325 23.4274 11.6637 23.4274C18.134 23.4274 23.4274 18.134 23.4274 11.6637C23.4274 5.19344 18.134 -0.1 11.6637 -0.1C5.19344 -0.1 -0.1 5.19344 -0.1 11.6637C-0.1 13.9996 0.624492 16.3352 1.93021 18.2398L0.196998 23.295ZM5.87658 19.8847L5.84025 19.8665L5.80154 19.8788L2.78138 20.8398L3.73978 17.9646L3.75932 17.906L3.71562 17.8623L3.43104 17.5777C2.27704 15.8437 1.55796 13.8245 1.55796 11.6637C1.55796 6.03288 6.03288 1.55796 11.6637 1.55796C17.2945 1.55796 21.7695 6.03288 21.7695 11.6637C21.7695 17.2945 17.2945 21.7695 11.6637 21.7695C9.64222 21.7695 7.76778 21.1921 6.18227 20.039L6.17557 20.0342L6.16817 20.0305L5.87658 19.8847Z"
-                                            transform="translate(7.7758 7.77582)" fill="white" stroke="white"
-                                            stroke-width="0.2"></path>
-                                    </svg></span></span><span class="on-hover-text">
-                                <p>Hubungi Kami!</p>
-                            </span></a><span class="on-hover-text">
-                            <p>Hubungi Kami!</p>
-                        </span></div>
-                    <div class="chaty-channel chaty-cta-close chaty-tooltip pos-left" data-hover="Hide">
-                        <div class="chaty-cta-button"><button type="button"><span class="chaty-svg"><svg
-                                        viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <ellipse cx="26" cy="26" rx="26" ry="26"
-                                            fill="#4F6ACA"></ellipse>
-                                        <rect width="27.1433" height="3.89857" rx="1.94928"
-                                            transform="translate(18.35 15.6599) scale(0.998038 1.00196) rotate(45)"
-                                            fill="#ffffff"></rect>
-                                        <rect width="27.1433" height="3.89857" rx="1.94928"
-                                            transform="translate(37.5056 18.422) scale(0.998038 1.00196) rotate(135)"
-                                            fill="#ffffff"></rect>
-                                    </svg></span><span class="sr-only">Hide chaty</span></button></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><deepl-input-controller translate="no"></deepl-input-controller>
-    <script crossorigin="anonymous" integrity="sha256-Jpa/gUD/VzHGU0CHc7iyCnGfN9+f5wKmLLCZC1H84Cc="
-        src="https://cdn.userway.org/widgetapp/2025-10-28-13-04-58/remediation/remediation_1761656698068.js"></script>
+    <deepl-input-controller translate="no"></deepl-input-controller>
 </body>
 
 </html>

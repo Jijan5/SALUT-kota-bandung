@@ -83,7 +83,7 @@
         }, 3000);
     </script>
     <div class="container mx-auto px-4">
-        <div class="fixed bottom-4 right-6">
+        <div class="fixed bottom-4 right-6 z-50">
             <a href="https://wa.me/6281211121855?" target="_blank"
                 class="bg-green-500 text-white w-14 h-14 flex items-center justify-center rounded-full shadow-lg hover:bg-green-600 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 448 512"
