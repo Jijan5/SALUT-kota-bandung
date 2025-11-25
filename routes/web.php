@@ -5,11 +5,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SalutPendaftaranController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pendaftaran-calon-mahasiswa');
-});
+Route::get('/', [SalutPendaftaranController::class, 'landingPage'])->name('landing');
+Route::get('/program-studi', [SalutPendaftaranController::class, 'programStudi'])->name('program-studi');
+Route::get('/kurikulum-ut', [SalutPendaftaranController::class, 'kurikulum'])->name('kurikulum-ut');
 
-Route::post('/', [SalutPendaftaranController::class, 'store']);
+Route::get('/pendaftaran', [SalutPendaftaranController::class, 'index'])->name('pendaftaran');
+Route::post('/pendaftaran', [SalutPendaftaranController::class, 'store'])->name('pendaftaran.store');
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.submit');

@@ -104,7 +104,8 @@
                     Jawa Barat 40251.</p>
             </div>
             <div class="p-10">
-                <form action="/" method="POST" class="space-y-6" enctype="multipart/form-data">
+                <form action="{{ route('pendaftaran.store') }}" method="POST" class="space-y-6"
+                    enctype="multipart/form-data">
                     @csrf
                     @if ($errors->any())
                         <div class="bg-red-500/20 border border-red-400 text-red-900 px-4 py-3 rounded mb-4">
@@ -731,6 +732,13 @@
                             class="w-full bg-blue-700 text-white py-2 px-4 rounded-md shadow hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             Submit
                         </button>
+                    </div>
+                    <!-- Back Button -->
+                    <div class="text-center mt-4">
+                        <a href="{{ route('landing') }}"
+                            class="inline-block w-full bg-gray-400 text-white py-2 px-4 rounded-md shadow hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">
+                            Kembali
+                        </a>
                     </div>
                 </form>
             </div>

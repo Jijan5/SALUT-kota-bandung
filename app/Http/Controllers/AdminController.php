@@ -7,7 +7,6 @@ use App\Models\SalutPendaftaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-
 class AdminController extends Controller
 {
     public function exportPdf()

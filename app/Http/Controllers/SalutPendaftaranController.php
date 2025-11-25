@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class SalutPendaftaranController extends Controller
 {
+    public function kurikulum()
+    {
+        return view('kurikulum-ut');
+    }
+    public function programStudi()
+    {
+        return view('program-studi');
+    }
+
+    public function landingPage()
+    {
+        return view('landing-page');
+    }
     public function index()
     {
         return view('pendaftaran-calon-mahasiswa', [
@@ -79,7 +92,7 @@ class SalutPendaftaranController extends Controller
 
         SalutPendaftaran::create($validatedData);
 
-        return redirect('/')->with('success', 'Pendaftaran berhasil dikirim!');
+        return redirect('/pendaftaran')->with('success', 'Pendaftaran berhasil dikirim!');
 
     }
 }
