@@ -3611,8 +3611,7 @@
                                                                         data-widget_type="premium-addon-dual-header.default">
                                                                         <div class="elementor-widget-container">
 
-                                                                            <a
-                                                                                href="https://www.ut.ac.id/program-studi/">
+                                                                            <a>
                                                                                 <h3
                                                                                     class="premium-dual-header-first-header ">
                                                                                     <span
@@ -3695,8 +3694,7 @@
                                                                         data-widget_type="premium-addon-dual-header.default">
                                                                         <div class="elementor-widget-container">
 
-                                                                            <a
-                                                                                href="https://www.ut.ac.id/program-studi/">
+                                                                            <a>
                                                                                 <h3
                                                                                     class="premium-dual-header-first-header ">
                                                                                     <span
@@ -3828,8 +3826,7 @@
                                                                         data-widget_type="premium-addon-dual-header.default">
                                                                         <div class="elementor-widget-container">
 
-                                                                            <a
-                                                                                href="https://www.ut.ac.id/program-studi/">
+                                                                            <a>
                                                                                 <h3
                                                                                     class="premium-dual-header-first-header ">
                                                                                     <span
@@ -3921,8 +3918,7 @@
                                                                         data-widget_type="premium-addon-dual-header.default">
                                                                         <div class="elementor-widget-container">
 
-                                                                            <a
-                                                                                href="https://www.ut.ac.id/program-studi/">
+                                                                            <a>
                                                                                 <h3
                                                                                     class="premium-dual-header-first-header ">
                                                                                     <span
@@ -4076,8 +4072,7 @@
                                                                         data-widget_type="premium-addon-dual-header.default">
                                                                         <div class="elementor-widget-container">
 
-                                                                            <a
-                                                                                href="https://www.ut.ac.id/program-studi/">
+                                                                            <a>
                                                                                 <h3
                                                                                     class="premium-dual-header-first-header ">
                                                                                     <span
