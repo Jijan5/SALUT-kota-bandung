@@ -3127,6 +3127,40 @@
             font-family: "Inter";
         }
 
+        /*
+        CSS untuk meng-override gaya tombol Elementor.
+        Gunakan ID untuk spesifisitas tinggi.
+        */
+
+        #tombol-biru-khusus-container .tombol-biru-kustom {
+            display: block !important;
+            width: 100% !important;
+            background-color: #1d4ed8 !important;
+            /* Warna biru solid */
+            color: #ffffff !important;
+            /* Teks warna putih */
+            font-size: 1rem !important;
+            /* Ukuran font lebih besar */
+            font-weight: bold !important;
+            text-align: center !important;
+            padding: 10px 20px !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            /* Hapus garis bawah dari link */
+            border: none !important;
+            /* Hapus border default */
+            transition: background-color 0.3s ease !important;
+            box-sizing: border-box;
+        }
+
+        /* Efek saat kursor diarahkan ke tombol */
+        #tombol-biru-khusus-container .tombol-biru-kustom:hover {
+            background-color: #5576e2 !important;
+            /* Warna biru sedikit lebih gelap */
+            color: #ffffff !important;
+            /* Pastikan teks tetap putih */
+        }
+
         .entry-content h3,
         .post-content h3,
         .page-content h3,
@@ -3556,21 +3590,6 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="elementor-element elementor-element-25826d6 elementor-widget__width-initial elementor-mobile-align-center elementor-widget elementor-widget-button"
-                            data-id="25826d6" data-element_type="widget"
-                            data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
-                            data-widget_type="button.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-button-wrapper">
-                                    <a class="elementor-button elementor-button-link elementor-size-sm" href="{{ route('program-studi') }}"
-                                        target="_blank">
-                                        <span class="elementor-button-content-wrapper">
-                                            <span class="elementor-button-text">Pilih Prodi Kuliah Jurusan Di UT</span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                         <section
                             class="elementor-section elementor-inner-section elementor-element elementor-element-48d14cb elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                             data-id="48d14cb" data-element_type="section"
@@ -3593,8 +3612,8 @@
                                                             </div>
                                                             <div class="premium-bullet-list-text-wrapper">
                                                                 <span class="premium-bullet-text"
-                                                                    data-text="Perguruan Tinggi Negeri"> Perguruan
-                                                                    Tinggi Negeri </span>
+                                                                    data-text="Perguruan Tinggi Negeri">Perguruan
+                                                                    Tinggi Negeri</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -3606,8 +3625,8 @@
                                                             </div>
                                                             <div class="premium-bullet-list-text-wrapper">
                                                                 <span class="premium-bullet-text"
-                                                                    data-text="Jadwal Kuliah Fleksibel"> Jadwal Kuliah
-                                                                    Fleksibel </span>
+                                                                    data-text="Jadwal Kuliah Fleksibel">Jadwal Kuliah
+                                                                    Fleksibel</span>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -3636,25 +3655,24 @@
                                                             </div>
                                                             <div class="premium-bullet-list-text-wrapper">
                                                                 <span class="premium-bullet-text"
-                                                                    data-text="Biaya Super Terjangkau"> Biaya Super
-                                                                    Terjangkau </span>
+                                                                    data-text="Biaya Super Terjangkau">Biaya Super
+                                                                    Terjangkau</span>
                                                             </div>
                                                         </div>
                                                     </li>
                                                     <li
                                                         class="premium-bullet-list-content elementor-repeater-item-4f9b9a0">
-                                                        <div class="premium-bullet-list-text">
-                                                            <div class="premium-bullet-list-wrapper">
-                                                                <div class="premium-drawable-icon"></div>
+                                                        <div class="w-3 h-3 bg-blue-700 rounded-full">
+                                                            <div class="w-3 h-3 bg-blue-700 rounded-full">
+                                                                <div class="w-3 h-3 bg-blue-700 rounded-full"></div>
                                                             </div>
                                                             <div class="premium-bullet-list-text-wrapper">
                                                                 <span class="premium-bullet-text"
-                                                                    data-text="Beragam Layanan Online"> Beragam
-                                                                    Layanan Online </span>
+                                                                    data-text="Beragam Layanan Online">Beragam Layanan
+                                                                    Online</span>
                                                             </div>
                                                         </div>
                                                     </li>
-
                                                 </ul>
                                             </div>
                                         </div>
@@ -3662,6 +3680,11 @@
                                 </div>
                             </div>
                         </section>
+                        <div id="tombol-biru-khusus-container">
+                            <a href="{{ route('program-studi') }}" target="_blank" class="tombol-biru-kustom">
+                                Pilih Prodi Kuliah Jurusan Di UT
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f3b2352"
@@ -3749,7 +3772,6 @@
                                             data-widget_type="premium-icon-list.default">
                                             <div class="elementor-widget-container">
                                                 <ul class="premium-bullet-list-box">
-
                                                     <li
                                                         class="premium-bullet-list-content elementor-repeater-item-852514d">
                                                         <div class="premium-bullet-list-text">
@@ -3762,16 +3784,12 @@
                                                                     Berprestasi </span>
                                                             </div>
                                                         </div>
-
-
                                                         <a class="premium-bullet-list-link"
                                                             aria-label="Mahasiswa Berprestasi"
                                                             href="/kategori/profil/" target="_blank">
                                                             <span>Mahasiswa Berprestasi</span>
                                                         </a>
-
                                                     </li>
-
                                                 </ul>
                                             </div>
                                         </div>
@@ -3851,6 +3869,22 @@
                                             data-widget_type="text-editor.default">
                                             <div class="elementor-widget-container">
                                                 <p>Alumni<br>Berdasarkan MR 2024.2</p>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-01ecc08 elementor-widget__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-counter"
+                                            data-id="01ecc08" data-element_type="widget"
+                                            data-widget_type="counter.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="elementor-counter">
+                                                    <div class="elementor-counter-title">UT Daerah</div>
+                                                    <div class="elementor-counter-number-wrapper">
+                                                        <span class="elementor-counter-number-prefix"></span>
+                                                        <span class="elementor-counter-number" data-duration="1000"
+                                                            data-to-value="39" data-from-value="0"
+                                                            data-delimiter=",">39</span>
+                                                        <span class="elementor-counter-number-suffix"></span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-282fd79 elementor-widget__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-counter"
@@ -3941,21 +3975,11 @@
                                                         data-ccp-props="{&quot;335559685&quot;:360}">&nbsp;</span></p>
                                             </div>
                                         </div>
-                                        <div class="elementor-element elementor-element-0f21e2a elementor-widget__width-initial elementor-mobile-align-center elementor-widget elementor-widget-button"
-                                            data-id="0f21e2a" data-element_type="widget"
-                                            data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
-                                            data-widget_type="button.default">
-                                            <div class="elementor-widget-container">
-                                                <div class="elementor-button-wrapper">
-                                                    <a class="elementor-button elementor-button-link elementor-size-sm"
-                                                        href="{{ route('kurikulum-ut') }}" target="_blank">
-                                                        <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-text">Kurikulum Baru
-                                                                UT</span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <div id="tombol-biru-khusus-container">
+                                            <a href="{{ route('kurikulum-ut') }}" target="_blank"
+                                                class="tombol-biru-kustom">
+                                                Struktur Kurikulum Baru UT
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -3973,7 +3997,7 @@
                                             data-id="9bb9e23" data-element_type="widget"
                                             data-widget_type="image.default">
                                             <div class="elementor-widget-container">
-                                                <img src="{{asset("/images/salut-kota-bandung.png")}}">
+                                                <img src="{{ asset('/images/salut-kota-bandung.png') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -3994,20 +4018,11 @@
                                                             menjadi tempat layanan administrasi mahasiswa</p>
                                             </div>
                                         </div>
-                                        <div class="elementor-element elementor-element-0f21e2a elementor-widget__width-initial elementor-mobile-align-center elementor-widget elementor-widget-button"
-                                            data-id="0f21e2a" data-element_type="widget"
-                                            data-settings="{&quot;_animation&quot;:&quot;none&quot;}"
-                                            data-widget_type="button.default">
-                                            <div class="elementor-widget-container">
-                                                <div class="elementor-button-wrapper">
-                                                    <a class="elementor-button elementor-button-link elementor-size-sm"
-                                                        href="{{ route('pendaftaran') }}" target="_blank">
-                                                        <span class="elementor-button-content-wrapper">
-                                                            <span class="elementor-button-text">Pendaftaran Calon Mahasiswa Baru</span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        <div id="tombol-biru-khusus-container">
+                                            <a href="{{ route('pendaftaran') }}" target="_blank"
+                                                class="tombol-biru-kustom">
+                                                Pendaftaran Calon Mahasiswa Baru
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
