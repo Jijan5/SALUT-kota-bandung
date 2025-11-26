@@ -3136,19 +3136,15 @@
             display: block !important;
             width: 100% !important;
             background-color: #1d4ed8 !important;
-            /* Warna biru solid */
+            margin-bottom: 5px !important;
             color: #ffffff !important;
-            /* Teks warna putih */
             font-size: 1rem !important;
-            /* Ukuran font lebih besar */
             font-weight: bold !important;
             text-align: center !important;
             padding: 10px 20px !important;
             border-radius: 50px !important;
             text-decoration: none !important;
-            /* Hapus garis bawah dari link */
             border: none !important;
-            /* Hapus border default */
             transition: background-color 0.3s ease !important;
             box-sizing: border-box;
         }
@@ -3683,6 +3679,12 @@
                         <div id="tombol-biru-khusus-container">
                             <a href="{{ route('program-studi') }}" target="_blank" class="tombol-biru-kustom">
                                 Pilih Prodi Kuliah Jurusan Di UT
+                            </a>
+                        </div>
+                        <div id="tombol-biru-khusus-container">
+                            <a href="{{ route('pendaftaran') }}" target="_blank"
+                                class="tombol-biru-kustom">
+                                Pendaftaran Calon Mahasiswa Baru
                             </a>
                         </div>
                     </div>
