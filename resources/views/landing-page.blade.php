@@ -3785,8 +3785,7 @@
                                                             </div>
                                                         </div>
                                                         <a class="premium-bullet-list-link"
-                                                            aria-label="Mahasiswa Berprestasi"
-                                                            href="/kategori/profil/" target="_blank">
+                                                            aria-label="Mahasiswa Berprestasi">
                                                             <span>Mahasiswa Berprestasi</span>
                                                         </a>
                                                     </li>
@@ -3801,8 +3800,7 @@
                                                     <ul
                                                         class="elementor-icon-list-items ekit-post-list-wrapper  elementor-inline-items">
                                                         <li class="elementor-icon-list-item   ">
-                                                            <a
-                                                                href="https://www.ut.ac.id/profil/2025/11/medali-perak-cabang-olahraga-taekwondo-kategori-semi-prestasi-u-49-kejuaraan-tingkat-nasional-taekwondo-20th-poltek-cup-2025/">
+                                                            <a>
                                                                 <img loading="lazy" decoding="async" width="706"
                                                                     height="886"
                                                                     src="https://www.ut.ac.id/wp-content/uploads/2025/11/Nur-Alam-Rahmat-Medali-Perak-Cabang-Olahraga-Taekwondo-Kategori-Semi-Prestasi-U-49.jpg"
@@ -3821,8 +3819,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="elementor-icon-list-item   ">
-                                                            <a
-                                                                href="https://www.ut.ac.id/profil/2025/11/juara-1-kumite-senior-putri-best-of-the-best-female-senior-kumite-open-international-karate-championship-piala-kemenpora/">
+                                                            <a>
                                                                 <img loading="lazy" decoding="async" width="708"
                                                                     height="883"
                                                                     src="https://www.ut.ac.id/wp-content/uploads/2025/11/Abygail-Theresa-Sendow-Best-of-The-Best-Female-Senior-Kumite.jpg"
