@@ -99,16 +99,16 @@
                                             ibu: '{{ addslashes($pendaftar->nama_ibu_kandung) }}',
                                             ipk: '{{ $pendaftar->ipk }}',
                                             no_ijazah: '{{ $pendaftar->no_ijazah }}',
-                                            file_foto: '{{ $pendaftar->file_foto ? asset(\"storage/\".$pendaftar->file_foto) : \"\" }}',
-                                            file_ktp: '{{ $pendaftar->file_ktp ? asset(\"storage/\".$pendaftar->file_ktp) : \"\" }}',
-                                            file_ijazah: '{{ $pendaftar->file_ijazah ? asset(\"storage/\".$pendaftar->file_ijazah) : \"\" }}',
-                                            file_transkrip: '{{ $pendaftar->file_transkrip ? asset(\"storage/\".$pendaftar->file_transkrip) : \"\" }}',
-                                            surat_pernyataan: '{{ $pendaftar->surat_pernyataan ? asset(\"storage/\".$pendaftar->surat_pernyataan) : \"\" }}',
-                                            form_ttd: '{{ $pendaftar->form_tanda_tangan ? asset(\"storage/\".$pendaftar->form_tanda_tangan) : \"\" }}',
-                                            file_cv: '{{ $pendaftar->file_cv ? asset(\"storage/\".$pendaftar->file_cv) : \"\" }}',
-                                            file_ss_pddikti: '{{ $pendaftar->file_ss_pddikti ? asset(\"storage/\".$pendaftar->file_ss_pddikti) : \"\" }}',
-                                            file_bukti: '{{ $pendaftar->file_bukti_pembayaran ? asset(\"storage/\".$pendaftar->file_bukti_pembayaran) : \"\" }}',
-                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset(\"storage/\".$pendaftar->surat_keterangan_pindah) : \"\" }}'
+                                            file_foto: '{{ $pendaftar->file_foto ? asset('storage/'.$pendaftar->file_foto) : '' }}',
+                                            file_ktp: '{{ $pendaftar->file_ktp ? asset('storage/'.$pendaftar->file_ktp) : '' }}',
+                                            file_ijazah: '{{ $pendaftar->file_ijazah ? asset('storage/'.$pendaftar->file_ijazah) : '' }}',
+                                            file_transkrip: '{{ $pendaftar->file_transkrip ? asset('storage/'.$pendaftar->file_transkrip) : '' }}',
+                                            surat_pernyataan: '{{ $pendaftar->surat_pernyataan ? asset('storage/'.$pendaftar->surat_pernyataan) : '' }}',
+                                            form_ttd: '{{ $pendaftar->form_tanda_tangan ? asset('storage/'.$pendaftar->form_tanda_tangan) : '' }}',
+                                            file_cv: '{{ $pendaftar->file_cv ? asset('storage/'.$pendaftar->file_cv) : '' }}',
+                                            file_ss_pddikti: '{{ $pendaftar->file_ss_pddikti ? asset('storage/'.$pendaftar->file_ss_pddikti) : '' }}',
+                                            file_bukti: '{{ $pendaftar->file_bukti_pembayaran ? asset('storage/'.$pendaftar->file_bukti_pembayaran) : '' }}',
+                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset('storage/'.$pendaftar->surat_keterangan_pindah) : '' }}'
                                         };
                                         showDrawer = true;"
                                         class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
