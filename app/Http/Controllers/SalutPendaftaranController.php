@@ -49,7 +49,7 @@ class SalutPendaftaranController extends Controller
             'lokasi_ujian_provinsi' => 'required|string|max:255',
             'lokasi_ujian_kab_kota' => 'nullable|string|max:255',
             'alamat_pengirim_modul' => ['required', Rule::in(['ya', 'tidak'])],
-            'ukuran_almat' => 'required|string|max:10',
+            'ukuran_almat' => 'nullable|string|max:10',
             'nama_ibu_kandung' => 'required|string|max:255',
             'no_hp' => 'required|string|max:16',
             'no_hp_alternatif' => 'required|string|max:16',

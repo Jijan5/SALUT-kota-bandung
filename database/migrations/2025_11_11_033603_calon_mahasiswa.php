@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('alamat_lain')->nullable();
             $table->enum('alamat_pengirim_modul', ['ya', 'tidak']);
-            $table->enum('ukuran_almat', ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
+            $table->enum('ukuran_almat', ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'])->nullable();
             $table->string('nama_ibu_kandung');
             $table->string('no_hp', 16);
             $table->string('no_hp_alternatif', 16);
@@ -62,6 +62,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('data-pendaftar');
     }
 };
