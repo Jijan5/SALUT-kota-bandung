@@ -70,7 +70,6 @@
                 <th>File Foto</th>
                 <th>File KTP</th>
                 <th>File SS PDDIKTI</th>
-                <th>Form Tanda Tangan</th>
                 <th>Surat Pernyataan</th>
                 <th>Surat Keterangan Pindah</th>
                 <th>File RPL Pembelajaran</th>
@@ -114,7 +113,6 @@
                     <td>{{ $pendaftar->file_foto }}</td>
                     <td>{{ $pendaftar->file_ktp }}</td>
                     <td>{{ $pendaftar->file_ss_pddikti }}</td>
-                    <td>{{ $pendaftar->form_tanda_tangan }}</td>
                     <td>{{ $pendaftar->surat_pernyataan }}</td>
                     <td>{{ $pendaftar->surat_keterangan_pindah }}</td>
                     <td>{{ $pendaftar->file_rpl_pembelajaran }}</td>

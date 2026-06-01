@@ -212,7 +212,6 @@
                             'file_foto' => 'File Foto',
                             'file_ktp' => 'File KTP',
                             'file_ss_pddikti' => 'File SS PDDIKTI',
-                            'form_tanda_tangan' => 'Form Tanda Tangan',
                             'surat_pernyataan' => 'Surat Pernyataan',
                             'surat_keterangan_pindah' => 'Surat Keterangan Pindah',
                             'file_rpl_pembelajaran' => 'File RPL Pembelajaran',

@@ -49,7 +49,6 @@ class SalutPendaftaranFactory extends Factory
             ])),
             'file_bukti_pembayaran' => 'uploads/bukti-bayar/sample.pdf/sample.jpg',
             'surat_pernyataan' => 'uploads/surat-pernyataan/sample.pdf/sample.jpg',
-            'form_tanda_tangan' => 'uploads/surat-pernyataan/sample.pdf/sample.jpg',
             'ipk' => $this->faker->randomFloat(2, 2.0, 4.0),
             'file_foto' => 'uploads/foto/sample.jpg',
             'file_ktp' => 'uploads/ktp/sample.jpg',

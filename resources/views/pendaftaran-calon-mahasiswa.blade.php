@@ -306,8 +306,8 @@
 
                         <!-- Ukuran Almamater -->
                         <div>
-                            <label for="ukuran_almat" class="block text-sm font-semibold text-slate-700 mb-2">Ukuran Jas Almamater <span class="text-red-500">*</span></label>
-                            <select id="ukuran_almat" name="ukuran_almat" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition bg-white">
+                            <label for="ukuran_almat" class="block text-sm font-semibold text-slate-700 mb-2">Ukuran Jas Almamater (Opsional)</label>
+                            <select id="ukuran_almat" name="ukuran_almat" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition bg-white">
                                 <option value="">Pilih Ukuran</option>
                                 <option value="S">S (Small)</option>
                                 <option value="M">M (Medium)</option>
@@ -577,18 +577,6 @@
                             <input type="file" name="surat_pernyataan" id="surat_pernyataan" required class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 transition">
                         </div>
 
-                        <!-- Form Tanda Tangan -->
-                        <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
-                            <div class="flex justify-between items-start mb-1">
-                                <span class="block text-sm font-bold text-slate-700">Form Tanda Tangan Calon Mahasiswa <span class="text-red-500">*</span></span>
-                                <a href="https://salutbandung.com/form-tandatangan" target="_blank" class="text-xs text-brand-600 hover:underline font-bold flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                    </svg> Unduh Template
-                                </a>
-                            </div>
-                            <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 2MB). Cetak, berikan tanda tangan dengan pulpen hitam, dan scan.</span>
-                            <input type="file" name="form_tanda_tangan" id="form_tanda_tangan" required class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 transition">
                         </div>
 
                     </div>
@@ -1141,7 +1129,6 @@
                 document.getElementById('file_ijazah'),
                 document.getElementById('file_transkrip'),
                 document.getElementById('surat_pernyataan'),
-                document.getElementById('form_tanda_tangan'),
                 document.getElementById('file_cv'),
                 document.getElementById('surat_keterangan_pindah'),
                 document.getElementById('file_rpl_pembelajaran'),
@@ -1205,7 +1192,7 @@
         // All file input IDs to attach preview buttons to
         const fileInputIds = [
             'file_foto', 'file_ktp', 'file_ijazah', 'file_transkrip',
-            'surat_pernyataan', 'form_tanda_tangan', 'file_bukti_pembayaran',
+            'surat_pernyataan', 'file_bukti_pembayaran',
             'file_ss_pddikti', 'file_cv', 'surat_keterangan_pindah',
             'file_rpl_pembelajaran', 'file_rpl_administrasi',
             'file_rpl_ekstrakulikuler', 'file_rpl_prestasi'

@@ -267,7 +267,7 @@
                 <h3 class="font-outfit text-2xl font-bold mb-3">Jalur Reguler (Non-RPL)</h3>
                 <p class="text-blue-200/80 text-sm leading-relaxed mb-6">Untuk lulusan SMA/SMK/MA/Paket C sederajat yang ingin memulai kuliah dari semester 1 dengan biaya terjangkau.</p>
                 <ul class="space-y-2 text-sm text-blue-200 mb-8">
-                    <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Biaya kuliah mulai Rp 1.300.000/semester</span></li>
+                    <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Biaya pendaftaran mulai dari Rp 100.000</span></li>
                     <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>Tidak perlu pengalaman kerja</span></li>
                     <li class="flex items-center space-x-2"><span class="text-emerald-400">✓</span><span>34+ pilihan program studi</span></li>
                 </ul>
@@ -280,7 +280,7 @@
                 <h3 class="font-outfit text-2xl font-bold mb-3">Jalur RPL (Alih Kredit)</h3>
                 <p class="text-amber-100/80 text-sm leading-relaxed mb-6">Untuk lulusan D1/D2/D3/S1 atau yang memiliki pengalaman kerja yang ingin dikonversi menjadi SKS perkuliahan.</p>
                 <ul class="space-y-2 text-sm text-amber-100 mb-8">
-                    <li class="flex items-center space-x-2"><span class="text-emerald-300">✓</span><span>Biaya alih kredit mulai Rp 400.000/semester</span></li>
+                    <li class="flex items-center space-x-2"><span class="text-emerald-300">✓</span><span>Biaya pendaftaran mulai dari Rp. 400.000</span></li>
                     <li class="flex items-center space-x-2"><span class="text-emerald-300">✓</span><span>Lulus lebih cepat dengan konversi SKS</span></li>
                     <li class="flex items-center space-x-2"><span class="text-emerald-300">✓</span><span>Cocok untuk profesional aktif</span></li>
                 </ul>

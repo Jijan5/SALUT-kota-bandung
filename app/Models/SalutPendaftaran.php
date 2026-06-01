@@ -40,7 +40,6 @@ class SalutPendaftaran extends Model
         'ipk',
         'file_bukti_pembayaran',
         'surat_pernyataan',
-        'form_tanda_tangan',
         'file_foto',
         'file_ktp',
         'file_ss_pddikti',

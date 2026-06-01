@@ -47,7 +47,6 @@ return new class extends Migration
             $table->string('surat_keterangan_pindah')->nullable();
             $table->string('file_cv')->nullable();
             $table->string('file_ss_pddikti')->nullable();
-            $table->string('form_tanda_tangan');
             $table->string('email')->unique();
             $table->enum('jalur_program', ['RPL', 'Non-RPL']);
             $table->string('lokasi_ujian_provinsi');

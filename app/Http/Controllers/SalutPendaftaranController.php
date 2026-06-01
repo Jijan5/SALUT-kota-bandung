@@ -60,8 +60,7 @@ class SalutPendaftaranController extends Controller
             'ipk'=>'numeric|nullable|min:2.00|max:4.00',
             'file_bukti_pembayaran' => 'required|file|mimes:jpg,jpeg,png|max:2048',
             'surat_pernyataan' => 'required|file|mimes:pdf|max:2048',
-            'form_tanda_tangan' => 'required|file|mimes:pdf|max:2048',
-            'file_foto' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'file_foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'file_ktp' => 'required|file|mimes:jpg,jpeg,png|max:2048',
             'file_ss_pddikti' => 'nullable|file|mimes:jpg,jpeg,png|max:2048',
             'file_transkrip' => 'nullable|file|mimes:pdf|max:2048',
@@ -78,7 +77,7 @@ class SalutPendaftaranController extends Controller
         }
 
         $fileFields = [
-            'file_ijazah', 'file_bukti_pembayaran', 'surat_pernyataan', 'form_tanda_tangan',
+            'file_ijazah', 'file_bukti_pembayaran', 'surat_pernyataan',
             'file_foto', 'file_ktp', 'file_ss_pddikti', 'file_transkrip', 'file_rpl_pembelajaran',
             'file_rpl_administrasi', 'file_rpl_ekstrakulikuler', 'file_rpl_prestasi',
             'surat_keterangan_pindah', 'file_cv'
