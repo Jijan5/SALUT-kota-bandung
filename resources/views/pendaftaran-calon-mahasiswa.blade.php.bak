@@ -751,43 +751,6 @@
     <!-- WIZARD INTERACTIVE SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize SessionStorage Data
-            let savedData = JSON.parse(sessionStorage.getItem('salut_form_data') || '{}');
-            let currentStep = parseInt(sessionStorage.getItem('salut_current_step')) || 1;
-            let maxReachedStep = parseInt(sessionStorage.getItem('salut_max_step')) || 1;
-
-            function saveFormData() {
-                const formData = {};
-                document.querySelectorAll('#registrationForm input, #registrationForm select, #registrationForm textarea').forEach(el => {
-                    if (el.type === 'file' || el.type === 'submit' || el.type === 'hidden') return;
-                    if (el.name) {
-                        if (el.type === 'checkbox' || el.type === 'radio') {
-                            if (el.checked) formData[el.name] = el.value;
-                        } else {
-                            formData[el.name] = el.value;
-                        }
-                    }
-                });
-                sessionStorage.setItem('salut_form_data', JSON.stringify(formData));
-                sessionStorage.setItem('salut_current_step', currentStep);
-                sessionStorage.setItem('salut_max_step', maxReachedStep);
-            }
-
-            document.getElementById('registrationForm').addEventListener('input', saveFormData);
-            document.getElementById('registrationForm').addEventListener('change', saveFormData);
-
-            // Restore static inputs
-            document.querySelectorAll('#registrationForm input, #registrationForm select, #registrationForm textarea').forEach(el => {
-                if (el.type === 'file' || el.type === 'submit' || el.type === 'hidden') return;
-                if (el.name && savedData[el.name] !== undefined) {
-                    if (el.type === 'checkbox' || el.type === 'radio') {
-                        if (el.value === savedData[el.name]) el.checked = true;
-                    } else {
-                        el.value = savedData[el.name];
-                    }
-                }
-            });
-
             // Mobile Menu Toggle
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -823,15 +786,6 @@
                 .then(data => {
                     populateDropdown(provinsiDropdown, data, 'Pilih Provinsi');
                     populateDropdown(lokasiUjianProvinsiDropdown, data, 'Pilih Provinsi Ujian');
-
-                    if (savedData['provinsi']) {
-                        provinsiDropdown.value = savedData['provinsi'];
-                        provinsiDropdown.dispatchEvent(new Event('change'));
-                    }
-                    if (savedData['lokasi_ujian_provinsi']) {
-                        lokasiUjianProvinsiDropdown.value = savedData['lokasi_ujian_provinsi'];
-                        lokasiUjianProvinsiDropdown.dispatchEvent(new Event('change'));
-                    }
                 })
                 .catch(err => {
                     provinsiDropdown.innerHTML = '<option value="">Gagal memuat data provinsi</option>';
@@ -856,14 +810,6 @@
                         .then(data => {
                             populateDropdown(kabKotaDropdown, data, 'Pilih Kab/Kota');
                             kabKotaDropdown.disabled = false;
-
-                            if (savedData['kab_kota']) {
-                                const optionExists = Array.from(kabKotaDropdown.options).some(opt => opt.value === savedData['kab_kota']);
-                                if (optionExists) {
-                                    kabKotaDropdown.value = savedData['kab_kota'];
-                                    kabKotaDropdown.dispatchEvent(new Event('change'));
-                                }
-                            }
                         });
                 }
             });
@@ -882,13 +828,6 @@
                         .then(data => {
                             populateDropdown(lokasiUjianKabKotaDropdown, data, 'Pilih Kab/Kota Ujian');
                             lokasiUjianKabKotaDropdown.disabled = false;
-
-                            if (savedData['lokasi_ujian_kab_kota']) {
-                                const optionExists = Array.from(lokasiUjianKabKotaDropdown.options).some(opt => opt.value === savedData['lokasi_ujian_kab_kota']);
-                                if (optionExists) {
-                                    lokasiUjianKabKotaDropdown.value = savedData['lokasi_ujian_kab_kota'];
-                                }
-                            }
                         });
                 }
             });
@@ -910,14 +849,6 @@
                         .then(data => {
                             populateDropdown(kecamatanDropdown, data, 'Pilih Kecamatan');
                             kecamatanDropdown.disabled = false;
-
-                            if (savedData['kecamatan']) {
-                                const optionExists = Array.from(kecamatanDropdown.options).some(opt => opt.value === savedData['kecamatan']);
-                                if (optionExists) {
-                                    kecamatanDropdown.value = savedData['kecamatan'];
-                                    kecamatanDropdown.dispatchEvent(new Event('change'));
-                                }
-                            }
                         });
                 }
             });
@@ -936,31 +867,17 @@
                         .then(data => {
                             populateDropdown(desaKelurahanDropdown, data, 'Pilih Desa/Kelurahan');
                             desaKelurahanDropdown.disabled = false;
-
-                            if (savedData['desa_kelurahan']) {
-                                const optionExists = Array.from(desaKelurahanDropdown.options).some(opt => opt.value === savedData['desa_kelurahan']);
-                                if (optionExists) {
-                                    desaKelurahanDropdown.value = savedData['desa_kelurahan'];
-                                }
-                            }
                         });
                 }
             });
 
             // --- Multi-Step Wizard Navigation Logic ---
-            // currentStep and maxReachedStep are loaded from sessionStorage at the top
+            let currentStep = 1;
+            let maxReachedStep = 1;
             const totalSteps = 5;
             const form = document.getElementById('registrationForm');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-
-            // Trigger UI update if resuming from a saved step
-            if (currentStep > 1) {
-                setTimeout(() => {
-                    updateWizardUI();
-                    window.scrollTo({ top: 150, behavior: 'smooth' });
-                }, 100);
-            }
 
             function getStepPane(step) {
                 return document.getElementById('step' + step);
@@ -1075,15 +992,11 @@
                     if (currentStep < totalSteps) {
                         currentStep++;
                         maxReachedStep = Math.max(maxReachedStep, currentStep);
-                        saveFormData();
                         updateWizardUI();
                         window.scrollTo({ top: 150, behavior: 'smooth' });
                     } else {
                         // Submit the actual form
                         if (confirm('Apakah Anda yakin seluruh berkas dan data diri sudah terisi dengan benar?')) {
-                            sessionStorage.removeItem('salut_form_data');
-                            sessionStorage.removeItem('salut_current_step');
-                            sessionStorage.removeItem('salut_max_step');
                             form.submit();
                         }
                     }
@@ -1094,7 +1007,6 @@
             prevBtn.addEventListener('click', function() {
                 if (currentStep > 1) {
                     currentStep--;
-                    saveFormData();
                     updateWizardUI();
                     window.scrollTo({ top: 150, behavior: 'smooth' });
                 }
@@ -1110,7 +1022,6 @@
                             if (!validateCurrentStep()) return;
                         }
                         currentStep = stepNum;
-                        saveFormData();
                         updateWizardUI();
                         window.scrollTo({ top: 150, behavior: 'smooth' });
                     }

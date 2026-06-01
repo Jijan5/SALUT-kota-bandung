@@ -5,7 +5,7 @@
             <a href="/" class="flex items-center space-x-3">
                 <img src="{{ asset('images/icon-web.png') }}" alt="Logo UT" class="h-12 w-auto">
                 <div>
-                    <span class="block font-outfit font-extrabold text-blue-900 text-lg leading-tight tracking-tight">SALUT KOTA BANDUNG</span>
+                    <span class="block font-outfit font-extrabold text-blue-900 text-lg leading-tight tracking-tight">SALUT MITRA PRIANGAN KOTA BANDUNG</span>
                     <span class="block text-xs text-slate-400 font-medium tracking-wider uppercase">Sentra Layanan Universitas Terbuka</span>
                 </div>
             </a>
