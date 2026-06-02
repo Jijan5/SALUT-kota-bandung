@@ -107,7 +107,11 @@
                                             file_cv: '{{ $pendaftar->file_cv ? asset('storage/'.$pendaftar->file_cv) : '' }}',
                                             file_ss_pddikti: '{{ $pendaftar->file_ss_pddikti ? asset('storage/'.$pendaftar->file_ss_pddikti) : '' }}',
                                             file_bukti: '{{ $pendaftar->file_bukti_pembayaran ? asset('storage/'.$pendaftar->file_bukti_pembayaran) : '' }}',
-                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset('storage/'.$pendaftar->surat_keterangan_pindah) : '' }}'
+                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset('storage/'.$pendaftar->surat_keterangan_pindah) : '' }}',
+                                            file_rpl_pembelajaran: '{{ $pendaftar->file_rpl_pembelajaran ? asset('storage/'.$pendaftar->file_rpl_pembelajaran) : '' }}',
+                                            file_rpl_administrasi: '{{ $pendaftar->file_rpl_administrasi ? asset('storage/'.$pendaftar->file_rpl_administrasi) : '' }}',
+                                            file_rpl_ekstrakulikuler: '{{ $pendaftar->file_rpl_ekstrakulikuler ? asset('storage/'.$pendaftar->file_rpl_ekstrakulikuler) : '' }}',
+                                            file_rpl_prestasi: '{{ $pendaftar->file_rpl_prestasi ? asset('storage/'.$pendaftar->file_rpl_prestasi) : '' }}'
                                         };
                                         showDrawer = true;"
                                         class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
@@ -173,7 +177,12 @@
                 <!-- Drawer Header -->
                 <div class="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
                     <div>
-                        <h3 class="font-outfit text-lg font-bold text-slate-800" x-text="drawerData.nama"></h3>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-outfit text-lg font-bold text-slate-800" x-text="drawerData.nama"></h3>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold"
+                                  :class="drawerData.jalur === 'RPL' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'"
+                                  x-text="'JALUR ' + drawerData.jalur"></span>
+                        </div>
                         <p class="text-xs text-slate-500 mt-0.5">NIK: <span x-text="drawerData.nik"></span></p>
                     </div>
                     <button @click="showDrawer=false" class="p-2 rounded-xl hover:bg-slate-200 transition text-slate-500">
@@ -223,24 +232,39 @@
                         <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Berkas Dokumen</h4>
                         <div class="grid grid-cols-2 gap-2">
                             <template x-for="doc in [
-                                {label: 'Pas Foto', key: 'file_foto'},
-                                {label: 'KTP', key: 'file_ktp'},
-                                {label: 'Ijazah', key: 'file_ijazah'},
-                                {label: 'Transkrip', key: 'file_transkrip'},
-                                {label: 'Surat Pernyataan', key: 'surat_pernyataan'},
-                                {label: 'CV', key: 'file_cv'},
-                                {label: 'Screenshot PDDIKTI', key: 'file_ss_pddikti'},
-                                {label: 'Bukti Pembayaran', key: 'file_bukti'},
-                                {label: 'Surat Pindah', key: 'surat_pindah'}
+                                {label: 'Pas Foto', key: 'file_foto', rplOnly: false},
+                                {label: 'KTP', key: 'file_ktp', rplOnly: false},
+                                {label: 'Ijazah', key: 'file_ijazah', rplOnly: false},
+                                {label: 'Transkrip', key: 'file_transkrip', rplOnly: false},
+                                {label: 'Surat Pernyataan', key: 'surat_pernyataan', rplOnly: false},
+                                {label: 'Bukti Pembayaran', key: 'file_bukti', rplOnly: false},
+                                {label: 'CV', key: 'file_cv', rplOnly: true},
+                                {label: 'Screenshot PDDIKTI', key: 'file_ss_pddikti', rplOnly: true},
+                                {label: 'Surat Pindah', key: 'surat_pindah', rplOnly: true},
+                                {label: 'Sertifikat Pembelajaran', key: 'file_rpl_pembelajaran', rplOnly: true},
+                                {label: 'Sertifikat Administrasi', key: 'file_rpl_administrasi', rplOnly: true},
+                                {label: 'Sertifikat Ekstrakulikuler', key: 'file_rpl_ekstrakulikuler', rplOnly: true},
+                                {label: 'Sertifikat Prestasi', key: 'file_rpl_prestasi', rplOnly: true}
                             ]">
-                                <div class="flex items-center justify-between bg-slate-50 rounded-xl p-3">
-                                    <span class="text-xs font-medium text-slate-600" x-text="doc.label"></span>
-                                    <a :href="drawerData[doc.key]" target="_blank"
-                                        x-show="drawerData[doc.key]"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800 transition">
-                                        Lihat ↗
-                                    </a>
-                                    <span x-show="!drawerData[doc.key]" class="text-xs text-slate-400">-</span>
+                                <div class="flex items-center justify-between rounded-xl p-3"
+                                     :class="doc.rplOnly && drawerData.jalur !== 'RPL' ? 'bg-slate-50 opacity-50 grayscale' : 'bg-slate-50'">
+                                    <div class="flex flex-col">
+                                        <span class="text-xs font-medium text-slate-600" x-text="doc.label"></span>
+                                        <span x-show="doc.rplOnly && drawerData.jalur !== 'RPL'" class="text-[10px] text-slate-400 mt-0.5">Khusus RPL</span>
+                                    </div>
+                                    <template x-if="!(doc.rplOnly && drawerData.jalur !== 'RPL')">
+                                        <div>
+                                            <a :href="drawerData[doc.key]" target="_blank"
+                                                x-show="drawerData[doc.key]"
+                                                class="text-xs font-bold text-blue-600 hover:text-blue-800 transition">
+                                                Lihat ↗
+                                            </a>
+                                            <span x-show="!drawerData[doc.key]" class="text-xs text-slate-400">-</span>
+                                        </div>
+                                    </template>
+                                    <template x-if="doc.rplOnly && drawerData.jalur !== 'RPL'">
+                                        <span class="text-xs text-slate-400">N/A</span>
+                                    </template>
                                 </div>
                             </template>
                         </div>
