@@ -292,6 +292,207 @@
     </div>
 </section>
 
+<!-- ===== INFO GALLERY CAROUSEL SECTION ===== -->
+<style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+</style>
+
+<section class="relative py-12 md:py-20 bg-slate-900 overflow-hidden" id="info-gallery">
+    <!-- Background Image (salut-1) -->
+    <div class="absolute inset-0 z-0">
+        <img src="{{ asset('images/salut-1.png') }}" alt="Background Fasilitas" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/90"></div>
+    </div>
+
+    <div class="relative z-10 w-full">
+        <div class="text-center mb-8 px-4 sm:px-6 lg:px-8">
+            <span class="text-emerald-400 font-bold text-[10px] md:text-xs uppercase tracking-widest">Informasi Penting & Fasilitas</span>
+            <h2 class="font-outfit text-2xl md:text-3xl font-extrabold text-white mt-1 md:mt-2">Pusat Informasi SALUT Bandung</h2>
+            <p class="text-blue-200/80 mt-2 max-w-2xl mx-auto text-xs md:text-sm leading-relaxed">Geser, sentuh, dan klik gambar di bawah ini untuk melihat detail informasi penting mengenai layanan dan pendaftaran Universitas Terbuka.</p>
+        </div>
+
+        <!-- Marquee Wrapper -->
+        <div class="relative w-full max-w-full overflow-hidden mt-6 md:mt-10">
+            <!-- Fade Edges -->
+            <div class="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-slate-900 to-transparent z-20 pointer-events-none"></div>
+            <div class="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-slate-900 to-transparent z-20 pointer-events-none"></div>
+            
+            <!-- Scrolling Container (overflow-x-auto, no-scrollbar) -->
+            <div id="marquee-wrapper" class="flex overflow-x-auto no-scrollbar cursor-grab active:cursor-grabbing w-full pb-8 pt-4">
+                <!-- Inner Track containing multiple sets of images -->
+                <div id="marquee-track" class="flex gap-4 md:gap-8 px-4 md:px-8 w-max items-center">
+                    
+                    <!-- SET 1 -->
+                    @for ($i = 2; $i <= 8; $i++)
+                    <div class="w-[200px] md:w-[260px] lg:w-[320px] flex-shrink-0" onclick="openInfoModal('{{ asset('images/salut-' . $i . '.png') }}')">
+                        <img src="{{ asset('images/salut-' . $i . '.png') }}" alt="Informasi SALUT {{ $i }}" class="w-full h-auto object-contain rounded-2xl drop-shadow-2xl hover:scale-105 transition-transform duration-300">
+                    </div>
+                    @endfor
+                    
+                    <!-- SET 2 -->
+                    @for ($i = 2; $i <= 8; $i++)
+                    <div class="w-[200px] md:w-[260px] lg:w-[320px] flex-shrink-0" onclick="openInfoModal('{{ asset('images/salut-' . $i . '.png') }}')">
+                        <img src="{{ asset('images/salut-' . $i . '.png') }}" alt="Informasi SALUT {{ $i }}" class="w-full h-auto object-contain rounded-2xl drop-shadow-2xl hover:scale-105 transition-transform duration-300">
+                    </div>
+                    @endfor
+                    
+                    <!-- SET 3 -->
+                    @for ($i = 2; $i <= 8; $i++)
+                    <div class="w-[200px] md:w-[260px] lg:w-[320px] flex-shrink-0" onclick="openInfoModal('{{ asset('images/salut-' . $i . '.png') }}')">
+                        <img src="{{ asset('images/salut-' . $i . '.png') }}" alt="Informasi SALUT {{ $i }}" class="w-full h-auto object-contain rounded-2xl drop-shadow-2xl hover:scale-105 transition-transform duration-300">
+                    </div>
+                    @endfor
+
+                </div>
+            </div>
+            
+            <!-- Interaction Hint -->
+            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 text-white/50 text-[10px] md:text-xs">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 md:h-4 md:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                <span>Geser untuk menjelajah</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div id="image-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+    <button onclick="closeInfoModal()" class="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-[110] border border-white/10 shadow-xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="relative w-full h-full p-4 md:p-12 flex items-center justify-center">
+        <img id="image-modal-content" src="" alt="Zoomed Info" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl scale-95 transition-transform duration-300">
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const wrapper = document.getElementById('marquee-wrapper');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let animationId;
+    let speed = 1; // Kecepatan scroll perlahan
+    
+    // Auto-scroll logic
+    function playMarquee() {
+        if (isDown) return; // Berhenti scroll jika user sedang menggeser
+        
+        // Lebar 1 set penuh (karena kita punya 3 set)
+        const setWidth = wrapper.scrollWidth / 3;
+        
+        // Loop mulus: jika melewati 1 set, kembalikan posisi ke awal secara instan
+        if (wrapper.scrollLeft >= setWidth) {
+            wrapper.scrollLeft -= setWidth;
+        } else {
+            wrapper.scrollLeft += speed;
+        }
+        animationId = requestAnimationFrame(playMarquee);
+    }
+    
+    // Mouse dragging (PC)
+    wrapper.addEventListener('mouseenter', () => {
+        cancelAnimationFrame(animationId);
+    });
+    
+    wrapper.addEventListener('mouseleave', () => {
+        isDown = false;
+        playMarquee();
+    });
+    
+    wrapper.addEventListener('mousedown', (e) => {
+        isDown = true;
+        cancelAnimationFrame(animationId);
+        startX = e.pageX - wrapper.offsetLeft;
+        scrollLeft = wrapper.scrollLeft;
+    });
+    
+    wrapper.addEventListener('mouseup', () => {
+        isDown = false;
+        playMarquee();
+    });
+    
+    wrapper.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - wrapper.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        wrapper.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch swiping (HP)
+    wrapper.addEventListener('touchstart', () => {
+        isDown = true;
+        cancelAnimationFrame(animationId);
+    }, {passive: true});
+
+    wrapper.addEventListener('touchend', () => {
+        isDown = false;
+        playMarquee();
+    });
+    
+    // Pastikan loop tidak putus jika user menggeser dengan cepat secara manual
+    wrapper.addEventListener('scroll', () => {
+        if (!isDown) return; // Hanya jalankan saat digeser manual
+        const setWidth = wrapper.scrollWidth / 3;
+        if (wrapper.scrollLeft >= setWidth * 2) {
+            wrapper.scrollLeft -= setWidth;
+        } else if (wrapper.scrollLeft <= 0) {
+            wrapper.scrollLeft += setWidth;
+        }
+    });
+
+    // Mulai animasi
+    playMarquee();
+    
+    // Modal Logic
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('image-modal-content');
+
+    window.openInfoModal = function(src) {
+        modalImg.src = src;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalImg.classList.remove('scale-95');
+        }, 10);
+        cancelAnimationFrame(animationId); 
+    };
+
+    window.closeInfoModal = function() {
+        modal.classList.add('opacity-0');
+        modalImg.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalImg.src = '';
+        }, 300);
+        playMarquee(); 
+    };
+
+    modal.addEventListener('click', function(e) {
+        if(e.target === modal) {
+            closeInfoModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeInfoModal();
+        }
+    });
+});
+</script>
+
 <!-- ===== CTA ===== -->
 <section class="py-20 bg-gradient-to-r from-blue-800 to-indigo-900 text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-grid opacity-40"></div>
@@ -342,7 +543,7 @@
                         </div>
                         <div>
                             <h4 class="font-outfit font-bold text-slate-800 text-sm">Jam Operasional</h4>
-                            <p class="text-slate-500 text-xs mt-1">Senin - Sabtu: 08.00 - 17.00 WIB<br>Minggu / Hari Libur: Tutup</p>
+                            <p class="text-slate-500 text-xs mt-1">Senin - Jumat: 08.00 - 16.00 WIB<br>Sabtu: 08.00 - 12.00 WIB<br>Minggu / Hari Libur: Tutup</p>
                         </div>
                     </div>
                 </div>
