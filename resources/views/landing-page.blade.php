@@ -254,8 +254,434 @@
     </div>
 </section>
 
+
+<!-- ===== TUITION FEES & PAYMENT CHANNELS ===== -->
+<section class="py-20 bg-white" id="biaya-pendidikan">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Transparansi Biaya</span>
+            <h2 class="font-outfit text-4xl font-extrabold text-slate-900 mt-2">Biaya Pendidikan & Pembayaran</h2>
+            <p class="text-slate-500 mt-3 max-w-2xl mx-auto">Kami mengedepankan asas transparansi. Biaya kuliah di Universitas Terbuka sangat terjangkau tanpa mengorbankan kualitas. Temukan rincian biaya sesuai fakultas Anda beserta saluran pembayarannya di bawah ini.</p>
+        </div>
+
+        <!-- Main Tabs Container -->
+        <div class="max-w-5xl mx-auto bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+            
+            <!-- Main Tab Nav -->
+            <div class="flex overflow-x-auto no-scrollbar border-b border-slate-200 bg-white">
+                <button onclick="switchMainTab('biaya')" id="btn-tab-biaya" class="flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-blue-900 border-b-2 border-blue-950 bg-blue-50/50 transition duration-300">
+                    📚 Rincian Biaya Kuliah (SPP)
+                </button>
+                <button onclick="switchMainTab('pembayaran')" id="btn-tab-pembayaran" class="flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-slate-500 border-b-2 border-transparent hover:bg-slate-50 transition duration-300">
+                    💳 Saluran Pembayaran
+                </button>
+            </div>
+
+            <!-- Tab Content: Biaya Kuliah -->
+            <div id="content-tab-biaya" class="p-6 md:p-10 transition-opacity duration-500">
+                
+                <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+                    <h3 class="text-xl font-bold text-slate-800 font-outfit">Tarif Per Semester (Skema SIPAS Non-TTM)</h3>
+                    <div class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-100 flex items-center">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Berlaku TA 2025/2026
+                    </div>
+                </div>
+
+                <!-- Sub Tab Nav (Fakultas) -->
+                <div class="flex overflow-x-auto space-x-2 mb-8 pb-2 no-scrollbar">
+                    <button onclick="switchSubTab('feb')" id="btn-sub-feb" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-blue-950 text-white shadow-md shadow-blue-900/30 transition">Ekonomi (FEB)</button>
+                    <button onclick="switchSubTab('fhisip')" id="btn-sub-fhisip" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Hukum & Sosial (FHISIP)</button>
+                    <button onclick="switchSubTab('fst')" id="btn-sub-fst" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Sains & Teknologi (FST)</button>
+                    <button onclick="switchSubTab('fkip')" id="btn-sub-fkip" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Keguruan (FKIP)</button>
+                    <button onclick="switchSubTab('diploma')" id="btn-sub-diploma" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Diploma (D3/D4)</button>
+                </div>
+
+                <!-- Sub Tab Contents -->
+                <!-- FEB -->
+                <div id="sub-feb" class="sub-tab-content animate-fade-in-up">
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-sm no-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-max">
+                            <thead>
+                                <tr class="bg-blue-50/50 text-blue-900 border-b border-slate-200 text-sm">
+                                    <th class="p-4 font-bold">Program Studi</th>
+                                    <th class="p-4 font-bold">SIPAS Non TTM</th>
+                                    <th class="p-4 font-bold">SIPAS Semi</th>
+                                    <th class="p-4 font-bold">SIPAS Penuh</th>
+                                    <th class="p-4 font-bold">SIPAS Plus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Manajemen</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Akuntansi</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Ekonomi Pembangunan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Pariwisata</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.900.000</td>
+                                    <td class="p-4">Rp 2.600.000</td>
+                                    <td class="p-4">Rp 3.200.000</td>
+                                    <td class="p-4">Rp 3.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Kewirausahaan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 2.600.000</td>
+                                    <td class="p-4">Rp 2.975.000</td>
+                                    <td class="p-4">Rp 3.200.000</td>
+                                    <td class="p-4">Rp 3.300.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FHISIP -->
+                <div id="sub-fhisip" class="sub-tab-content hidden animate-fade-in-up">
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-sm no-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-max">
+                            <thead>
+                                <tr class="bg-blue-50/50 text-blue-900 border-b border-slate-200 text-sm">
+                                    <th class="p-4 font-bold">Program Studi</th>
+                                    <th class="p-4 font-bold">SIPAS Non TTM</th>
+                                    <th class="p-4 font-bold">SIPAS Semi</th>
+                                    <th class="p-4 font-bold">SIPAS Penuh</th>
+                                    <th class="p-4 font-bold">SIPAS Plus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Ilmu Hukum</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Ilmu Komunikasi</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Ilmu Administrasi (Negara/Bisnis)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Sastra Inggris / Sosiologi / Ilmu Pemerintahan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Perpajakan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.800.000</td>
+                                    <td class="p-4">Rp 3.100.000</td>
+                                    <td class="p-4">Rp 3.300.000</td>
+                                    <td class="p-4">Rp 3.400.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FST -->
+                <div id="sub-fst" class="sub-tab-content hidden animate-fade-in-up">
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-sm no-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-max">
+                            <thead>
+                                <tr class="bg-blue-50/50 text-blue-900 border-b border-slate-200 text-sm">
+                                    <th class="p-4 font-bold">Program Studi</th>
+                                    <th class="p-4 font-bold">SIPAS Non TTM</th>
+                                    <th class="p-4 font-bold">SIPAS Semi</th>
+                                    <th class="p-4 font-bold">SIPAS Penuh</th>
+                                    <th class="p-4 font-bold">SIPAS Plus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Sistem Informasi</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.800.000</td>
+                                    <td class="p-4 text-center text-slate-400">-</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                    <td class="p-4">Rp 3.200.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Sains Data</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.900.000</td>
+                                    <td class="p-4 text-center text-slate-400">-</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Perencanaan Wilayah dan Kota</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.750.000</td>
+                                    <td class="p-4 text-center text-slate-400">-</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Matematika / Statistika / Biologi / Agribisnis</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FKIP -->
+                <div id="sub-fkip" class="sub-tab-content hidden animate-fade-in-up">
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-sm no-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-max">
+                            <thead>
+                                <tr class="bg-blue-50/50 text-blue-900 border-b border-slate-200 text-sm">
+                                    <th class="p-4 font-bold">Program Studi</th>
+                                    <th class="p-4 font-bold">SIPAS Non TTM</th>
+                                    <th class="p-4 font-bold">SIPAS Semi</th>
+                                    <th class="p-4 font-bold">SIPAS Penuh</th>
+                                    <th class="p-4 font-bold">SIPAS Plus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 PGSD (In-service)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.600.000</td>
+                                    <td class="p-4">Rp 1.700.000</td>
+                                    <td class="p-4">Rp 2.600.000</td>
+                                    <td class="p-4">Rp 2.700.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 PGSD (Pre-service)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.900.000</td>
+                                    <td class="p-4">Rp 2.000.000</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 PGPAUD (In-service)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 2.000.000</td>
+                                    <td class="p-4">Rp 2.500.000</td>
+                                    <td class="p-4">Rp 2.800.000</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 PGPAUD (Pre-service)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 2.400.000</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.100.000</td>
+                                    <td class="p-4">Rp 3.200.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Pendidikan Agama Islam</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.500.000</td>
+                                    <td class="p-4">Rp 2.800.000</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">S1 Pend. (B.Inggris, Mat, Biologi, dll)</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.300.000</td>
+                                    <td class="p-4">Rp 1.750.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Diploma -->
+                <div id="sub-diploma" class="sub-tab-content hidden animate-fade-in-up">
+                    <div class="overflow-x-auto bg-white border border-slate-200 rounded-xl shadow-sm no-scrollbar">
+                        <table class="w-full text-left border-collapse min-w-max">
+                            <thead>
+                                <tr class="bg-blue-50/50 text-blue-900 border-b border-slate-200 text-sm">
+                                    <th class="p-4 font-bold">Program Studi</th>
+                                    <th class="p-4 font-bold">SIPAS Non TTM</th>
+                                    <th class="p-4 font-bold">SIPAS Semi</th>
+                                    <th class="p-4 font-bold">SIPAS Penuh</th>
+                                    <th class="p-4 font-bold">SIPAS Plus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-600 divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">D-III Perpajakan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.150.000</td>
+                                    <td class="p-4">Rp 2.700.000</td>
+                                    <td class="p-4">Rp 2.900.000</td>
+                                    <td class="p-4">Rp 3.000.000</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition">
+                                    <td class="p-4 font-bold text-slate-800">D-IV Kearsipan</td>
+                                    <td class="p-4 font-bold text-blue-700">Rp 1.150.000</td>
+                                    <td class="p-4">Rp 1.600.000</td>
+                                    <td class="p-4">Rp 2.200.000</td>
+                                    <td class="p-4">Rp 2.400.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Disclaimer Info -->
+                <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start space-x-3 text-amber-800 text-sm">
+                    <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p>
+                        <strong>Catatan Penting:</strong> Biaya di atas merupakan Uang Kuliah Tunggal (SPP) per semester. Belum termasuk Biaya Pendaftaran Mahasiswa Baru (mulai dari Rp 100.000) dan Jasa Layanan Admisi SALUT Kota Bandung.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab Content: Saluran Pembayaran -->
+            <div id="content-tab-pembayaran" class="p-6 md:p-10 hidden transition-opacity duration-500 bg-white">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h3 class="text-2xl font-bold text-slate-800 font-outfit mb-2">Tersedia Berbagai Metode Pembayaran</h3>
+                    <p class="text-slate-500 text-sm">Universitas Terbuka bekerjasama dengan banyak bank dan institusi pembayaran terkemuka untuk memudahkan Anda melakukan pembayaran SPP secara langsung maupun autodebet.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Bank Transfer / VA -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-2">Transfer Bank (VA)</h4>
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Bank Mandiri (Livin, ATM, Teller)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Bank BRI (BRImo, BRILink, ATM)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Bank BNI (Mobile, Internet, Teller)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Bank BTN & BSI (Syariah)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Retail / Minimarket -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-orange-500 mb-4">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-2">Gerai Retail / Tunai</h4>
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Indomaret (Kasir)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Alfamart & Alfamidi</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Lawson & Dandan</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Kantor Pos Indonesia (PosPay)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Digital Payments -->
+                    <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-purple-600 mb-4">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-lg mb-2">QRIS & Dompet Digital</h4>
+                        <ul class="text-sm text-slate-600 space-y-2">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>QRIS via MyUT (Semua Bank/E-Wallet)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>OVO & DANA</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Tokopedia & Shopee (E-commerce)</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span>Kredivo (Cicilan)</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SCRIPT FOR TUITION TABS -->
+<script>
+    function switchMainTab(tab) {
+        const btnBiaya = document.getElementById('btn-tab-biaya');
+        const btnPembayaran = document.getElementById('btn-tab-pembayaran');
+        const contentBiaya = document.getElementById('content-tab-biaya');
+        const contentPembayaran = document.getElementById('content-tab-pembayaran');
+
+        if(tab === 'biaya') {
+            btnBiaya.className = "flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-blue-900 border-b-2 border-blue-950 bg-blue-50/50 transition duration-300";
+            btnPembayaran.className = "flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-slate-500 border-b-2 border-transparent hover:bg-slate-50 transition duration-300";
+            
+            contentPembayaran.classList.add('hidden');
+            contentBiaya.classList.remove('hidden');
+            
+            // Re-trigger animation
+            contentBiaya.classList.remove('opacity-100');
+            contentBiaya.classList.add('opacity-0');
+            setTimeout(() => {
+                contentBiaya.classList.remove('opacity-0');
+                contentBiaya.classList.add('opacity-100');
+            }, 50);
+        } else {
+            btnPembayaran.className = "flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-blue-900 border-b-2 border-blue-950 bg-blue-50/50 transition duration-300";
+            btnBiaya.className = "flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-slate-500 border-b-2 border-transparent hover:bg-slate-50 transition duration-300";
+            
+            contentBiaya.classList.add('hidden');
+            contentPembayaran.classList.remove('hidden');
+
+            contentPembayaran.classList.remove('opacity-100');
+            contentPembayaran.classList.add('opacity-0');
+            setTimeout(() => {
+                contentPembayaran.classList.remove('opacity-0');
+                contentPembayaran.classList.add('opacity-100');
+            }, 50);
+        }
+    }
+
+    function switchSubTab(sub) {
+        // Reset all sub buttons
+        const subs = ['feb', 'fhisip', 'fst', 'fkip', 'diploma'];
+        subs.forEach(s => {
+            const btn = document.getElementById('btn-sub-' + s);
+            const content = document.getElementById('sub-' + s);
+            if (s === sub) {
+                btn.className = "whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-blue-950 text-white shadow-md shadow-blue-900/30 transition";
+                content.classList.remove('hidden');
+            } else {
+                btn.className = "whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition";
+                content.classList.add('hidden');
+            }
+        });
+    }
+</script>
+
+<style>
+    .animate-fade-in-up {
+        animation: fadeInUp 0.4s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
 <!-- ===== REGISTRATION PATHS ===== -->
 <section class="py-20 bg-slate-50">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-14">
             <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Pilih Jalur Pendaftaran</span>
