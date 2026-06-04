@@ -223,6 +223,31 @@
 })();
 </script>
 
+<!-- ===== VIDEO PROMO UNIVERSITAS TERBUKA ===== -->
+<section class="py-16 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+            <h2 class="font-outfit text-3xl md:text-4xl font-extrabold text-slate-900">Mengenal <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Universitas Terbuka</span></h2>
+            <p class="text-slate-500 mt-3 max-w-2xl mx-auto text-sm">Tonton video berikut untuk memahami keunggulan sistem belajar jarak jauh UT dan bagaimana SALUT Kota Bandung siap membantu Anda.</p>
+        </div>
+        
+        <div class="relative group">
+            <!-- Video Wrapper - Responsive 16:9 dengan border shadow elegan -->
+            <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-900 aspect-video ring-1 ring-white/20">
+                <iframe 
+                    class="absolute inset-0 w-full h-full"
+                    src="https://www.youtube.com/embed/QkUPjVPt3sg?rel=0&modestbranding=1&controls=1&autoplay=0&color=white"
+                    title="Video Profile Universitas Terbuka"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ===== FEATURES ===== -->
 
 <section class="py-20 bg-white">
