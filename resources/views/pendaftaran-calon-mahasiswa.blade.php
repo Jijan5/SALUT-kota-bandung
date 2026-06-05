@@ -230,6 +230,29 @@
             <form action="{{ route('pendaftaran.store') }}" method="POST" enctype="multipart/form-data" id="registrationForm" class="p-6 sm:p-10">
                 @csrf
 
+                @if ($errors->any())
+                    <div class="mb-8 p-6 rounded-2xl bg-red-50 border border-red-200 text-red-700">
+                        <h4 class="font-bold mb-2 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg>
+                            Maaf, terjadi kesalahan pada data pendaftaran Anda:
+                        </h4>
+                        <ul class="list-disc list-inside text-sm space-y-1.5 ml-1">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    
+                    <!-- Script to Auto-scroll to error box -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            window.scrollTo({ top: 150, behavior: 'smooth' });
+                        });
+                    </script>
+                @endif
+
                 <!-- STEP 1: Profil Calon Mahasiswa -->
                 <div class="step-pane step-transition" id="step1">
                     <div class="border-b border-slate-100 pb-4 mb-6">
