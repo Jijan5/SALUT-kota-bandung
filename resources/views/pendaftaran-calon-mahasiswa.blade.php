@@ -1409,17 +1409,22 @@
             // Insert button right after the input
             input.insertAdjacentElement('afterend', btn);
 
-            // Show/hide button based on file selection
-            input.addEventListener('change', function() {
-                if (this.files && this.files[0]) {
+            function updatePreviewBtn() {
+                if (input.files && input.files.length > 0) {
                     btn.classList.add('show');
-                    // Bind current file to button click
-                    btn.onclick = () => openPreview(this.files[0], btn);
+                    btn.onclick = () => openPreview(input.files[0], btn);
                 } else {
                     btn.classList.remove('show');
                     btn.onclick = null;
                 }
-            });
+            }
+
+            // Show/hide button based on file selection
+            input.addEventListener('change', updatePreviewBtn);
+            
+            // Check immediately on load (in case of browser back button)
+            setTimeout(updatePreviewBtn, 500);
+            window.addEventListener('pageshow', updatePreviewBtn);
         });
     })();
     </script>
