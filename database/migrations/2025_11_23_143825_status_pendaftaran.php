@@ -6,23 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('data-pendaftar', function (Blueprint $table) {
+            $table->string('status', 50)->change();
             $table->string('status_pendaftaran')->default('pending')->after('file_bukti_pembayaran');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('data-pendaftar', function (Blueprint $table) {
             $table->dropColumn('status_pendaftaran');
+            
+            $table->string('status', 20)->change();
         });
     }
 };

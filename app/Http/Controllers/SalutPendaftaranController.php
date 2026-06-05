@@ -6,6 +6,7 @@ use App\Models\SalutPendaftaran;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 class SalutPendaftaranController extends Controller
 {
@@ -31,6 +32,93 @@ class SalutPendaftaranController extends Controller
 
     public function store(Request $request)
     {
+        // Custom error messages dalam BAHASA INDONESIA
+        $customMessages = [
+            // Required
+            'required' => ':attribute wajib diisi.',
+            
+            // Unique
+            'nik.unique' => 'NIK sudah terdaftar. Silakan gunakan NIK lain.',
+            'no_hp.unique' => 'Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.',
+            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
+            
+            // Size & Max
+            'nik.size' => 'NIK harus terdiri dari 16 digit angka.',
+            'no_hp.max' => 'Nomor HP maksimal 16 digit.',
+            'kode_pos.max' => 'Kode Pos maksimal 10 karakter.',
+            
+            // In
+            'agama.in' => 'Agama yang dipilih tidak valid.',
+            'jalur_program.in' => 'Jalur program yang dipilih tidak valid.',
+            'alamat_pengirim_modul.in' => 'Pilihan alamat pengirim modul tidak valid.',
+            
+            // File
+            'file_ijazah.mimes' => 'File Ijazah harus berformat PDF.',
+            'file_ijazah.max' => 'Ukuran file Ijazah maksimal 25MB.',
+            'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, atau PNG.',
+            'file_bukti_pembayaran.max' => 'Ukuran file Bukti Pembayaran maksimal 25MB.',
+            'file_foto.image' => 'File Foto harus berupa gambar.',
+            'file_foto.mimes' => 'File Foto harus berformat JPG, JPEG, atau PNG.',
+            'file_foto.max' => 'Ukuran file Foto maksimal 25MB.',
+            'file_ktp.mimes' => 'File KTP harus berformat JPG, JPEG, atau PNG.',
+            'file_ktp.max' => 'Ukuran file KTP maksimal 25MB.',
+            'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat PDF.',
+            'surat_pernyataan.max' => 'Ukuran file Surat Pernyataan maksimal 25MB.',
+            
+            // Numeric
+            'ipk.numeric' => 'IPK harus berupa angka.',
+            'ipk.min' => 'IPK minimal 2.00.',
+            'ipk.max' => 'IPK maksimal 4.00.',
+            
+            // Email
+            'email.email' => 'Format email tidak valid.',
+            
+            // Date
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+        ];
+
+        // Nama atribut dalam BAHASA INDONESIA
+        $attributeNames = [
+            'nama' => 'Nama lengkap',
+            'tempat_lahir' => 'Tempat lahir',
+            'tanggal_lahir' => 'Tanggal lahir',
+            'agama' => 'Agama',
+            'gender' => 'Jenis kelamin',
+            'status' => 'Status perkawinan',
+            'nik' => 'NIK',
+            'provinsi' => 'Provinsi',
+            'kab_kota' => 'Kabupaten/Kota',
+            'kecamatan' => 'Kecamatan',
+            'desa_kelurahan' => 'Desa/Kelurahan',
+            'kode_pos' => 'Kode pos',
+            'alamat' => 'Alamat',
+            'alamat_lain' => 'Alamat lain',
+            'lokasi_ujian_provinsi' => 'Lokasi ujian provinsi',
+            'lokasi_ujian_kab_kota' => 'Lokasi ujian kab/kota',
+            'alamat_pengirim_modul' => 'Alamat pengirim modul',
+            'ukuran_almat' => 'Ukuran almamater',
+            'nama_ibu_kandung' => 'Nama ibu kandung',
+            'no_hp' => 'Nomor HP',
+            'no_hp_alternatif' => 'Nomor HP alternatif',
+            'email' => 'Email',
+            'jalur_program' => 'Jalur program',
+            'file_ijazah' => 'File ijazah',
+            'no_ijazah' => 'Nomor ijazah',
+            'ipk' => 'IPK',
+            'file_bukti_pembayaran' => 'File bukti pembayaran',
+            'surat_pernyataan' => 'Surat pernyataan',
+            'file_foto' => 'File foto',
+            'file_ktp' => 'File KTP',
+            'file_ss_pddikti' => 'File screenshot PDDIKTI',
+            'file_transkrip' => 'File transkrip nilai',
+            'file_rpl_pembelajaran' => 'File RPL pembelajaran',
+            'file_rpl_administrasi' => 'File RPL administrasi',
+            'file_rpl_ekstrakulikuler' => 'File RPL ekstrakurikuler',
+            'file_rpl_prestasi' => 'File RPL prestasi',
+            'surat_keterangan_pindah' => 'Surat keterangan pindah',
+            'file_cv' => 'File CV',
+        ];
+
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -51,7 +139,7 @@ class SalutPendaftaranController extends Controller
             'alamat_pengirim_modul' => ['required', Rule::in(['ya', 'tidak'])],
             'ukuran_almat' => 'nullable|string|max:10',
             'nama_ibu_kandung' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:16',
+            'no_hp' => 'required|string|max:16|unique:data-pendaftar,no_hp',
             'no_hp_alternatif' => 'required|string|max:16',
             'email' => 'required|email|max:255|unique:data-pendaftar,email',
             'jalur_program' => ['required', Rule::in(['RPL', 'Non-RPL'])],
@@ -70,7 +158,7 @@ class SalutPendaftaranController extends Controller
             'file_rpl_prestasi' => 'nullable|file|mimes:pdf|max:25600',
             'surat_keterangan_pindah' => 'nullable|file|mimes:pdf|max:25600',
             'file_cv' => 'nullable|file|mimes:pdf|max:25600',
-        ]);
+        ], $customMessages, $attributeNames);
 
         if ($validatedData['alamat_pengirim_modul'] === 'ya') {
             $validatedData['alamat_lain'] = null;
@@ -92,6 +180,5 @@ class SalutPendaftaranController extends Controller
         SalutPendaftaran::create($validatedData);
 
         return redirect('/pendaftaran')->with('success', 'Pendaftaran berhasil dikirim!');
-
     }
 }
