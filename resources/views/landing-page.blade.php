@@ -83,7 +83,7 @@
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-wrap gap-4">
-                        <a href="/pendaftaran"
+                        <a href="/login/user"
                             class="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 sm:px-7 sm:py-4 rounded-2xl transition shadow-2xl shadow-blue-700/40 text-sm sm:text-base">
                             <span>Daftar Sekarang</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -12,6 +12,7 @@ class SalutPendaftaran extends Model
     protected $table = 'data-pendaftar';
 
     protected $fillable = [
+        'user_id',  // <-- TAMBAHKAN INI
         'nama',
         'tempat_lahir',
         'tanggal_lahir',
@@ -33,7 +34,7 @@ class SalutPendaftaran extends Model
         'nama_ibu_kandung',
         'no_hp',
         'no_hp_alternatif',
-        'email',
+        // 'email',  <-- HAPUS ATAU COMMENT INI
         'jalur_program',
         'file_ijazah',
         'no_ijazah',
@@ -51,8 +52,14 @@ class SalutPendaftaran extends Model
         'surat_keterangan_pindah',
         'file_cv',
     ];
+
     protected $hidden = [
         'remember_token',
-        'password'
     ];
+
+    // TAMBAHKAN RELASI KE USER
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

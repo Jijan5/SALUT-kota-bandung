@@ -96,7 +96,7 @@
                         <span class="block text-xs text-slate-400">SALUT Kota Bandung</span>
                     </div>
                 </div>
-                <form action="{{ route('logout') }}" method="POST">
+                <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
                     <button type="submit"
                         class="w-full flex items-center justify-center space-x-2 bg-red-600/20 hover:bg-red-600/40 border border-red-500/30 text-red-300 hover:text-red-200 text-sm font-semibold py-2.5 px-4 rounded-xl transition duration-200">

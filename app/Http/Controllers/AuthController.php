@@ -10,7 +10,6 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         return view('auth.login');
-        //
     }
 
     public function login(Request $request)
@@ -20,24 +19,24 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // PAKAI GUARD ADMIN (bukan Auth::attempt biasa)
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('admin.index');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/login/admin');
     }
 }

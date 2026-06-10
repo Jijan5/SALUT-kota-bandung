@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class SalutPendaftaranController extends Controller
 {
@@ -14,6 +15,7 @@ class SalutPendaftaranController extends Controller
     {
         return view('kurikulum-ut');
     }
+
     public function programStudi()
     {
         return view('program-studi');
@@ -23,8 +25,21 @@ class SalutPendaftaranController extends Controller
     {
         return view('landing-page');
     }
+
     public function index()
     {
+        // CEK APAKAH USER SUDAH LOGIN (GUARD WEB)
+        if (!Auth::guard('web')->check()) {
+            return redirect()->route('user.login')->with('error', 'Silakan login terlebih dahulu untuk mengakses formulir pendaftaran.');
+        }
+
+        // CEK APAKAH USER SUDAH PUNYA DATA PENDAFTARAN
+        $existingData = SalutPendaftaran::where('user_id', Auth::guard('web')->id())->first();
+        
+        if ($existingData) {
+            return redirect('/')->with('warning', 'Anda sudah melakukan pendaftaran. Tidak dapat mendaftar lagi.');
+        }
+
         return view('pendaftaran-calon-mahasiswa', [
             'existingCvUrl' => 'files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx'
         ]);
@@ -32,27 +47,28 @@ class SalutPendaftaranController extends Controller
 
     public function store(Request $request)
     {
+        // CEK LOGIN (GUARD WEB)
+        if (!Auth::guard('web')->check()) {
+            return redirect()->route('user.login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
+        // CEK APAKAH USER SUDAH PUNYA DATA PENDAFTARAN
+        $existingData = SalutPendaftaran::where('user_id', Auth::guard('web')->id())->first();
+        if ($existingData) {
+            return redirect('/')->with('warning', 'Anda sudah melakukan pendaftaran. Tidak dapat mendaftar lagi.');
+        }
+
         // Custom error messages dalam BAHASA INDONESIA
         $customMessages = [
-            // Required
             'required' => ':attribute wajib diisi.',
-            
-            // Unique
             'nik.unique' => 'NIK sudah terdaftar. Silakan gunakan NIK lain.',
             'no_hp.unique' => 'Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.',
-            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
-            
-            // Size & Max
             'nik.size' => 'NIK harus terdiri dari 16 digit angka.',
             'no_hp.max' => 'Nomor HP maksimal 16 digit.',
             'kode_pos.max' => 'Kode Pos maksimal 10 karakter.',
-            
-            // In
             'agama.in' => 'Agama yang dipilih tidak valid.',
             'jalur_program.in' => 'Jalur program yang dipilih tidak valid.',
             'alamat_pengirim_modul.in' => 'Pilihan alamat pengirim modul tidak valid.',
-            
-            // File
             'file_ijazah.mimes' => 'File Ijazah harus berformat PDF.',
             'file_ijazah.max' => 'Ukuran file Ijazah maksimal 25MB.',
             'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, atau PNG.',
@@ -64,16 +80,9 @@ class SalutPendaftaranController extends Controller
             'file_ktp.max' => 'Ukuran file KTP maksimal 25MB.',
             'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat PDF.',
             'surat_pernyataan.max' => 'Ukuran file Surat Pernyataan maksimal 25MB.',
-            
-            // Numeric
             'ipk.numeric' => 'IPK harus berupa angka.',
             'ipk.min' => 'IPK minimal 2.00.',
             'ipk.max' => 'IPK maksimal 4.00.',
-            
-            // Email
-            'email.email' => 'Format email tidak valid.',
-            
-            // Date
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
         ];
 
@@ -100,7 +109,6 @@ class SalutPendaftaranController extends Controller
             'nama_ibu_kandung' => 'Nama ibu kandung',
             'no_hp' => 'Nomor HP',
             'no_hp_alternatif' => 'Nomor HP alternatif',
-            'email' => 'Email',
             'jalur_program' => 'Jalur program',
             'file_ijazah' => 'File ijazah',
             'no_ijazah' => 'Nomor ijazah',
@@ -119,6 +127,7 @@ class SalutPendaftaranController extends Controller
             'file_cv' => 'File CV',
         ];
 
+        // VALIDASI - HAPUS EMAIL
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -141,7 +150,7 @@ class SalutPendaftaranController extends Controller
             'nama_ibu_kandung' => 'required|string|max:255',
             'no_hp' => 'required|string|max:16|unique:data-pendaftar,no_hp',
             'no_hp_alternatif' => 'required|string|max:16',
-            'email' => 'required|email|max:255|unique:data-pendaftar,email',
+            // EMAIL DIHAPUS DARI VALIDASI
             'jalur_program' => ['required', Rule::in(['RPL', 'Non-RPL'])],
             'file_ijazah' => 'required|file|mimes:pdf|max:25600',
             'no_ijazah' => 'required|string|max:255',
@@ -177,8 +186,11 @@ class SalutPendaftaranController extends Controller
             }
         }
 
+        // TAMBAHKAN user_id DARI USER YANG LOGIN
+        $validatedData['user_id'] = Auth::guard('web')->id();
+
         SalutPendaftaran::create($validatedData);
 
-        return redirect('/pendaftaran')->with('success', 'Pendaftaran berhasil dikirim!');
+        return redirect('/user/profile')->with('success', 'Selamat! Pendaftaran Anda berhasil dikirim. Data sedang dalam proses verifikasi.');
     }
 }
