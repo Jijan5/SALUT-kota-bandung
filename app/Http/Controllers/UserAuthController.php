@@ -136,74 +136,74 @@ class UserAuthController extends Controller
         ];
 
         $customMessages = [
-        // Name & Email
-        'name.required' => 'Nama pengguna wajib diisi.',
-        'name.max' => 'Nama pengguna maksimal 255 karakter.',
-        'email.required' => 'Email wajib diisi.',
-        'email.email' => 'Format email tidak valid.',
-        'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
-        
-        // Password
-        'current_password.required_with' => 'Password saat ini wajib diisi untuk mengganti password.',
-        'new_password.min' => 'Password baru minimal 6 karakter.',
-        'new_password.confirmed' => 'Konfirmasi password baru tidak sesuai.',
-        
-        // Data Pribadi
-        'nama.max' => 'Nama lengkap maksimal 255 karakter.',
-        'nik.unique' => 'NIK sudah terdaftar. Silakan gunakan NIK lain.',
-        'nik.max' => 'NIK maksimal 20 karakter.',
-        'tempat_lahir.max' => 'Tempat lahir maksimal 100 karakter.',
-        'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
-        'gender.in' => 'Jenis kelamin tidak valid.',
-        'agama.in' => 'Agama tidak valid.',
-        'status.max' => 'Status maksimal 50 karakter.',
-        'no_hp.unique' => 'Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.',
-        'no_hp.max' => 'Nomor HP maksimal 15 karakter.',
-        'no_hp_alternatif.max' => 'Nomor HP alternatif maksimal 15 karakter.',
-        'nama_ibu_kandung.max' => 'Nama ibu kandung maksimal 255 karakter.',
-        'ukuran_almat.max' => 'Ukuran almamater maksimal 10 karakter.',
-        
-        // Alamat
-        'provinsi.max' => 'Provinsi maksimal 100 karakter.',
-        'kab_kota.max' => 'Kabupaten/Kota maksimal 100 karakter.',
-        'kecamatan.max' => 'Kecamatan maksimal 100 karakter.',
-        'desa_kelurahan.max' => 'Desa/Kelurahan maksimal 100 karakter.',
-        'kode_pos.max' => 'Kode pos maksimal 10 karakter.',
-        
-        // Jalur Program
-        'jalur_program.in' => 'Jalur program tidak valid.',
-        'lokasi_ujian_provinsi.max' => 'Provinsi ujian maksimal 100 karakter.',
-        'lokasi_ujian_kab_kota.max' => 'Kab/Kota ujian maksimal 100 karakter.',
-        
-        // File Uploads
-        'file_foto.image' => 'File foto harus berupa gambar (JPG, JPEG, PNG).',
-        'file_foto.mimes' => 'File foto harus berformat JPG, JPEG, atau PNG.',
-        'file_foto.max' => 'Ukuran file foto terlalu besar. Maksimal 2MB.',
-        'file_ktp.mimes' => 'File KTP harus berformat JPG, JPEG, PNG, atau PDF.',
-        'file_ktp.max' => 'Ukuran file KTP terlalu besar. Maksimal 2MB.',
-        'file_ijazah.mimes' => 'File Ijazah harus berformat PDF.',
-        'file_ijazah.max' => 'Ukuran file Ijazah terlalu besar. Maksimal 2MB.',
-        'file_transkrip.mimes' => 'File Transkrip harus berformat PDF.',
-        'file_transkrip.max' => 'Ukuran file Transkrip terlalu besar. Maksimal 2MB.',
-        'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, atau PNG.',
-        'file_bukti_pembayaran.max' => 'Ukuran file Bukti Pembayaran terlalu besar. Maksimal 2MB.',
-        'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat PDF.',
-        'surat_pernyataan.max' => 'Ukuran file Surat Pernyataan terlalu besar. Maksimal 2MB.',
-        'file_cv.mimes' => 'File CV harus berformat PDF.',
-        'file_cv.max' => 'Ukuran file CV terlalu besar. Maksimal 2MB.',
-        'file_ss_pddikti.mimes' => 'File SS PDDIKTI harus berformat JPG, JPEG, atau PNG.',
-        'file_ss_pddikti.max' => 'Ukuran file SS PDDIKTI terlalu besar. Maksimal 2MB.',
-        'file_rpl_pembelajaran.mimes' => 'File RPL Pembelajaran harus berformat PDF.',
-        'file_rpl_pembelajaran.max' => 'Ukuran file RPL Pembelajaran terlalu besar. Maksimal 2MB.',
-        'file_rpl_administrasi.mimes' => 'File RPL Administrasi harus berformat PDF.',
-        'file_rpl_administrasi.max' => 'Ukuran file RPL Administrasi terlalu besar. Maksimal 2MB.',
-        'file_rpl_ekstrakulikuler.mimes' => 'File RPL Ekstrakurikuler harus berformat PDF.',
-        'file_rpl_ekstrakulikuler.max' => 'Ukuran file RPL Ekstrakurikuler terlalu besar. Maksimal 2MB.',
-        'file_rpl_prestasi.mimes' => 'File RPL Prestasi harus berformat PDF.',
-        'file_rpl_prestasi.max' => 'Ukuran file RPL Prestasi terlalu besar. Maksimal 2MB.',
-        'surat_keterangan_pindah.mimes' => 'File Surat Keterangan Pindah harus berformat PDF.',
-        'surat_keterangan_pindah.max' => 'Ukuran file Surat Keterangan Pindah terlalu besar. Maksimal 2MB.',
-    ];
+            // Name & Email
+            'name.required' => 'Nama pengguna wajib diisi.',
+            'name.max' => 'Nama pengguna maksimal 255 karakter.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
+
+            // Password
+            'current_password.required_with' => 'Password saat ini wajib diisi untuk mengganti password.',
+            'new_password.min' => 'Password baru minimal 6 karakter.',
+            'new_password.confirmed' => 'Konfirmasi password baru tidak sesuai.',
+
+            // Data Pribadi
+            'nama.max' => 'Nama lengkap maksimal 255 karakter.',
+            'nik.unique' => 'NIK sudah terdaftar. Silakan gunakan NIK lain.',
+            'nik.max' => 'NIK maksimal 20 karakter.',
+            'tempat_lahir.max' => 'Tempat lahir maksimal 100 karakter.',
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid.',
+            'gender.in' => 'Jenis kelamin tidak valid.',
+            'agama.in' => 'Agama tidak valid.',
+            'status.max' => 'Status maksimal 50 karakter.',
+            'no_hp.unique' => 'Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.',
+            'no_hp.max' => 'Nomor HP maksimal 15 karakter.',
+            'no_hp_alternatif.max' => 'Nomor HP alternatif maksimal 15 karakter.',
+            'nama_ibu_kandung.max' => 'Nama ibu kandung maksimal 255 karakter.',
+            'ukuran_almat.max' => 'Ukuran almamater maksimal 10 karakter.',
+
+            // Alamat
+            'provinsi.max' => 'Provinsi maksimal 100 karakter.',
+            'kab_kota.max' => 'Kabupaten/Kota maksimal 100 karakter.',
+            'kecamatan.max' => 'Kecamatan maksimal 100 karakter.',
+            'desa_kelurahan.max' => 'Desa/Kelurahan maksimal 100 karakter.',
+            'kode_pos.max' => 'Kode pos maksimal 10 karakter.',
+
+            // Jalur Program
+            'jalur_program.in' => 'Jalur program tidak valid.',
+            'lokasi_ujian_provinsi.max' => 'Provinsi ujian maksimal 100 karakter.',
+            'lokasi_ujian_kab_kota.max' => 'Kab/Kota ujian maksimal 100 karakter.',
+
+            // File Uploads
+            'file_foto.image' => 'File foto harus berupa gambar (JPG, JPEG, PNG).',
+            'file_foto.mimes' => 'File foto harus berformat JPG, JPEG, atau PNG.',
+            'file_foto.max' => 'Ukuran file foto terlalu besar. Maksimal 2MB.',
+            'file_ktp.mimes' => 'File KTP harus berformat JPG, JPEG, PNG, atau PDF.',
+            'file_ktp.max' => 'Ukuran file KTP terlalu besar. Maksimal 2MB.',
+            'file_ijazah.mimes' => 'File Ijazah harus berformat PDF.',
+            'file_ijazah.max' => 'Ukuran file Ijazah terlalu besar. Maksimal 2MB.',
+            'file_transkrip.mimes' => 'File Transkrip harus berformat PDF.',
+            'file_transkrip.max' => 'Ukuran file Transkrip terlalu besar. Maksimal 2MB.',
+            'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, atau PNG.',
+            'file_bukti_pembayaran.max' => 'Ukuran file Bukti Pembayaran terlalu besar. Maksimal 2MB.',
+            'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat PDF.',
+            'surat_pernyataan.max' => 'Ukuran file Surat Pernyataan terlalu besar. Maksimal 2MB.',
+            'file_cv.mimes' => 'File CV harus berformat PDF.',
+            'file_cv.max' => 'Ukuran file CV terlalu besar. Maksimal 2MB.',
+            'file_ss_pddikti.mimes' => 'File SS PDDIKTI harus berformat JPG, JPEG, atau PNG.',
+            'file_ss_pddikti.max' => 'Ukuran file SS PDDIKTI terlalu besar. Maksimal 2MB.',
+            'file_rpl_pembelajaran.mimes' => 'File RPL Pembelajaran harus berformat PDF.',
+            'file_rpl_pembelajaran.max' => 'Ukuran file RPL Pembelajaran terlalu besar. Maksimal 2MB.',
+            'file_rpl_administrasi.mimes' => 'File RPL Administrasi harus berformat PDF.',
+            'file_rpl_administrasi.max' => 'Ukuran file RPL Administrasi terlalu besar. Maksimal 2MB.',
+            'file_rpl_ekstrakulikuler.mimes' => 'File RPL Ekstrakurikuler harus berformat PDF.',
+            'file_rpl_ekstrakulikuler.max' => 'Ukuran file RPL Ekstrakurikuler terlalu besar. Maksimal 2MB.',
+            'file_rpl_prestasi.mimes' => 'File RPL Prestasi harus berformat PDF.',
+            'file_rpl_prestasi.max' => 'Ukuran file RPL Prestasi terlalu besar. Maksimal 2MB.',
+            'surat_keterangan_pindah.mimes' => 'File Surat Keterangan Pindah harus berformat PDF.',
+            'surat_keterangan_pindah.max' => 'Ukuran file Surat Keterangan Pindah terlalu besar. Maksimal 2MB.',
+        ];
 
         $request->validate($rules, $customMessages);
 
@@ -303,11 +303,19 @@ class UserAuthController extends Controller
 
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
+                // Hapus file lama jika ada
                 if ($pendaftaran && $pendaftaran->$field) {
-                    Storage::disk('public')->delete($pendaftaran->$field);
+                    $oldFilePath = public_path('storage/' . $pendaftaran->$field);
+                    if (file_exists($oldFilePath)) {
+                        unlink($oldFilePath);
+                    }
                 }
-                $path = $request->file($field)->store('pendaftaran/' . $user->id, 'public');
-                $pendaftaranData[$field] = $path;
+
+                // Upload file baru
+                $file = $request->file($field);
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('storage/pendaftar'), $filename);
+                $pendaftaranData[$field] = 'pendaftar/' . $filename;
             }
         }
 
@@ -323,7 +331,7 @@ class UserAuthController extends Controller
     }
 
     public function tryout()
-{
-    return view('users.users-tryout');
-}
+    {
+        return view('users.users-tryout');
+    }
 }
