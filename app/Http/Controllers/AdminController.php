@@ -176,12 +176,17 @@ class AdminController extends Controller
             'surat_keterangan_pindah'
         ];
 
+        // Ambil user_id dengan aman (gunakan record->user_id atau fallback ke record->id)
+        $userId = $record->user_id ?? $record->id;
+
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
-                if ($record->$field) {
+                // Hapus file lama jika ada dan benar-benar exists
+                if ($record->$field && Storage::disk('public')->exists($record->$field)) {
                     Storage::disk('public')->delete($record->$field);
                 }
-                $validated[$field] = $request->file($field)->store('pendaftaran/' . $record->user_id, 'public');
+                // Simpan file baru
+                $validated[$field] = $request->file($field)->store('pendaftaran/' . $userId, 'public');
             }
         }
 
@@ -208,14 +213,18 @@ class AdminController extends Controller
                 'file_rpl_prestasi',
                 'surat_keterangan_pindah'
             ];
+
             foreach ($rplFiles as $fileField) {
                 if ($record->$fileField) {
-                    Storage::disk('public')->delete($record->$fileField);
+                    // Hapus file jika ada
+                    if (Storage::disk('public')->exists($record->$fileField)) {
+                        Storage::disk('public')->delete($record->$fileField);
+                    }
                     $record->$fileField = null;
                 }
             }
             $record->ipk = null;
-            $record->save();
+            $record->save(); // SIMPAN perubahan
         }
 
         return redirect()->route('admin.index')->with('success', 'Data berhasil diperbarui!');
@@ -224,8 +233,34 @@ class AdminController extends Controller
     public function delete(int $id)
     {
         $data = SalutPendaftaran::findOrFail($id);
+
+        // Daftar semua field yang menyimpan file
+        $fileFields = [
+            'file_foto',
+            'file_ktp',
+            'file_ijazah',
+            'file_transkrip',
+            'file_bukti_pembayaran',
+            'surat_pernyataan',
+            'file_ss_pddikti',
+            'file_cv',
+            'file_rpl_pembelajaran',
+            'file_rpl_administrasi',
+            'file_rpl_ekstrakulikuler',
+            'file_rpl_prestasi',
+            'surat_keterangan_pindah'
+        ];
+
+        // Hapus semua file dari storage jika ada
+        foreach ($fileFields as $field) {
+            if ($data->$field && Storage::disk('public')->exists($data->$field)) {
+                Storage::disk('public')->delete($data->$field);
+            }
+        }
+
+        // Hapus record dari database
         $data->delete();
 
-        return back()->with('success', 'Data berhasil dihapus!');
+        return back()->with('success', 'Data beserta semua file pendukung berhasil dihapus!');
     }
 }
