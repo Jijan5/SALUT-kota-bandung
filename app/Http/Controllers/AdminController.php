@@ -179,15 +179,15 @@ class AdminController extends Controller
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 if ($record->$field) {
-                    $filePath = public_path('public/storage/' . $record->$field);
+                    $filePath = public_path('storage/' . $record->$field);
                     if (file_exists($filePath)) {
                         unlink($filePath);
                     }
                 }
                 $file = $request->file($field);
                 $filename = time() . '_' . uniqid() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $file->getClientOriginalName());
-                $file->move(public_path('public/storage/pendaftaran/' . $record->user_id), $filename);
-                $validated[$field] = 'pendaftaran/' . $record->user_id . '/' . $filename;
+                $file->move(public_path('storage/pendaftar'), $filename);
+                $validated[$field] = 'pendaftar/' . $filename;
             }
         }
 
@@ -216,7 +216,7 @@ class AdminController extends Controller
             ];
             foreach ($rplFiles as $fileField) {
                 if ($record->$fileField) {
-                    $filePath = public_path('public/storage/' . $record->$fileField);
+                    $filePath = public_path('storage/' . $record->$fileField);
                     if (file_exists($filePath)) {
                         unlink($filePath);
                     }
@@ -257,7 +257,7 @@ class AdminController extends Controller
         // Hapus file dari storage jika ada
         foreach ($fileFields as $field) {
             if ($data->$field) {
-                $filePath = public_path('public/storage/' . $data->$field);
+                $filePath = public_path('storage/' . $data->$field);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
