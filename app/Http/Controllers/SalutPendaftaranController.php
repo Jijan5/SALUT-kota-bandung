@@ -35,7 +35,7 @@ class SalutPendaftaranController extends Controller
 
         // CEK APAKAH USER SUDAH PUNYA DATA PENDAFTARAN
         $existingData = SalutPendaftaran::where('user_id', Auth::guard('web')->id())->first();
-        
+
         if ($existingData) {
             return redirect('/')->with('warning', 'Anda sudah melakukan pendaftaran. Tidak dapat mendaftar lagi.');
         }
@@ -154,7 +154,7 @@ class SalutPendaftaranController extends Controller
             'jalur_program' => ['required', Rule::in(['RPL', 'Non-RPL'])],
             'file_ijazah' => 'required|file|mimes:pdf|max:25600',
             'no_ijazah' => 'required|string|max:255',
-            'ipk'=>'numeric|nullable|min:2.00|max:4.00',
+            'ipk' => 'numeric|nullable|min:2.00|max:4.00',
             'file_bukti_pembayaran' => 'required|file|mimes:jpg,jpeg,png|max:25600',
             'surat_pernyataan' => 'required|file|mimes:pdf|max:25600',
             'file_foto' => 'required|image|mimes:jpeg,png,jpg|max:25600',
@@ -174,15 +174,27 @@ class SalutPendaftaranController extends Controller
         }
 
         $fileFields = [
-            'file_ijazah', 'file_bukti_pembayaran', 'surat_pernyataan',
-            'file_foto', 'file_ktp', 'file_ss_pddikti', 'file_transkrip', 'file_rpl_pembelajaran',
-            'file_rpl_administrasi', 'file_rpl_ekstrakulikuler', 'file_rpl_prestasi',
-            'surat_keterangan_pindah', 'file_cv'
+            'file_ijazah',
+            'file_bukti_pembayaran',
+            'surat_pernyataan',
+            'file_foto',
+            'file_ktp',
+            'file_ss_pddikti',
+            'file_transkrip',
+            'file_rpl_pembelajaran',
+            'file_rpl_administrasi',
+            'file_rpl_ekstrakulikuler',
+            'file_rpl_prestasi',
+            'surat_keterangan_pindah',
+            'file_cv'
         ];
 
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
-                $validatedData[$field] = $request->file($field)->store('pendaftar', 'public');
+                $file = $request->file($field);
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('storage/pendaftar'), $filename);
+                $validatedData[$field] = 'pendaftar/' . $filename;
             }
         }
 

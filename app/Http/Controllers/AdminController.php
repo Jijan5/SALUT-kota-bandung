@@ -179,9 +179,15 @@ class AdminController extends Controller
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 if ($record->$field) {
-                    Storage::disk('public')->delete($record->$field);
+                    $filePath = public_path('storage/' . $record->$field);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
                 }
-                $validated[$field] = $request->file($field)->store('pendaftaran/' . $record->user_id, 'public');
+                $file = $request->file($field);
+                $filename = time() . '_' . uniqid() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $file->getClientOriginalName());
+                $file->move(public_path('storage/pendaftaran/' . $record->user_id), $filename);
+                $validated[$field] = 'pendaftaran/' . $record->user_id . '/' . $filename;
             }
         }
 
