@@ -282,7 +282,6 @@
                 </div>
 
                 <!-- File Inputs -->
-                <!-- File Inputs -->
                 <div class="mt-10">
                     <h3 class="text-lg font-bold text-slate-800 font-outfit mb-4">Dokumen Pendukung</h3>
 
@@ -298,43 +297,149 @@
                             Dokumen Wajib (Semua Jalur)
                         </h5>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @php
-                                $requiredFiles = [
-                                    'file_foto' => 'Pas Foto Resmi',
-                                    'file_ktp' => 'Scan KTP Asli',
-                                    'file_ijazah' => 'Scan Ijazah',
-                                    'file_transkrip' => 'Transkrip Nilai / SKHUN',
-                                    'file_bukti_pembayaran' => 'Bukti Transfer Pembayaran',
-                                    'surat_pernyataan' => 'Surat Pernyataan Keabsahan Berkas',
-                                ];
-                            @endphp
 
-                            @foreach ($requiredFiles as $field => $label)
-                                <div>
-                                    <label
-                                        class="block text-sm font-semibold text-slate-700 mb-2">{{ $label }}</label>
-                                    @if ($data->$field)
-                                        <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $data->$field) }}" target="_blank"
-                                                class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                                Lihat file saat ini
-                                            </a>
-                                        </div>
-                                    @endif
-                                    <input type="file" name="{{ $field }}" accept=".jpg,.jpeg,.png,.pdf"
-                                        class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
-                                    <p class="text-xs text-slate-500 mt-1">Kosongkan jika tidak ingin mengganti file.
-                                        Maks 2MB</p>
-                                </div>
-                            @endforeach
+                            <!-- Pas Foto - JPG/PNG saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Pas Foto Resmi</label>
+                                @if ($data->file_foto)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_foto) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_foto" accept=".jpg,.jpeg,.png"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: JPG/PNG. Maks 25MB</p>
+                            </div>
+
+                            <!-- Scan KTP - JPG,JPEG,PNG,PDF (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Scan KTP Asli</label>
+                                @if ($data->file_ktp)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_ktp) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_ktp" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: JPG/PNG/PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Scan Ijazah - PDF saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Scan Ijazah</label>
+                                @if ($data->file_ijazah)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_ijazah) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_ijazah" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Transkrip Nilai - PDF saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Transkrip Nilai /
+                                    SKHUN</label>
+                                @if ($data->file_transkrip)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_transkrip) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_transkrip" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Bukti Pembayaran - JPG/PNG saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Bukti Transfer
+                                    Pembayaran</label>
+                                @if ($data->file_bukti_pembayaran)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_bukti_pembayaran) }}"
+                                            target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_bukti_pembayaran" accept=".jpg,.jpeg,.png"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: JPG/PNG. Maks 25MB</p>
+                            </div>
+
+                            <!-- Surat Pernyataan - PDF saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Surat Pernyataan
+                                    Keabsahan Berkas</label>
+                                @if ($data->surat_pernyataan)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->surat_pernyataan) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="surat_pernyataan" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
                         </div>
                     </div>
 
@@ -352,44 +457,179 @@
                         <p class="text-xs text-amber-600 mb-4">Berkas-berkas di bawah ini diwajibkan khusus untuk
                             verifikasi alih kredit mahasiswa alihan / lulusan diploma.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            @php
-                                $rplFiles = [
-                                    'file_ss_pddikti' => 'Screenshot PDDIKTI',
-                                    'file_cv' => 'Daftar Riwayat Hidup (CV)',
-                                    'file_rpl_pembelajaran' => 'Dokumen Perangkat Pembelajaran',
-                                    'file_rpl_administrasi' => 'Dokumen Administrasi Kelas',
-                                    'file_rpl_ekstrakulikuler' => 'Dokumen Pembina Ekstrakurikuler',
-                                    'file_rpl_prestasi' => 'Sertifikat Penghargaan / Prestasi',
-                                    'surat_keterangan_pindah' => 'Surat Keterangan Pindah (Dari Kampus Asal)',
-                                ];
-                            @endphp
 
-                            @foreach ($rplFiles as $field => $label)
-                                <div>
-                                    <label
-                                        class="block text-sm font-semibold text-slate-700 mb-2">{{ $label }}</label>
-                                    @if ($data->$field)
-                                        <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $data->$field) }}" target="_blank"
-                                                class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                </svg>
-                                                Lihat file saat ini
-                                            </a>
-                                        </div>
-                                    @endif
-                                    <input type="file" name="{{ $field }}" accept=".jpg,.jpeg,.png,.pdf"
-                                        class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
-                                    <p class="text-xs text-slate-500 mt-1">Kosongkan jika tidak ingin mengganti file.
-                                        Maks 2MB</p>
-                                </div>
-                            @endforeach
+                            <!-- Screenshot PDDIKTI - JPG/PNG saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Screenshot
+                                    PDDIKTI</label>
+                                @if ($data->file_ss_pddikti)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_ss_pddikti) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_ss_pddikti" accept=".jpg,.jpeg,.png"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: JPG/PNG. Maks 25MB</p>
+                            </div>
+
+                            <!-- CV - PDF saja (sesuai validasi) -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Daftar Riwayat Hidup
+                                    (CV)</label>
+                                @if ($data->file_cv)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_cv) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_cv" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Dokumen Perangkat Pembelajaran - PDF saja -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Dokumen Perangkat
+                                    Pembelajaran</label>
+                                @if ($data->file_rpl_pembelajaran)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_rpl_pembelajaran) }}"
+                                            target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_rpl_pembelajaran" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Dokumen Administrasi Kelas - PDF saja -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Dokumen Administrasi
+                                    Kelas</label>
+                                @if ($data->file_rpl_administrasi)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_rpl_administrasi) }}"
+                                            target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_rpl_administrasi" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Dokumen Pembina Ekstrakurikuler - PDF saja -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Dokumen Pembina
+                                    Ekstrakurikuler</label>
+                                @if ($data->file_rpl_ekstrakulikuler)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_rpl_ekstrakulikuler) }}"
+                                            target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_rpl_ekstrakulikuler" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Sertifikat Prestasi - PDF saja -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Sertifikat Penghargaan /
+                                    Prestasi</label>
+                                @if ($data->file_rpl_prestasi)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->file_rpl_prestasi) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="file_rpl_prestasi" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
+                            <!-- Surat Keterangan Pindah - PDF saja -->
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">Surat Keterangan Pindah
+                                    (Dari Kampus Asal)</label>
+                                @if ($data->surat_keterangan_pindah)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $data->surat_keterangan_pindah) }}"
+                                            target="_blank"
+                                            class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Lihat file saat ini
+                                        </a>
+                                    </div>
+                                @endif
+                                <input type="file" name="surat_keterangan_pindah" accept=".pdf"
+                                    class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <p class="text-xs text-slate-500 mt-1">Format: PDF. Maks 25MB</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>

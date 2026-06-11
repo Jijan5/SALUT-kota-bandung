@@ -141,7 +141,7 @@ class AdminController extends Controller
             'ukuran_almat' => 'nullable|string|max:10',
             'jalur_program' => 'nullable|in:RPL,Non-RPL',
             'file_foto' => 'nullable|file|mimes:jpg,jpeg,png|max:25600',
-            'file_ktp' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:25600',
+            'file_ktp' => 'nullable|file|mimes:pdf|max:25600',
             'file_ijazah' => 'nullable|file|mimes:pdf|max:25600',
             'file_transkrip' => 'nullable|file|mimes:pdf|max:25600',
             'file_bukti_pembayaran' => 'nullable|file|mimes:jpg,jpeg,png|max:25600',
@@ -176,17 +176,12 @@ class AdminController extends Controller
             'surat_keterangan_pindah'
         ];
 
-        // Ambil user_id dengan aman (gunakan record->user_id atau fallback ke record->id)
-        $userId = $record->user_id ?? $record->id;
-
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
-                // Hapus file lama jika ada dan benar-benar exists
-                if ($record->$field && Storage::disk('public')->exists($record->$field)) {
+                if ($record->$field) {
                     Storage::disk('public')->delete($record->$field);
                 }
-                // Simpan file baru
-                $validated[$field] = $request->file($field)->store('pendaftaran/' . $userId, 'public');
+                $validated[$field] = $request->file($field)->store('pendaftaran/' . $record->user_id, 'public');
             }
         }
 
@@ -213,18 +208,14 @@ class AdminController extends Controller
                 'file_rpl_prestasi',
                 'surat_keterangan_pindah'
             ];
-
             foreach ($rplFiles as $fileField) {
                 if ($record->$fileField) {
-                    // Hapus file jika ada
-                    if (Storage::disk('public')->exists($record->$fileField)) {
-                        Storage::disk('public')->delete($record->$fileField);
-                    }
+                    Storage::disk('public')->delete($record->$fileField);
                     $record->$fileField = null;
                 }
             }
             $record->ipk = null;
-            $record->save(); // SIMPAN perubahan
+            $record->save();
         }
 
         return redirect()->route('admin.index')->with('success', 'Data berhasil diperbarui!');
@@ -234,7 +225,10 @@ class AdminController extends Controller
     {
         $data = SalutPendaftaran::findOrFail($id);
 
-        // Daftar semua field yang menyimpan file
+        // Dapatkan user_id sebelum menghapus data pendaftaran
+        $userId = $data->user_id;
+
+        // Daftar field yang menyimpan file
         $fileFields = [
             'file_foto',
             'file_ktp',
@@ -251,16 +245,24 @@ class AdminController extends Controller
             'surat_keterangan_pindah'
         ];
 
-        // Hapus semua file dari storage jika ada
+        // Hapus file dari storage jika ada
         foreach ($fileFields as $field) {
-            if ($data->$field && Storage::disk('public')->exists($data->$field)) {
+            if ($data->$field) {
                 Storage::disk('public')->delete($data->$field);
             }
         }
 
-        // Hapus record dari database
+        // Hapus data pendaftaran dari database
         $data->delete();
 
-        return back()->with('success', 'Data beserta semua file pendukung berhasil dihapus!');
+        // Hapus user terkait dari tabel users
+        if ($userId) {
+            $user = \App\Models\User::find($userId);
+            if ($user) {
+                $user->delete();
+            }
+        }
+
+        return back()->with('success', 'Data pendaftar beserta akun user dan semua file pendukung berhasil dihapus!');
     }
 }
