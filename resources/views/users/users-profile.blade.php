@@ -66,7 +66,7 @@
                             </div>
                         @endif
                     </div>
-                    <h3 class="mt-4 text-xl font-bold text-slate-800">{{ Auth::guard('web')->user()->name }}</h3>
+                    <h3 class="mt-4 text-xl font-bold text-slate-800">{{ $pendaftaran && $pendaftaran->nama ? $pendaftaran->nama : Auth::guard('web')->user()->name }}</h3>
                     <p class="text-sm text-slate-500">{{ Auth::guard('web')->user()->email }}</p>
 
                     @if ($pendaftaran)
