@@ -193,7 +193,7 @@ class SalutPendaftaranController extends Controller
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
                 $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('storage/pendaftar'), $filename);
+                $file->move(public_path('uploads/pendaftar'), $filename);
                 $validatedData[$field] = 'pendaftar/' . $filename;
             }
         }
