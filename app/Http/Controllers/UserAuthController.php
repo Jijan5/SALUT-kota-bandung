@@ -302,34 +302,22 @@ class UserAuthController extends Controller
         ];
 
         foreach ($fileFields as $field) {
-    if ($request->hasFile($field)) {
-        // Hapus file lama jika ada
-        if ($pendaftaran && $pendaftaran->$field) {
-            $oldFilePath = public_path($pendaftaran->$field);
-            if (file_exists($oldFilePath)) {
-                unlink($oldFilePath);
+            if ($request->hasFile($field)) {
+                // Hapus file lama jika ada
+                if ($pendaftaran && $pendaftaran->$field) {
+                    $oldFilePath = public_path('storage/' . $pendaftaran->$field);
+                    if (file_exists($oldFilePath)) {
+                        unlink($oldFilePath);
+                    }
+                }
+
+                // Upload file baru
+                $file = $request->file($field);
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('storage/pendaftar'), $filename);
+                $pendaftaranData[$field] = 'pendaftar/' . $filename;
             }
         }
-
-        // Upload file baru
-        $file = $request->file($field);
-        $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
-        
-        // Tentukan path tujuan (OTOMATIS BIKIN FOLDER)
-        $uploadPath = public_path('uploads/pendaftar');
-        
-        // BIKIN FOLDER SECARA OTOMATIS KALO BELUM ADA
-        if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);  // recursive = true
-        }
-        
-        // Pindahin file
-        $file->move($uploadPath, $filename);
-        
-        // Simpan path relatif ke database
-        $pendaftaranData[$field] = 'uploads/pendaftar/' . $filename;
-    }
-}
 
         // Update or create pendaftaran
         if ($pendaftaran) {
