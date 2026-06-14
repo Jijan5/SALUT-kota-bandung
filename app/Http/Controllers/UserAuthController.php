@@ -242,7 +242,7 @@ class UserAuthController extends Controller
             'no_hp' => $request->no_hp ?? '',
             'no_hp_alternatif' => $request->no_hp_alternatif ?? '',
             'nama_ibu_kandung' => $request->nama_ibu_kandung ?? '',
-            'ukuran_almat' => strtoupper($request->ukuran_almat ?? 'M'),
+            'ukuran_almat' => $request->ukuran_almat ?? null,
             'alamat' => $request->alamat ?? '',
             'provinsi' => $request->provinsi ?? '',
             'kab_kota' => $request->kab_kota ?? '',
