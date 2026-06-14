@@ -189,6 +189,8 @@ class SalutPendaftaranController extends Controller
             'file_cv'
         ];
 
+        //test
+
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
