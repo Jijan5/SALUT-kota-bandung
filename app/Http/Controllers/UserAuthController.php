@@ -301,6 +301,8 @@ class UserAuthController extends Controller
             'surat_keterangan_pindah'
         ];
 
+        //test
+
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 // Hapus file lama jika ada
