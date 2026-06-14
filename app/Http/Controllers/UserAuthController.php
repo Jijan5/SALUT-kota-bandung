@@ -307,7 +307,7 @@ class UserAuthController extends Controller
             if ($request->hasFile($field)) {
                 // Hapus file lama jika ada
                 if ($pendaftaran && $pendaftaran->$field) {
-                    $oldFilePath = public_path('storage/' . $pendaftaran->$field);
+                    $oldFilePath = public_path('uploads/' . $pendaftaran->$field);
                     if (file_exists($oldFilePath)) {
                         unlink($oldFilePath);
                     }
@@ -316,7 +316,7 @@ class UserAuthController extends Controller
                 // Upload file baru
                 $file = $request->file($field);
                 $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('storage/pendaftar'), $filename);
+                $file->move(public_path('uploads/pendaftar'), $filename);
                 $pendaftaranData[$field] = 'pendaftar/' . $filename;
             }
         }
