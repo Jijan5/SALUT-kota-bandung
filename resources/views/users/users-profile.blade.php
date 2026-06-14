@@ -614,7 +614,8 @@
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                                                     Nama Lengkap
                                                 </label>
-                                                <p class="text-slate-800 font-semibold mt-1">👤{{ $pendaftaran->nama }}
+                                                <p class="text-slate-800 font-semibold mt-1">
+                                                    👤{{ $pendaftaran->nama }}
                                                 </p>
                                             </div>
                                         @endif
@@ -985,78 +986,163 @@
                     @endif
 
                     <!-- Dokumen yang Diupload -->
-@if (
-    $pendaftaran->file_foto ||
-    $pendaftaran->file_ktp ||
-    $pendaftaran->file_ijazah ||
-    $pendaftaran->file_bukti_pembayaran ||
-    $pendaftaran->file_transkrip ||
-    $pendaftaran->surat_pernyataan ||
-    $pendaftaran->file_cv ||
-    $pendaftaran->file_ss_pddikti ||
-    $pendaftaran->file_rpl_pembelajaran ||
-    $pendaftaran->file_rpl_administrasi ||
-    $pendaftaran->file_rpl_ekstrakulikuler ||
-    $pendaftaran->file_rpl_prestasi ||
-    $pendaftaran->surat_keterangan_pindah)
-<div class="relative overflow-hidden bg-white rounded-2xl shadow-sm border border-slate-100/80 hover-lift transition duration-300 animate-fade-in-right delay-400">
-    <div class="relative z-10 px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
-        <h4 class="font-bold text-slate-800 flex items-center">
-            <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center mr-2 hover-rotate">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-            </div>
-            Dokumen yang Diupload
-            <div class="ml-3 flex gap-1">
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
-                <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
-            </div>
-        </h4>
-    </div>
-    <div class="p-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
-            @if ($pendaftaran->file_foto)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📸 Pas Foto Resmi</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->file_foto) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat Pas Foto</a></p>
-                </div>
-            @endif
-            @if ($pendaftaran->file_ktp)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🆔 Scan KTP Asli</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->file_ktp) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat KTP</a></p>
-                </div>
-            @endif
-            @if ($pendaftaran->file_ijazah)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🎓 Scan Ijazah Terakhir</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->file_ijazah) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat Ijazah</a></p>
-                </div>
-            @endif
-            @if ($pendaftaran->file_transkrip)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📊 Transkrip Nilai / SKHUN</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->file_transkrip) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat Transkrip</a></p>
-                </div>
-            @endif
-            @if ($pendaftaran->file_bukti_pembayaran)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">💰 Bukti Transfer Pembayaran</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->file_bukti_pembayaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat Bukti Bayar</a></p>
-                </div>
-            @endif
-            @if ($pendaftaran->surat_pernyataan)
-                <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📄 Surat Pernyataan Keabsahan Berkas</label>
-                    <p class="mt-2"><a href="{{ asset('uploads/' . $pendaftaran->surat_pernyataan) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> Lihat Surat Pernyataan</a></p>
-                </div>
-            @endif
-        </div>
-    </div>
-</div>
-@endif
+                    @if (
+                        $pendaftaran->file_foto ||
+                            $pendaftaran->file_ktp ||
+                            $pendaftaran->file_ijazah ||
+                            $pendaftaran->file_bukti_pembayaran ||
+                            $pendaftaran->file_transkrip ||
+                            $pendaftaran->surat_pernyataan ||
+                            $pendaftaran->file_cv ||
+                            $pendaftaran->file_ss_pddikti ||
+                            $pendaftaran->file_rpl_pembelajaran ||
+                            $pendaftaran->file_rpl_administrasi ||
+                            $pendaftaran->file_rpl_ekstrakulikuler ||
+                            $pendaftaran->file_rpl_prestasi ||
+                            $pendaftaran->surat_keterangan_pindah)
+                        <div
+                            class="relative overflow-hidden bg-white rounded-2xl shadow-sm border border-slate-100/80 hover-lift transition duration-300 animate-fade-in-right delay-400">
+                            <div
+                                class="relative z-10 px-6 py-4 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                                <h4 class="font-bold text-slate-800 flex items-center">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center mr-2 hover-rotate">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    </div>
+                                    Dokumen yang Diupload
+                                    <div class="ml-3 flex gap-1">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
+                                            style="animation-delay: 0.5s;"></div>
+                                        <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"
+                                            style="animation-delay: 1s;"></div>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
+                                    @if ($pendaftaran->file_foto)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📸
+                                                Pas Foto Resmi</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->file_foto) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat Pas Foto</a></p>
+                                        </div>
+                                    @endif
+                                    @if ($pendaftaran->file_ktp)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🆔
+                                                Scan KTP Asli</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->file_ktp) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat KTP</a></p>
+                                        </div>
+                                    @endif
+                                    @if ($pendaftaran->file_ijazah)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🎓
+                                                Scan Ijazah Terakhir</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->file_ijazah) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat Ijazah</a></p>
+                                        </div>
+                                    @endif
+                                    @if ($pendaftaran->file_transkrip)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📊
+                                                Transkrip Nilai / SKHUN</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->file_transkrip) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat Transkrip</a></p>
+                                        </div>
+                                    @endif
+                                    @if ($pendaftaran->file_bukti_pembayaran)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">💰
+                                                Bukti Transfer Pembayaran</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->file_bukti_pembayaran) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat Bukti Bayar</a></p>
+                                        </div>
+                                    @endif
+                                    @if ($pendaftaran->surat_pernyataan)
+                                        <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📄
+                                                Surat Pernyataan Keabsahan Berkas</label>
+                                            <p class="mt-2"><a
+                                                    href="{{ asset('uploads/' . $pendaftaran->surat_pernyataan) }}"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-4 w-4 group-hover:translate-x-1 transition"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg> Lihat Surat Pernyataan</a></p>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 @else
                     <!-- Belum Mendaftar dengan efek 3D dan confetti -->
                     <div
