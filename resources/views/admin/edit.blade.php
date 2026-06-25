@@ -252,13 +252,14 @@
                     <div>
                         <label for="jalur_program" class="block text-sm font-semibold text-slate-700 mb-2">Jalur
                             Program</label>
-                        <select name="jalur_program" id="jalur_program"
-                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-sm text-slate-700">
+                        <select name="jalur_program" id="jalur_program" disabled
+                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-100 text-slate-500 focus:outline-none transition text-sm cursor-not-allowed">
                             <option value="RPL" @if (old('jalur_program', $data->jalur_program) == 'RPL') selected @endif>RPL (Rekognisi
                                 Pembelajaran Lampau)</option>
                             <option value="Non-RPL" @if (old('jalur_program', $data->jalur_program) == 'Non-RPL') selected @endif>Reguler (Non-RPL)
                             </option>
                         </select>
+                        <p class="text-xs text-red-500 font-medium mt-2">🔒 Jalur program tidak dapat diubah setelah mendaftar.</p>
                     </div>
                     <div>
                         <label for="ukuran_almat" class="block text-sm font-semibold text-slate-700 mb-2">Ukuran Jas
@@ -631,6 +632,33 @@
                             </div>
 
                         </div>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <div class="border-b border-slate-200 pb-3 mb-6">
+                        <h2 class="text-xl font-bold text-slate-800 font-outfit flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            Akun & Keamanan
+                        </h2>
+                        <p class="text-sm text-slate-500 mt-1">Gunakan bagian ini jika pendaftar meminta reset password via WhatsApp.</p>
+                    </div>
+
+                    <div class="bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Reset Password Pendaftar (Opsional)</label>
+                        <input type="text" name="reset_password"
+                            class="w-full px-4 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                            placeholder="Ketik password baru (Biarkan kosong jika tidak diubah)">
+                        <p class="text-xs text-slate-500 mt-2 flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Mengisi kolom ini akan langsung mengubah password login pendaftar.</span>
+                        </p>
                     </div>
                 </div>
 

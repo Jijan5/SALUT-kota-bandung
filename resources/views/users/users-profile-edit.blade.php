@@ -392,11 +392,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2">Jalur Pendaftaran Program</label>
-                            <select name="jalur_program" id="jalur_program_select" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Pilih Jalur</option>
-                                <option value="RPL" {{ old('jalur_program', $pendaftaran->jalur_program ?? '') == 'RPL' ? 'selected' : '' }}>RPL (Rekognisi Pembelajaran Lampau)</option>
-                                <option value="Non-RPL" {{ old('jalur_program', $pendaftaran->jalur_program ?? '') == 'Non-RPL' ? 'selected' : '' }}>Reguler (Non-RPL / Lulusan SMA Baru)</option>
-                            </select>
+                            <div class="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold {{ ($pendaftaran->jalur_program ?? '') == 'RPL' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700' }}">
+                                    {{ $pendaftaran->jalur_program ?? 'Non-RPL' }}
+                                </span>
+                                <span class="text-xs text-red-500 font-medium">🔒 Tidak dapat diubah setelah mendaftar</span>
+                            </div>
+                            <input type="hidden" name="jalur_program" id="jalur_program_select" value="{{ $pendaftaran->jalur_program ?? 'Non-RPL' }}">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 mb-2">Lokasi Tempat Ujian (Provinsi) <span class="text-red-500">*</span></label>

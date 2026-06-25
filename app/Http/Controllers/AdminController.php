@@ -139,7 +139,6 @@ class AdminController extends Controller
             'lokasi_ujian_provinsi' => 'nullable|string|max:100',
             'lokasi_ujian_kab_kota' => 'nullable|string|max:100',
             'ukuran_almat' => 'nullable|string|max:10',
-            'jalur_program' => 'nullable|in:RPL,Non-RPL',
             'file_foto' => 'nullable|file|mimes:jpg,jpeg,png|max:25600',
             'file_ktp' => 'nullable|file|mimes:pdf|max:25600',
             'file_ijazah' => 'nullable|file|mimes:pdf|max:25600',
@@ -153,11 +152,14 @@ class AdminController extends Controller
             'file_rpl_ekstrakulikuler' => 'nullable|file|mimes:pdf|max:25600',
             'file_rpl_prestasi' => 'nullable|file|mimes:pdf|max:25600',
             'surat_keterangan_pindah' => 'nullable|file|mimes:pdf|max:25600',
+            'reset_password' => 'nullable|string|min:6',
         ]);
 
-        // HAPUS email dari $validated karena tidak ada di fillable data-pendaftar
+        // HAPUS email dan reset_password dari $validated karena tidak ada di fillable data-pendaftar
         $emailToUpdate = $request->email;
+        $passwordToUpdate = $request->reset_password;
         unset($validated['email']);
+        unset($validated['reset_password']);
 
         // Proses upload file baru jika ada
         $fileFields = [
@@ -194,38 +196,24 @@ class AdminController extends Controller
         // Update data pendaftaran (tanpa email)
         $record->update($validated);
 
-        // Update email di tabel users jika ada perubahan dan user ditemukan
-        if ($user && $emailToUpdate) {
-            $user->email = $emailToUpdate;
-            $user->save();
-        }
-
-        // Jika pindah dari RPL ke Non-RPL, hapus file-file RPL
-        $oldJalurProgram = $record->getOriginal('jalur_program');
-        $newJalurProgram = $request->jalur_program;
-
-        if ($oldJalurProgram == 'RPL' && $newJalurProgram == 'Non-RPL') {
-            $rplFiles = [
-                'file_ss_pddikti',
-                'file_cv',
-                'file_rpl_pembelajaran',
-                'file_rpl_administrasi',
-                'file_rpl_ekstrakulikuler',
-                'file_rpl_prestasi',
-                'surat_keterangan_pindah'
-            ];
-            foreach ($rplFiles as $fileField) {
-                if ($record->$fileField) {
-                    $filePath = public_path('storage/' . $record->$fileField);
-                    if (file_exists($filePath)) {
-                        unlink($filePath);
-                    }
-                    $record->$fileField = null;
-                }
+        // Update email dan password di tabel users jika ada perubahan dan user ditemukan
+        if ($user) {
+            $userModified = false;
+            if ($emailToUpdate && $user->email !== $emailToUpdate) {
+                $user->email = $emailToUpdate;
+                $userModified = true;
             }
-            $record->ipk = null;
-            $record->save();
+            if ($passwordToUpdate) {
+                $user->password = \Illuminate\Support\Facades\Hash::make($passwordToUpdate);
+                $userModified = true;
+            }
+            
+            if ($userModified) {
+                $user->save();
+            }
         }
+
+        // Jalur program tidak bisa diubah, sehingga logika penghapusan file saat berganti jalur dihapus.
 
         return redirect()->route('admin.index')->with('success', 'Data berhasil diperbarui!');
     }

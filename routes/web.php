@@ -16,6 +16,10 @@ Route::post('/login/user', [UserAuthController::class, 'login'])->name('user.log
 Route::post('/register/user', [UserAuthController::class, 'register'])->name('user.register.submit');
 Route::post('/logout/user', [UserAuthController::class, 'logout'])->name('user.logout');
 
+// ========== ROUTE LUPA PASSWORD USER ==========
+Route::get('/forgot-password', [UserAuthController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [UserAuthController::class, 'resetPasswordCustom'])->name('password.reset.custom');
+
 
 // ========== ROUTE LOGIN ADMIN ==========
 Route::get('/login/admin', [AuthController::class, 'showLoginForm'])->name('admin.login');

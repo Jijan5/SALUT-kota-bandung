@@ -140,6 +140,9 @@
                                 </svg>
                             </button>
                         </div>
+                        <div class="flex justify-end mt-2">
+                            <a href="{{ route('password.request') }}" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition">Lupa Password?</a>
+                        </div>
                     </div>
 
                     <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 px-6 rounded-2xl transition duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/20 mt-2">

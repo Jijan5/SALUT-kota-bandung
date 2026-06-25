@@ -72,6 +72,71 @@ class UserAuthController extends Controller
         return redirect()->route('user.login')->with('success', 'Akun berhasil dibuat! Silakan login.');
     }
 
+    // ========== FORGOT PASSWORD (VERIFIKASI DATA) ==========
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function resetPasswordCustom(Request $request)
+    {
+        $request->validate([
+            'email'            => 'required|email',
+            'nik'              => 'required|string',
+            'tanggal_lahir'    => 'required|date',
+            'nama_ibu_kandung' => 'required|string',
+            'new_password'     => 'required|string|min:6|confirmed',
+        ], [
+            'email.required'            => 'Email wajib diisi.',
+            'email.email'               => 'Format email tidak valid.',
+            'nik.required'              => 'NIK wajib diisi.',
+            'tanggal_lahir.required'    => 'Tanggal lahir wajib diisi.',
+            'tanggal_lahir.date'        => 'Format tanggal lahir tidak valid.',
+            'nama_ibu_kandung.required' => 'Nama ibu kandung wajib diisi.',
+            'new_password.required'     => 'Password baru wajib diisi.',
+            'new_password.min'          => 'Password baru minimal 6 karakter.',
+            'new_password.confirmed'    => 'Konfirmasi password tidak sesuai.',
+        ]);
+
+        // 1. Cari user berdasarkan email
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email tidak ditemukan dalam sistem kami.'])->withInput();
+        }
+
+        // 2. Cari data pendaftaran milik user tersebut
+        $pendaftaran = SalutPendaftaran::where('user_id', $user->id)->first();
+
+        if (!$pendaftaran) {
+            return back()->withErrors(['email' => 'Akun ini belum memiliki data pendaftaran. Silakan hubungi Admin untuk bantuan pemulihan akun.'])->withInput();
+        }
+
+        // 3. Verifikasi NIK
+        if (trim($pendaftaran->nik) !== trim($request->nik)) {
+            return back()->withErrors(['nik' => 'NIK tidak cocok dengan data yang kami miliki.'])->withInput();
+        }
+
+        // 4. Verifikasi Tanggal Lahir
+        $inputTanggal = \Carbon\Carbon::parse($request->tanggal_lahir)->toDateString();
+        $dbTanggal    = \Carbon\Carbon::parse($pendaftaran->tanggal_lahir)->toDateString();
+
+        if ($inputTanggal !== $dbTanggal) {
+            return back()->withErrors(['tanggal_lahir' => 'Tanggal lahir tidak cocok dengan data yang kami miliki.'])->withInput();
+        }
+
+        // 5. Verifikasi Nama Ibu Kandung (tidak peka huruf besar/kecil)
+        if (strtolower(trim($pendaftaran->nama_ibu_kandung)) !== strtolower(trim($request->nama_ibu_kandung))) {
+            return back()->withErrors(['nama_ibu_kandung' => 'Nama ibu kandung tidak cocok dengan data yang kami miliki.'])->withInput();
+        }
+
+        // 6. Semua verifikasi berhasil — perbarui password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password Anda berhasil diperbarui! Silakan login dengan password baru Anda.');
+    }
+
     public function profile()
     {
         return view('users.users-profile');
@@ -251,38 +316,14 @@ class UserAuthController extends Controller
             'kode_pos' => $request->kode_pos ?? '',
             'alamat_lain' => $request->alamat_lain ?? '',
             'alamat_pengirim_modul' => $request->alamat_pengirim_modul ?? '',
-            'jalur_program' => $request->jalur_program ?? 'Non-RPL',
+            'jalur_program' => $pendaftaran ? $pendaftaran->jalur_program : ($request->jalur_program ?? 'Non-RPL'),
             'no_ijazah' => $request->no_ijazah ?? '',
             'ipk' => $request->ipk ?? null,
             'lokasi_ujian_provinsi' => $request->lokasi_ujian_provinsi ?? '',
             'lokasi_ujian_kab_kota' => $request->lokasi_ujian_kab_kota ?? '',
         ];
 
-        // Cek perubahan jalur program dari RPL ke Non-RPL
-        $oldJalurProgram = $pendaftaran ? $pendaftaran->jalur_program : null;
-        $newJalurProgram = $request->jalur_program;
-
-        // Jika berubah dari RPL ke Non-RPL, hapus file-file khusus RPL
-        if ($oldJalurProgram == 'RPL' && $newJalurProgram == 'Non-RPL') {
-            $rplFiles = [
-                'file_ss_pddikti',
-                'file_cv',
-                'file_rpl_pembelajaran',
-                'file_rpl_administrasi',
-                'file_rpl_ekstrakulikuler',
-                'file_rpl_prestasi',
-                'surat_keterangan_pindah'
-            ];
-
-            foreach ($rplFiles as $fileField) {
-                if ($pendaftaran && $pendaftaran->$fileField) {
-                    Storage::disk('public')->delete($pendaftaran->$fileField);
-                    $pendaftaranData[$fileField] = null;
-                }
-            }
-
-            $pendaftaranData['ipk'] = null;
-        }
+        // Jalur program sudah tidak bisa diubah setelah mendaftar, sehingga logika hapus file RPL tidak diperlukan lagi.
 
         // Handle file uploads
         $fileFields = [
