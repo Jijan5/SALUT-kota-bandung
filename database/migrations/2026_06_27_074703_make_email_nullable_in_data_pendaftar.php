@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('data-pendaftar', function (Blueprint $table) {
-            $table->string('email')->nullable()->change();
-        });
+        $prefix = DB::getTablePrefix();
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NULL");
     }
 
     public function down(): void
     {
-        Schema::table('data-pendaftar', function (Blueprint $table) {
-            $table->string('email')->nullable(false)->change();
-        });
+        $prefix = DB::getTablePrefix();
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NOT NULL");
     }
 };
