@@ -10,6 +10,7 @@
         showTolakModal: false,
         tolakId: null,
         tolakNama: '',
+        tolakJalur: '',
         fileDitolakList: {}
     }" class="max-w-full">
 
@@ -161,21 +162,7 @@
 
                                         <!-- Tolak -->
                                         <button
-                                            @click="showTolakModal=true; tolakId={{ $pendaftar->id }}; tolakNama='{{ addslashes($pendaftar->nama) }}'; fileDitolakList={
-                                                file_foto: {{ $pendaftar->file_foto ? 'true' : 'false' }},
-                                                file_ktp: {{ $pendaftar->file_ktp ? 'true' : 'false' }},
-                                                file_ijazah: {{ $pendaftar->file_ijazah ? 'true' : 'false' }},
-                                                file_transkrip: {{ $pendaftar->file_transkrip ? 'true' : 'false' }},
-                                                file_bukti_pembayaran: {{ $pendaftar->file_bukti_pembayaran ? 'true' : 'false' }},
-                                                surat_pernyataan: {{ $pendaftar->surat_pernyataan ? 'true' : 'false' }},
-                                                file_cv: {{ $pendaftar->file_cv ? 'true' : 'false' }},
-                                                file_ss_pddikti: {{ $pendaftar->file_ss_pddikti ? 'true' : 'false' }},
-                                                file_rpl_pembelajaran: {{ $pendaftar->file_rpl_pembelajaran ? 'true' : 'false' }},
-                                                file_rpl_administrasi: {{ $pendaftar->file_rpl_administrasi ? 'true' : 'false' }},
-                                                file_rpl_ekstrakulikuler: {{ $pendaftar->file_rpl_ekstrakulikuler ? 'true' : 'false' }},
-                                                file_rpl_prestasi: {{ $pendaftar->file_rpl_prestasi ? 'true' : 'false' }},
-                                                surat_keterangan_pindah: {{ $pendaftar->surat_keterangan_pindah ? 'true' : 'false' }}
-                                            }"
+                                            @click="showTolakModal=true; tolakId={{ $pendaftar->id }}; tolakNama='{{ addslashes($pendaftar->nama) }}'; tolakJalur='{{ $pendaftar->jalur_program }}';"
                                             class="bg-red-50 hover:bg-red-100 text-red-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
                                             Tolak
                                         </button>
@@ -566,82 +553,73 @@
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-3">
                             Pilih Berkas yang Perlu Diperbaiki
-                            <span class="text-xs font-normal text-slate-400">(hanya berkas yang sudah diupload)</span>
+                            <span class="text-xs font-normal text-slate-400">(pilih satu atau lebih)</span>
                         </label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <template x-if="fileDitolakList.file_foto">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="file_foto" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">Foto</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.file_ktp">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="file_ktp" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">🪪 KTP</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.file_ijazah">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="file_ijazah" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">Ijazah</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.file_transkrip">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="file_transkrip" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">Transkrip Nilai</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.file_bukti_pembayaran">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="file_bukti_pembayaran" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">Bukti Pembayaran</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.surat_pernyataan">
-                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
-                                    <input type="checkbox" name="file_ditolak[]" value="surat_pernyataan" class="rounded text-red-500">
-                                    <span class="text-sm text-slate-700">Surat Pernyataan</span>
-                                </label>
-                            </template>
-                            <template x-if="fileDitolakList.file_cv">
+                            <!-- Berkas Umum (Selalu Muncul) -->
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="file_foto" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">Foto</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="file_ktp" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">🪪 KTP</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="file_ijazah" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">Ijazah</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="file_transkrip" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">Transkrip Nilai</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="file_bukti_pembayaran" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">Bukti Pembayaran</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                <input type="checkbox" name="file_ditolak[]" value="surat_pernyataan" class="rounded text-red-500">
+                                <span class="text-sm text-slate-700">Surat Pernyataan</span>
+                            </label>
+
+                            <!-- Berkas Khusus RPL -->
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_cv" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">CV / Daftar Riwayat Hidup</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.file_ss_pddikti">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_ss_pddikti" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">SS PDDIKTI</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.file_rpl_pembelajaran">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_rpl_pembelajaran" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">RPL Pembelajaran</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.file_rpl_administrasi">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_rpl_administrasi" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">RPL Administrasi</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.file_rpl_ekstrakulikuler">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_rpl_ekstrakulikuler" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">RPL Ekstrakulikuler</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.file_rpl_prestasi">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="file_rpl_prestasi" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">RPL Prestasi</span>
                                 </label>
                             </template>
-                            <template x-if="fileDitolakList.surat_keterangan_pindah">
+                            <template x-if="tolakJalur === 'RPL'">
                                 <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
                                     <input type="checkbox" name="file_ditolak[]" value="surat_keterangan_pindah" class="rounded text-red-500">
                                     <span class="text-sm text-slate-700">Surat Ket. Pindah</span>
