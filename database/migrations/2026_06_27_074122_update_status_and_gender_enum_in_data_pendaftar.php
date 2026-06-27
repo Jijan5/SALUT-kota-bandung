@@ -14,9 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $prefix = DB::getTablePrefix();
         // ---- 1. Ubah dulu ke string sementara agar tidak ada konflik ----
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `status` VARCHAR(50) NOT NULL");
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `gender` VARCHAR(50) NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `status` VARCHAR(50) NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `gender` VARCHAR(50) NOT NULL");
 
         // ---- 2. Migrasi data status lama ke nilai baru ----
         DB::table('data-pendaftar')->where('status', 'single')->update(['status' => 'Belum Kawin']);
@@ -30,8 +31,8 @@ return new class extends Migration
         // Nilai 'Laki-laki' dan 'Perempuan' yang sudah ada dari form sudah benar
 
         // ---- 4. Ubah kembali ke ENUM dengan nilai yang baru dan benar ----
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `status` ENUM('Kawin','Belum Kawin','Cerai Hidup','Cerai Mati') NOT NULL");
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `gender` ENUM('Laki-laki','Perempuan') NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `status` ENUM('Kawin','Belum Kawin','Cerai Hidup','Cerai Mati') NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `gender` ENUM('Laki-laki','Perempuan') NOT NULL");
     }
 
     /**
@@ -39,8 +40,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `status` VARCHAR(50) NOT NULL");
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `gender` VARCHAR(50) NOT NULL");
+        $prefix = DB::getTablePrefix();
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `status` VARCHAR(50) NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `gender` VARCHAR(50) NOT NULL");
 
         DB::table('data-pendaftar')->where('status', 'Belum Kawin')->update(['status' => 'single']);
         DB::table('data-pendaftar')->where('status', 'Kawin')->update(['status' => 'menikah']);
@@ -49,7 +51,7 @@ return new class extends Migration
         DB::table('data-pendaftar')->where('gender', 'Laki-laki')->update(['gender' => 'laki-laki']);
         DB::table('data-pendaftar')->where('gender', 'Perempuan')->update(['gender' => 'perempuan']);
 
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `status` ENUM('single','menikah','duda','janda') NOT NULL");
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `gender` ENUM('laki-laki','perempuan') NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `status` ENUM('single','menikah','duda','janda') NOT NULL");
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `gender` ENUM('laki-laki','perempuan') NOT NULL");
     }
 };

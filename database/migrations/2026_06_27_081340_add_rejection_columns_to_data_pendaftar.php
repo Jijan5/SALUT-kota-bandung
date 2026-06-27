@@ -13,12 +13,17 @@ return new class extends Migration
         if (!Schema::hasColumn('data-pendaftar', 'alasan_penolakan')) {
             Schema::table('data-pendaftar', function (Blueprint $table) {
                 $table->text('alasan_penolakan')->nullable()->after('status_pendaftaran');
+            });
+        }
+        if (!Schema::hasColumn('data-pendaftar', 'file_ditolak')) {
+            Schema::table('data-pendaftar', function (Blueprint $table) {
                 $table->json('file_ditolak')->nullable()->after('alasan_penolakan');
             });
         }
 
         // 2. Izinkan nilai 'ditolak' pada kolom status_pendaftaran
-        DB::statement("ALTER TABLE `data-pendaftar` MODIFY `status_pendaftaran` VARCHAR(20) NOT NULL DEFAULT 'pending'");
+        $prefix = DB::getTablePrefix();
+        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `status_pendaftaran` VARCHAR(20) NOT NULL DEFAULT 'pending'");
     }
 
     public function down(): void
