@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('data-pendaftar', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable()->after('id');
-            // Jika Anda ingin Foreign Key:
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
+        if (!Schema::hasColumn('data-pendaftar', 'user_id')) {
+            Schema::table('data-pendaftar', function (Blueprint $table) {
+                $table->unsignedBigInteger('user_id')->nullable()->after('id');
+            });
+        }
     }
 
     /**
