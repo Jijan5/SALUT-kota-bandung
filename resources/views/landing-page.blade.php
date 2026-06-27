@@ -372,42 +372,42 @@
                 @php
                     $features = [
                         [
-                            'icon' => '🎓',
+                            'icon' => '',
                             'title' => 'Pendaftaran Mudah',
                             'desc' =>
                                 'Proses pendaftaran mahasiswa baru jalur RPL maupun Reguler dilayani secara langsung dan online dengan panduan lengkap dari tim kami.',
                             'color' => 'blue',
                         ],
                         [
-                            'icon' => '📋',
+                            'icon' => '',
                             'title' => 'Verifikasi Berkas',
                             'desc' =>
                                 'Tim verifikator berpengalaman kami memastikan seluruh dokumen pendaftaran Anda lengkap, sah, dan sesuai persyaratan Universitas Terbuka.',
                             'color' => 'indigo',
                         ],
                         [
-                            'icon' => '🌐',
+                            'icon' => '',
                             'title' => 'Kuliah Fleksibel',
                             'desc' =>
                                 'Universitas Terbuka menerapkan sistem belajar jarak jauh yang fleksibel. Kuliah kapan saja dan di mana saja tanpa meninggalkan pekerjaan Anda.',
                             'color' => 'violet',
                         ],
                         [
-                            'icon' => '🏆',
+                            'icon' => '',
                             'title' => 'Jalur RPL (Alih Kredit)',
                             'desc' =>
                                 'Sudah punya pengalaman kerja atau gelar diploma? Manfaatkan jalur RPL untuk konversi pengalaman & ijazah Anda menjadi SKS di UT.',
                             'color' => 'amber',
                         ],
                         [
-                            'icon' => '📚',
+                            'icon' => '',
                             'title' => 'Bahan Ajar Lengkap',
                             'desc' =>
                                 'Setiap mahasiswa mendapat modul cetak dan akses e-learning berkualitas tinggi yang disiapkan oleh para akademisi terbaik Indonesia.',
                             'color' => 'emerald',
                         ],
                         [
-                            'icon' => '🤝',
+                            'icon' => '',
                             'title' => 'Pendampingan Penuh',
                             'desc' =>
                                 'Dari pendaftaran hingga yudisium, tim SALUT Bandung siap mendampingi dan menjawab pertanyaan Anda di setiap tahap perjalanan studi.',
@@ -445,11 +445,11 @@
                 <div class="flex overflow-x-auto no-scrollbar border-b border-slate-200 bg-white">
                     <button onclick="switchMainTab('biaya')" id="btn-tab-biaya"
                         class="flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-blue-900 border-b-2 border-blue-950 bg-blue-50/50 transition duration-300">
-                        📚 Rincian Biaya Kuliah (SPP)
+                        Rincian Biaya Kuliah (SPP)
                     </button>
                     <button onclick="switchMainTab('pembayaran')" id="btn-tab-pembayaran"
                         class="flex-1 whitespace-nowrap px-6 py-4 text-center font-bold font-outfit text-slate-500 border-b-2 border-transparent hover:bg-slate-50 transition duration-300">
-                        💳 Saluran Pembayaran
+                        Saluran Pembayaran
                     </button>
                 </div>
 
@@ -947,7 +947,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white rounded-3xl p-8 shadow-xl">
-                    <div class="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center text-3xl mb-6">🎓
+                    <div class="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center text-3xl mb-6">
                     </div>
                     <h3 class="font-outfit text-2xl font-bold mb-3">Jalur Reguler (Non-RPL)</h3>
                     <p class="text-blue-200/80 text-sm leading-relaxed mb-6">Untuk lulusan SMA/SMK/MA/Paket C sederajat

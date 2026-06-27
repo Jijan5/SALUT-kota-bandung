@@ -174,7 +174,7 @@
                     <div class="flex items-center gap-3">
                         <h2 class="font-outfit text-2xl font-extrabold tracking-tight text-white drop-shadow-sm flex items-center gap-2">
                             Edit Profil Lengkap
-                            <span class="text-2xl inline-block hover-rotate cursor-pointer">✏️</span>
+                            <span class="text-2xl inline-block hover-rotate cursor-pointer">âœï¸</span>
                         </h2>
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide {{ ($pendaftaran->jalur_program ?? 'Non-RPL') === 'RPL' ? 'bg-purple-500 text-white' : 'bg-blue-500 text-white' }}">
                             JALUR {{ $pendaftaran->jalur_program ?? 'Non-RPL' }}
@@ -396,7 +396,7 @@
                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold {{ ($pendaftaran->jalur_program ?? '') == 'RPL' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700' }}">
                                     {{ $pendaftaran->jalur_program ?? 'Non-RPL' }}
                                 </span>
-                                <span class="text-xs text-red-500 font-medium">🔒 Tidak dapat diubah setelah mendaftar</span>
+                                <span class="text-xs text-red-500 font-medium">Tidak dapat diubah setelah mendaftar</span>
                             </div>
                             <input type="hidden" name="jalur_program" id="jalur_program_select" value="{{ $pendaftaran->jalur_program ?? 'Non-RPL' }}">
                         </div>
@@ -439,7 +439,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: JPG, JPEG, PNG (Maks 2MB). Background biru/merah, rapi dan formal.</p>
                                 @if ($pendaftaran && $pendaftaran->file_foto)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_foto) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_foto) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -458,7 +458,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: JPG, JPEG, PNG (Maks 2MB). Pastikan NIK dan tulisan terbaca jelas.</p>
                                 @if ($pendaftaran && $pendaftaran->file_ktp)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_ktp) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_ktp) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -477,7 +477,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Ijazah asli atau fotokopi yang sudah dilegalisir.</p>
                                 @if ($pendaftaran && $pendaftaran->file_ijazah)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_ijazah) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_ijazah) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -496,7 +496,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Transkrip nilai atau SKHUN dari jenjang pendidikan terakhir.</p>
                                 @if ($pendaftaran && $pendaftaran->file_transkrip)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_transkrip) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_transkrip) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -515,7 +515,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: JPG, JPEG, PNG (Maks 2MB). Foto/scan bukti transfer biaya pendaftaran.</p>
                                 @if ($pendaftaran && $pendaftaran->file_bukti_pembayaran)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_bukti_pembayaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_bukti_pembayaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -542,7 +542,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Cetak, isi data, tanda tangan materai 10rb, dan scan.</p>
                                 @if ($pendaftaran && $pendaftaran->surat_pernyataan)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->surat_pernyataan) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->surat_pernyataan) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -573,7 +573,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: JPG, JPEG, PNG (Maks 2MB). Status terdaftar aktif / lulus di Universitas lama.</p>
                                 @if ($pendaftaran && $pendaftaran->file_ss_pddikti)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_ss_pddikti) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_ss_pddikti) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -600,7 +600,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Unduh formulir di atas, isi lengkap riwayat Anda, simpan sebagai PDF.</p>
                                 @if ($pendaftaran && $pendaftaran->file_cv)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_cv) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_cv) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -619,7 +619,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). RPP, Silabus, modul buatan sendiri, atau instrumen evaluasi.</p>
                                 @if ($pendaftaran && $pendaftaran->file_rpl_pembelajaran)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_rpl_pembelajaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_rpl_pembelajaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -638,7 +638,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Surat keputusan pembagian tugas mengajar, daftar nilai siswa, absensi.</p>
                                 @if ($pendaftaran && $pendaftaran->file_rpl_administrasi)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_rpl_administrasi) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_rpl_administrasi) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -657,7 +657,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). SK Pembimbing/Pelatih Ekskul, laporan program kerja ekskul.</p>
                                 @if ($pendaftaran && $pendaftaran->file_rpl_ekstrakulikuler)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_rpl_ekstrakulikuler) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_rpl_ekstrakulikuler) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -676,7 +676,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Sertifikat pelatihan, piagam kejuaraan, atau penghargaan keahlian kerja.</p>
                                 @if ($pendaftaran && $pendaftaran->file_rpl_prestasi)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->file_rpl_prestasi) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->file_rpl_prestasi) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -695,7 +695,7 @@
                                 <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Hanya bagi calon mahasiswa pindahan antar universitas.</p>
                                 @if ($pendaftaran && $pendaftaran->surat_keterangan_pindah)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $pendaftaran->surat_keterangan_pindah) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
+                                        <a href="{{ asset('uploads/' . $pendaftaran->surat_keterangan_pindah) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -792,15 +792,15 @@
             let errorMessages = [];
 
             @if ($errors->has('nik'))
-                errorMessages.push('• NIK sudah terdaftar. Silakan gunakan NIK lain.');
+                errorMessages.push('â€¢ NIK sudah terdaftar. Silakan gunakan NIK lain.');
             @endif
 
             @if ($errors->has('no_hp'))
-                errorMessages.push('• Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.');
+                errorMessages.push('â€¢ Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.');
             @endif
 
             @if ($errors->has('email'))
-                errorMessages.push('• Email sudah terdaftar. Silakan gunakan email lain.');
+                errorMessages.push('â€¢ Email sudah terdaftar. Silakan gunakan email lain.');
             @endif
 
             let errorText = errorMessages.join('\n');

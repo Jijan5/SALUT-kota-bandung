@@ -419,7 +419,7 @@
                     <h2
                         class="font-outfit text-2xl font-extrabold tracking-tight text-white drop-shadow-sm flex items-center gap-2">
                         Profil Saya
-                        <span class="text-2xl inline-block hover-rotate cursor-pointer">👤</span>
+                        <span class="text-2xl inline-block hover-rotate cursor-pointer"></span>
                     </h2>
                     <p class="text-sm text-slate-300/90 mt-1 max-w-xl font-medium">
                         Informasi data diri dan pendaftaran Anda di <span
@@ -615,7 +615,7 @@
                                                     Nama Lengkap
                                                 </label>
                                                 <p class="text-slate-800 font-semibold mt-1">
-                                                    👤{{ $pendaftaran->nama }}
+                                                    {{ $pendaftaran->nama }}
                                                 </p>
                                             </div>
                                         @endif
@@ -626,7 +626,7 @@
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                                                     NIK
                                                 </label>
-                                                <p class="text-slate-800 font-semibold mt-1">🆔{{ $pendaftaran->nik }}
+                                                <p class="text-slate-800 font-semibold mt-1">{{ $pendaftaran->nik }}
                                                 </p>
                                             </div>
                                         @endif
@@ -636,7 +636,7 @@
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Tempat,
                                                     Tanggal Lahir</label>
-                                                <p class="text-slate-800 font-semibold mt-1">📅
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->tempat_lahir ?: '-' }},
                                                     {{ $pendaftaran->tanggal_lahir ? \Carbon\Carbon::parse($pendaftaran->tanggal_lahir)->locale('id')->translatedFormat('d F Y') : '-' }}
                                                 </p>
@@ -649,7 +649,7 @@
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Jenis
                                                     Kelamin</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
-                                                    {{ $pendaftaran->gender == 'laki-laki' ? '👨 Laki-laki' : ($pendaftaran->gender == 'perempuan' ? '👩 Perempuan' : $pendaftaran->gender) }}
+                                                    {{ $pendaftaran->gender == 'laki-laki' ? 'Laki-laki' : ($pendaftaran->gender == 'perempuan' ? 'Perempuan' : $pendaftaran->gender) }}
                                                 </p>
                                             </div>
                                         @endif
@@ -658,7 +658,7 @@
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Agama</label>
-                                                <p class="text-slate-800 font-semibold mt-1">🕊️
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->agama }}</p>
                                             </div>
                                         @endif
@@ -669,7 +669,7 @@
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Status</label>
-                                                <p class="text-slate-800 font-semibold mt-1">📌
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->status }}</p>
                                             </div>
                                         @endif
@@ -679,7 +679,7 @@
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">No.
                                                     HP</label>
-                                                <p class="text-slate-800 font-semibold mt-1">📱
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->no_hp }}</p>
                                             </div>
                                         @endif
@@ -689,7 +689,7 @@
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">No.
                                                     HP Alternatif</label>
-                                                <p class="text-slate-800 font-semibold mt-1">📞
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->no_hp_alternatif }}</p>
                                             </div>
                                         @endif
@@ -699,7 +699,7 @@
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Nama
                                                     Ibu Kandung</label>
-                                                <p class="text-slate-800 font-semibold mt-1">👩‍👧
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->nama_ibu_kandung }}</p>
                                             </div>
                                         @endif
@@ -709,7 +709,7 @@
                                                 <label
                                                     class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ukuran
                                                     Almat</label>
-                                                <p class="text-slate-800 font-semibold mt-1">👕
+                                                <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->ukuran_almat }}</p>
                                             </div>
                                         @endif
@@ -753,7 +753,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🏠
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Alamat Sesuai KTP</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->alamat }}</p>
@@ -763,7 +763,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">📍
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Desa/Kelurahan</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->desa_kelurahan }}</p>
@@ -773,7 +773,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🏙️
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Kabupaten/Kota</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->kab_kota }}</p>
@@ -783,7 +783,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">📮
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Kode Pos</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->kode_pos }}</p>
@@ -795,7 +795,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🗺️
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Kecamatan</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->kecamatan }}</p>
@@ -805,7 +805,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🌍
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Provinsi</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->provinsi }}</p>
@@ -846,7 +846,7 @@
                                                         stroke-width="2"
                                                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                 </svg>
-                                                <label class="text-sm font-bold text-emerald-800">📦 Alamat Pengiriman
+                                                <label class="text-sm font-bold text-emerald-800">Alamat Pengiriman
                                                     Modul</label>
                                             </div>
                                             <div class="pl-7">
@@ -961,7 +961,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🌏
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Provinsi Ujian</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->lokasi_ujian_provinsi }}</p>
@@ -973,7 +973,7 @@
                                             <div
                                                 class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 transition-all duration-300 info-card-hover bounce-on-hover">
                                                 <label
-                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">🏢
+                                                    class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                     Kab/Kota Ujian</label>
                                                 <p class="text-slate-800 font-semibold mt-1">
                                                     {{ $pendaftaran->lokasi_ujian_kab_kota }}</p>
@@ -1027,7 +1027,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
                                     @if ($pendaftaran->file_foto)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📸
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Pas Foto Resmi</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->file_foto) }}"
@@ -1046,7 +1046,7 @@
                                     @endif
                                     @if ($pendaftaran->file_ktp)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🆔
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Scan KTP Asli</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->file_ktp) }}"
@@ -1065,7 +1065,7 @@
                                     @endif
                                     @if ($pendaftaran->file_ijazah)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">🎓
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Scan Ijazah Terakhir</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->file_ijazah) }}"
@@ -1084,7 +1084,7 @@
                                     @endif
                                     @if ($pendaftaran->file_transkrip)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📊
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Transkrip Nilai / SKHUN</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->file_transkrip) }}"
@@ -1103,7 +1103,7 @@
                                     @endif
                                     @if ($pendaftaran->file_bukti_pembayaran)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">💰
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Bukti Transfer Pembayaran</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->file_bukti_pembayaran) }}"
@@ -1122,7 +1122,7 @@
                                     @endif
                                     @if ($pendaftaran->surat_pernyataan)
                                         <div class="bg-slate-50/50 rounded-xl p-3 border border-slate-100 group">
-                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">📄
+                                            <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 Surat Pernyataan Keabsahan Berkas</label>
                                             <p class="mt-2"><a
                                                     href="{{ asset('uploads/' . $pendaftaran->surat_pernyataan) }}"
@@ -1238,35 +1238,35 @@
             let errorMessages = [];
 
             @if ($errors->has('nik'))
-                errorMessages.push('• NIK sudah terdaftar. Silakan gunakan NIK lain.');
+                errorMessages.push('â€¢ NIK sudah terdaftar. Silakan gunakan NIK lain.');
             @endif
 
             @if ($errors->has('no_hp'))
-                errorMessages.push('• Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.');
+                errorMessages.push('â€¢ Nomor HP sudah terdaftar. Silakan gunakan nomor HP lain.');
             @endif
 
             @if ($errors->has('email'))
-                errorMessages.push('• Email sudah terdaftar. Silakan gunakan email lain.');
+                errorMessages.push('â€¢ Email sudah terdaftar. Silakan gunakan email lain.');
             @endif
 
             @if ($errors->has('file_foto'))
-                errorMessages.push('• {{ $errors->first('file_foto') }}');
+                errorMessages.push('â€¢ {{ $errors->first('file_foto') }}');
             @endif
 
             @if ($errors->has('file_ktp'))
-                errorMessages.push('• {{ $errors->first('file_ktp') }}');
+                errorMessages.push('â€¢ {{ $errors->first('file_ktp') }}');
             @endif
 
             @if ($errors->has('file_ijazah'))
-                errorMessages.push('• {{ $errors->first('file_ijazah') }}');
+                errorMessages.push('â€¢ {{ $errors->first('file_ijazah') }}');
             @endif
 
             @if ($errors->has('surat_pernyataan'))
-                errorMessages.push('• {{ $errors->first('surat_pernyataan') }}');
+                errorMessages.push('â€¢ {{ $errors->first('surat_pernyataan') }}');
             @endif
 
             @if ($errors->has('file_bukti_pembayaran'))
-                errorMessages.push('• {{ $errors->first('file_bukti_pembayaran') }}');
+                errorMessages.push('â€¢ {{ $errors->first('file_bukti_pembayaran') }}');
             @endif
 
             @if (
@@ -1279,7 +1279,7 @@
                     !$errors->has('file_ijazah') &&
                     !$errors->has('surat_pernyataan') &&
                     !$errors->has('file_bukti_pembayaran'))
-                errorMessages.push('• {{ $errors->first() }}');
+                errorMessages.push('â€¢ {{ $errors->first() }}');
             @endif
 
             let errorText = errorMessages.join('\n');

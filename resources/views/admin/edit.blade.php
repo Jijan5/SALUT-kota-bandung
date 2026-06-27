@@ -1,4 +1,4 @@
-<x-admin-layout>
+﻿<x-admin-layout>
     <x-slot name="title">Edit Data Pendaftar</x-slot>
 
     <div class="max-w-full">
@@ -259,7 +259,7 @@
                             <option value="Non-RPL" @if (old('jalur_program', $data->jalur_program) == 'Non-RPL') selected @endif>Reguler (Non-RPL)
                             </option>
                         </select>
-                        <p class="text-xs text-red-500 font-medium mt-2">🔒 Jalur program tidak dapat diubah setelah mendaftar.</p>
+                        <p class="text-xs text-red-500 font-medium mt-2">ðŸ”’ Jalur program tidak dapat diubah setelah mendaftar.</p>
                     </div>
                     <div>
                         <label for="ukuran_almat" class="block text-sm font-semibold text-slate-700 mb-2">Ukuran Jas
@@ -304,7 +304,7 @@
                                 <label class="block text-sm font-semibold text-slate-700 mb-2">Pas Foto Resmi</label>
                                 @if ($data->file_foto)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_foto) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_foto) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -327,7 +327,7 @@
                                 <label class="block text-sm font-semibold text-slate-700 mb-2">Scan KTP Asli</label>
                                 @if ($data->file_ktp)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_ktp) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_ktp) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -350,7 +350,7 @@
                                 <label class="block text-sm font-semibold text-slate-700 mb-2">Scan Ijazah</label>
                                 @if ($data->file_ijazah)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_ijazah) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_ijazah) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -374,7 +374,7 @@
                                     SKHUN</label>
                                 @if ($data->file_transkrip)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_transkrip) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_transkrip) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -398,7 +398,7 @@
                                     Pembayaran</label>
                                 @if ($data->file_bukti_pembayaran)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_bukti_pembayaran) }}"
+                                        <a href="{{ asset('uploads/' . $data->file_bukti_pembayaran) }}"
                                             target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -423,7 +423,7 @@
                                     Keabsahan Berkas</label>
                                 @if ($data->surat_pernyataan)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->surat_pernyataan) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->surat_pernyataan) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -465,7 +465,7 @@
                                     PDDIKTI</label>
                                 @if ($data->file_ss_pddikti)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_ss_pddikti) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_ss_pddikti) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -489,7 +489,7 @@
                                     (CV)</label>
                                 @if ($data->file_cv)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_cv) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_cv) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -513,7 +513,7 @@
                                     Pembelajaran</label>
                                 @if ($data->file_rpl_pembelajaran)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_rpl_pembelajaran) }}"
+                                        <a href="{{ asset('uploads/' . $data->file_rpl_pembelajaran) }}"
                                             target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -538,7 +538,7 @@
                                     Kelas</label>
                                 @if ($data->file_rpl_administrasi)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_rpl_administrasi) }}"
+                                        <a href="{{ asset('uploads/' . $data->file_rpl_administrasi) }}"
                                             target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -563,7 +563,7 @@
                                     Ekstrakurikuler</label>
                                 @if ($data->file_rpl_ekstrakulikuler)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_rpl_ekstrakulikuler) }}"
+                                        <a href="{{ asset('uploads/' . $data->file_rpl_ekstrakulikuler) }}"
                                             target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
@@ -588,7 +588,7 @@
                                     Prestasi</label>
                                 @if ($data->file_rpl_prestasi)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->file_rpl_prestasi) }}" target="_blank"
+                                        <a href="{{ asset('uploads/' . $data->file_rpl_prestasi) }}" target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -612,7 +612,7 @@
                                     (Dari Kampus Asal)</label>
                                 @if ($data->surat_keterangan_pindah)
                                     <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $data->surat_keterangan_pindah) }}"
+                                        <a href="{{ asset('uploads/' . $data->surat_keterangan_pindah) }}"
                                             target="_blank"
                                             class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"

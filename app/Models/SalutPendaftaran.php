@@ -51,6 +51,13 @@ class SalutPendaftaran extends Model
         'file_rpl_prestasi',
         'surat_keterangan_pindah',
         'file_cv',
+        'alasan_penolakan',
+        'file_ditolak',
+        'status_pendaftaran',
+    ];
+
+    protected $casts = [
+        'file_ditolak' => 'array',
     ];
 
     protected $hidden = [

@@ -173,7 +173,7 @@
                 <div>
                     <h2 class="font-outfit text-2xl font-extrabold tracking-tight text-white drop-shadow-sm flex items-center gap-2">
                         Tryout Online
-                        <span class="text-2xl inline-block hover-rotate cursor-pointer">📝</span>
+                        <span class="text-2xl inline-block hover-rotate cursor-pointer"></span>
                     </h2>
                     <p class="text-sm text-slate-300/90 mt-1 max-w-xl font-medium">
                         Persiapkan diri Anda menghadapi ujian masuk <span class="text-blue-400 font-semibold animate-pulse">SALUT Kota Bandung</span>.

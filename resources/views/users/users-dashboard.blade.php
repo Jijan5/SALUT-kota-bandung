@@ -1,5 +1,8 @@
 <x-user-layout>
-    <x-slot name="title">Dashboard</x-slot>
+    <x-slot name="title">Dashboard Calon Mahasiswa</x-slot>
+
+    <!-- Halaman utama dibungkus x-data untuk kontrol modal -->
+    <div class="max-w-full" x-data="{ showAlasanModal: false, showResubmitModal: false }">
 
     <style>
         /* Animasi fade-in-up */
@@ -337,7 +340,7 @@
             <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <h2 class="font-outfit text-2xl font-extrabold tracking-tight text-white drop-shadow-sm">
-                        Halo, {{ Auth::guard('web')->user()->name }}! 👋
+                        Halo, {{ Auth::guard('web')->user()->name }}!
                     </h2>
                     <p class="text-sm text-slate-300/90 mt-0.5">Berikut adalah status pendaftaran Anda di <span class="text-blue-400 font-semibold animate-pulse">SALUT Kota Bandung</span>.</p>
                 </div>
@@ -490,6 +493,28 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </a>
+            @elseif($pendaftaran->status_pendaftaran == 'ditolak')
+                <div class="bg-gradient-to-r from-red-500/5 to-rose-500/5 rounded-2xl p-5 shadow-inner border border-red-500/20 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 group animate-slide-bounce delay-200">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <p class="font-bold text-slate-800 group-hover:text-red-600 transition">Pendaftaran Ditolak</p>
+                            <p class="text-xs text-red-600 font-medium mt-1">Beberapa berkas perlu diperbaiki.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2 w-full sm:w-auto">
+                        <button @click="showAlasanModal=true" class="px-4 py-2 bg-white border border-red-200 text-red-600 hover:bg-red-50 text-xs font-semibold rounded-xl transition w-full sm:w-auto text-center shadow-sm">
+                            Lihat Alasan
+                        </button>
+                        <button @click="showResubmitModal=true" class="px-4 py-2 bg-gradient-to-r from-red-500 to-rose-600 text-white hover:from-red-600 hover:to-rose-700 text-xs font-semibold rounded-xl transition w-full sm:w-auto text-center shadow-md">
+                            Kirim Ulang Berkas
+                        </button>
+                    </div>
+                </div>
             @else
                 <div class="bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-2xl p-5 shadow-inner border border-emerald-500/20 flex items-center space-x-4 group animate-slide-bounce delay-200">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 group-hover:animate-heartbeat">
@@ -523,6 +548,150 @@
             </a>
         </div>
 
+        @if($pendaftaran && $pendaftaran->status_pendaftaran == 'ditolak')
+            <!-- Modal Lihat Alasan -->
+            <div x-show="showAlasanModal" x-cloak
+                class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+                @keydown.escape.window="showAlasanModal=false">
+                <div @click.away="showAlasanModal=false"
+                    class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden">
+                    <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-red-50/50">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-slate-800">Alasan Penolakan</h3>
+                        </div>
+                        <button @click="showAlasanModal=false" class="text-slate-400 hover:text-slate-600 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 leading-relaxed mb-4 border border-slate-100">
+                            {{ $pendaftaran->alasan_penolakan ?? 'Tidak ada pesan spesifik dari Admin.' }}
+                        </div>
+                        
+                        @if(!empty($pendaftaran->file_ditolak))
+                            <h4 class="text-sm font-semibold text-slate-700 mb-2">Berkas yang Perlu Diperbaiki:</h4>
+                            <ul class="space-y-2">
+                                @foreach($pendaftaran->file_ditolak as $file)
+                                    <li class="flex items-center gap-2 text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg border border-red-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        {{ ucwords(str_replace('_', ' ', $file)) }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                    <div class="p-5 border-t border-slate-100 bg-slate-50 text-right">
+                        <button @click="showAlasanModal=false" class="px-5 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl font-semibold text-sm hover:bg-slate-100 transition shadow-sm">
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Kirim Ulang Berkas -->
+            <div x-show="showResubmitModal" x-cloak
+                class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+                @keydown.escape.window="showResubmitModal=false">
+                <div @click.away="showResubmitModal=false"
+                    class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                    
+                    <div class="p-5 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-lg">Kirim Ulang Berkas</h3>
+                            <p class="text-xs text-slate-500 mt-1">Silakan upload dokumen yang diminta oleh Admin.</p>
+                        </div>
+                        <button @click="showResubmitModal=false" class="text-slate-400 hover:text-slate-600 transition bg-slate-100 hover:bg-slate-200 p-2 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <form action="{{ route('user.resubmit') }}" method="POST" enctype="multipart/form-data" class="p-6">
+                        @csrf
+                        <div class="space-y-5">
+                            @php
+                                $fileFields = [
+                                    'file_foto' => 'Pas Foto',
+                                    'file_ktp' => 'KTP',
+                                    'file_ijazah' => 'Ijazah',
+                                    'file_transkrip' => 'Transkrip Nilai',
+                                    'file_bukti_pembayaran' => 'Bukti Pembayaran',
+                                    'surat_pernyataan' => 'Surat Pernyataan',
+                                    'file_cv' => 'Curriculum Vitae',
+                                    'file_ss_pddikti' => 'Screenshot PDDIKTI',
+                                    'file_rpl_pembelajaran' => 'RPL Pembelajaran',
+                                    'file_rpl_administrasi' => 'RPL Administrasi',
+                                    'file_rpl_ekstrakulikuler' => 'RPL Ekstrakulikuler',
+                                    'file_rpl_prestasi' => 'RPL Prestasi',
+                                    'surat_keterangan_pindah' => 'Surat Keterangan Pindah'
+                                ];
+                                $ditolak = $pendaftaran->file_ditolak ?? [];
+                            @endphp
+
+                            @foreach($fileFields as $field => $label)
+                                @if(in_array($field, $ditolak))
+                                    <!-- FILE DITOLAK (BISA DIUPLOAD ULANG) -->
+                                    <div class="bg-red-50/50 border border-red-100 rounded-xl p-4">
+                                        <label class="block text-sm font-semibold text-slate-800 mb-1">
+                                            {{ $label }} <span class="text-red-500">*</span>
+                                        </label>
+                                        <p class="text-xs text-red-500 mb-3 flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                            </svg>
+                                            Harap upload ulang berkas ini
+                                        </p>
+                                        <input type="file" name="{{ $field }}" accept="{{ $field === 'file_foto' ? '.png,.jpg,.jpeg' : '.pdf,.png,.jpg,.jpeg' }}" required
+                                            class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-red-100 file:text-red-700 hover:file:bg-red-200 transition">
+                                    </div>
+                                @elseif($pendaftaran->$field)
+                                    <!-- FILE DITERIMA (TERKUNCI) -->
+                                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-between opacity-75">
+                                        <div>
+                                            <label class="block text-sm font-semibold text-slate-600 mb-0.5">
+                                                {{ $label }}
+                                            </label>
+                                            <p class="text-xs text-emerald-600 flex items-center gap-1 font-medium">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                Berkas Diterima (Terkunci)
+                                            </p>
+                                        </div>
+                                        <a href="{{ asset('uploads/' . $pendaftaran->$field) }}" target="_blank"
+                                            class="text-xs bg-white border border-slate-200 px-3 py-1.5 rounded-lg text-slate-600 font-semibold hover:bg-slate-50 transition">
+                                            Lihat Berkas
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <div class="mt-8 flex gap-3">
+                            <button type="button" @click="showResubmitModal=false"
+                                class="flex-1 py-3 bg-slate-100 text-slate-600 rounded-xl font-semibold text-sm hover:bg-slate-200 transition">
+                                Batal
+                            </button>
+                            <button type="submit"
+                                class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-semibold text-sm hover:from-blue-700 hover:to-indigo-700 transition shadow-md">
+                                Kirim Berkas Perbaikan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
+
     </div>
 
     <script>
@@ -543,6 +712,35 @@
                     });
                 });
                 observer.observe(bar);
+            });
+
+            // --- File Preview Logic for Resubmit Modal ---
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    const parent = input.parentElement;
+                    
+                    // Remove existing preview button if any
+                    const existingBtn = parent.querySelector('.preview-btn');
+                    if (existingBtn) existingBtn.remove();
+
+                    if (file) {
+                        const fileURL = URL.createObjectURL(file);
+                        const btn = document.createElement('a');
+                        btn.href = fileURL;
+                        btn.target = '_blank';
+                        btn.className = 'preview-btn mt-3 inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 text-xs font-bold rounded-lg transition duration-200';
+                        btn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Lihat File (Preview)
+                        `;
+                        parent.appendChild(btn);
+                    }
+                });
             });
         });
     </script>

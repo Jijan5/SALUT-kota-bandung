@@ -12,7 +12,6 @@
                 <div>
                     <h2 class="font-outfit text-xl font-bold text-slate-800 flex items-center gap-2">
                         Pendaftaran Calon Mahasiswa
-                        <span class="text-xl">📝</span>
                     </h2>
                     <p class="text-sm text-slate-500 mt-0.5">
                         Silakan isi data diri Anda secara lengkap dan unggah berkas persyaratan yang diperlukan
@@ -492,7 +491,7 @@
                             <span class="block text-xs text-slate-400 mb-3">Format: JPG, JPEG, PNG (Maks 25MB).
                                 Pastikan NIK dan tulisan terbaca jelas.</span>
                             <input type="file" name="file_ktp" id="file_ktp" required
-                                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                                accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                         </div>
                         <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
@@ -501,7 +500,7 @@
                             <span class="block text-xs text-slate-400 mb-3">Format: PDF Asli / Fotokopi (Legalisir Cap
                                 Basah) (Maks 25MB).</span>
                             <input type="file" name="file_ijazah" id="file_ijazah" required
-                                accept=".pdf,application/pdf"
+                                accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                         </div>
                         <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
@@ -510,14 +509,14 @@
                             <span class="block text-xs text-slate-400 mb-3">Format: PDF Asli / Fotokopi (Legalisir Cap
                                 Basah) (Maks 25MB).</span>
                             <input type="file" name="file_transkrip" id="file_transkrip"
-                                accept=".pdf,application/pdf"
+                                accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                         </div>
                         <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
                             <div class="flex justify-between items-start mb-1">
                                 <span class="block text-sm font-bold text-slate-700">Surat Pernyataan Keabsahan Berkas
                                     <span class="text-red-500">*</span></span>
-                                <a href="https://salutbandung.com/pernyataan-keabsahan" target="_blank"
+                                <a href="{{ asset('files/Surat-Pernyataan-Kebenaran-dan-Keabsahan-Dokumen.docx') }}" download
                                     class="text-xs text-blue-600 hover:underline font-bold flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -530,7 +529,7 @@
                             <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB). Cetak, isi data,
                                 tanda tangan materai 10rb, dan scan.</span>
                             <input type="file" name="surat_pernyataan" id="surat_pernyataan" required
-                                accept=".pdf,application/pdf"
+                                accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                         </div>
                     </div>
@@ -551,7 +550,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: JPG, JPEG, PNG (Maks
                                     25MB).</span>
                                 <input type="file" name="file_ss_pddikti" id="file_ss_pddikti"
-                                    accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition bg-white">
                             </div>
                             <div
@@ -559,7 +558,7 @@
                                 <div class="flex justify-between items-start mb-1">
                                     <span class="block text-sm font-bold text-slate-700">Daftar Riwayat Hidup (CV)
                                         <span class="text-red-500">*</span></span>
-                                    <a href="{{ asset('files/Formulir_Daftar_Riwayat_Hidup_Pemohon_0.docx') }}"
+                                    <a href="{{ asset('files/Formulir_Daftar_Riwayat_hidup_Pemohon_0.docx') }}"
                                         download
                                         class="text-xs text-blue-600 hover:underline font-bold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1"
@@ -571,7 +570,7 @@
                                     </a>
                                 </div>
                                 <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB).</span>
-                                <input type="file" name="file_cv" id="file_cv" accept=".pdf,application/pdf"
+                                <input type="file" name="file_cv" id="file_cv" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition bg-white">
                             </div>
                             <div
@@ -580,7 +579,7 @@
                                     Kampus Asal) <span
                                         class="text-xs text-slate-400 font-normal">(Opsional)</span></span>
                                 <input type="file" name="surat_keterangan_pindah" id="surat_keterangan_pindah"
-                                    accept=".pdf,application/pdf"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                             </div>
                         </div>
@@ -603,7 +602,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB). RPP, Silabus,
                                     modul buatan sendiri, atau instrumen evaluasi.</span>
                                 <input type="file" name="file_rpl_pembelajaran" id="file_rpl_pembelajaran"
-                                    accept=".pdf,application/pdf"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                             </div>
                             <div
@@ -613,7 +612,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB). Surat
                                     keputusan pembagian tugas mengajar, daftar nilai siswa, absensi.</span>
                                 <input type="file" name="file_rpl_administrasi" id="file_rpl_administrasi"
-                                    accept=".pdf,application/pdf"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                             </div>
                             <div
@@ -624,7 +623,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB). SK
                                     Pembimbing/Pelatih Ekskul, laporan program kerja ekskul pramuka/lainnya.</span>
                                 <input type="file" name="file_rpl_ekstrakulikuler" id="file_rpl_ekstrakulikuler"
-                                    accept=".pdf,application/pdf"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                             </div>
                             <div
@@ -634,7 +633,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB). Sertifikat
                                     pelatihan, piagam kejuaraan, atau penghargaan keahlian kerja.</span>
                                 <input type="file" name="file_rpl_prestasi" id="file_rpl_prestasi"
-                                    accept=".pdf,application/pdf"
+                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                             </div>
                         </div>
@@ -1217,23 +1216,30 @@
             alamatTidak.addEventListener('change', handleAlamatChange);
             handleAlamatChange();
 
-            const imageInputs = [document.getElementById('file_foto'), document.getElementById('file_ktp'), document
-                .getElementById('file_ss_pddikti'), document.getElementById('file_bukti_pembayaran')
-            ];
-            imageInputs.forEach(input => {
-                if (input) {
+            // Validasi ukuran dan format file
+            document.addEventListener('DOMContentLoaded', function() {
+                const allInputs = document.querySelectorAll('input[type="file"]');
+                allInputs.forEach(input => {
                     input.addEventListener('change', function() {
                         const file = this.files[0];
                         if (file) {
-                            const allowedMimes = ['image/jpeg', 'image/png', 'image/jpg'];
-                            if (!allowedMimes.includes(file.type) && !file.name.toLowerCase()
-                                .endsWith('.jpg') && !file.name.toLowerCase().endsWith('.jpeg') && !
-                                file.name.toLowerCase().endsWith('.png')) {
-                                alert(
-                                    'Format tidak sesuai! Silakan unggah berkas foto berformat JPG, JPEG, atau PNG.'
-                                );
-                                this.value = '';
-                            } else if (file.size > 25 * 1024 * 1024) {
+                            if (input.id === 'file_foto') {
+                                const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                                if (!allowedImageTypes.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png)$/i)) {
+                                    alert('Format tidak sesuai! Silakan unggah Pas Foto berformat JPG, JPEG, atau PNG.');
+                                    this.value = '';
+                                    return;
+                                }
+                            } else {
+                                const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+                                if (!allowedTypes.includes(file.type) && !file.name.match(/\.(pdf|jpg|jpeg|png)$/i)) {
+                                    alert('Format tidak sesuai! Silakan unggah berkas berformat PDF, JPG, JPEG, atau PNG.');
+                                    this.value = '';
+                                    return;
+                                }
+                            }
+                            
+                            if (file.size > 25 * 1024 * 1024) {
                                 alert(
                                     'Ukuran file terlalu besar! Ukuran berkas maksimum adalah 25 Megabytes (25 MB).'
                                 );
@@ -1241,33 +1247,7 @@
                             }
                         }
                     });
-                }
-            });
-
-            const pdfInputs = [document.getElementById('file_ijazah'), document.getElementById('file_transkrip'),
-                document.getElementById('surat_pernyataan'), document.getElementById('file_cv'), document
-                .getElementById('surat_keterangan_pindah'), document.getElementById('file_rpl_pembelajaran'),
-                document.getElementById('file_rpl_administrasi'), document.getElementById(
-                    'file_rpl_ekstrakulikuler'), document.getElementById('file_rpl_prestasi')
-            ];
-            pdfInputs.forEach(input => {
-                if (input) {
-                    input.addEventListener('change', function() {
-                        const file = this.files[0];
-                        if (file) {
-                            if (!file.name.toLowerCase().endsWith('.pdf') && file.type !==
-                                'application/pdf') {
-                                alert('Format tidak sesuai! Silakan unggah berkas berformat PDF.');
-                                this.value = '';
-                            } else if (file.size > 25 * 1024 * 1024) {
-                                alert(
-                                    'Ukuran file terlalu besar! Ukuran berkas maksimum adalah 25 Megabytes (25 MB).'
-                                );
-                                this.value = '';
-                            }
-                        }
-                    });
-                }
+                });
             });
         });
     </script>
@@ -1337,6 +1317,92 @@
                 timer: 3000,
                 timerProgressBar: true,
                 showConfirmButton: false
+            });
+        </script>
+    @endif
+    <!-- Custom Scripts for Preview and LocalStorage -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- 1. File Preview Logic ---
+            const fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    const parent = input.parentElement;
+                    
+                    // Remove existing preview button if any
+                    const existingBtn = parent.querySelector('.preview-btn');
+                    if (existingBtn) existingBtn.remove();
+
+                    if (file) {
+                        const fileURL = URL.createObjectURL(file);
+                        const btn = document.createElement('a');
+                        btn.href = fileURL;
+                        btn.target = '_blank';
+                        btn.className = 'preview-btn mt-3 inline-flex items-center px-3 py-1.5 bg-blue-100 text-blue-700 hover:bg-blue-200 text-xs font-bold rounded-lg transition duration-200';
+                        btn.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Lihat File (Preview)
+                        `;
+                        parent.appendChild(btn);
+                    }
+                });
+            });
+
+            // --- 2. LocalStorage Auto-Save Logic ---
+            const form = document.getElementById('registrationForm');
+            if(form) {
+                const inputs = form.querySelectorAll('input:not([type="file"]):not([type="hidden"]), select, textarea');
+                
+                // Load saved data
+                inputs.forEach(input => {
+                    const savedValue = localStorage.getItem('salut_form_' + input.name);
+                    if (savedValue !== null) {
+                        if (input.type === 'radio' || input.type === 'checkbox') {
+                            if (input.value === savedValue) {
+                                input.checked = true;
+                                // trigger change to update UI (like RPL toggles)
+                                input.dispatchEvent(new Event('change'));
+                            }
+                        } else {
+                            input.value = savedValue;
+                        }
+                    }
+                });
+
+                // Save data on change
+                inputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        if (input.type === 'radio' || input.type === 'checkbox') {
+                            if (input.checked) {
+                                localStorage.setItem('salut_form_' + input.name, input.value);
+                            }
+                        } else {
+                            localStorage.setItem('salut_form_' + input.name, input.value);
+                        }
+                    });
+                });
+
+                // Clear storage on submit success. 
+                // Since this page reloads on error, we just clear it IF there are NO validation errors on page load?
+                // Actually, wait, if the form submits and it's successful, it redirects to a success page.
+                // We should clear the storage on the success page, but since we can't easily hook into that, 
+                // we can add a submit event listener to clear it? No, if we clear on submit and it fails validation, data is lost!
+                // Best is to clear it ONLY if there are no errors AND the user is starting fresh.
+                // Since Laravel flashes errors, we can use blade to inject a clear command if there are NO errors and NO old input.
+            }
+        });
+    </script>
+    @if (!session()->has('errors') && empty(old()))
+        <script>
+            // Clear storage if starting fresh (no errors, no old data)
+            Object.keys(localStorage).forEach(key => {
+                if(key.startsWith('salut_form_')) {
+                    localStorage.removeItem(key);
+                }
             });
         </script>
     @endif

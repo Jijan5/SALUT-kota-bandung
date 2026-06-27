@@ -11,13 +11,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    public function exportPdf()
-    {
-        $datapendaftar = SalutPendaftaran::all();
-        $pdf = Pdf::loadView('admin.export-pdf', compact('datapendaftar'))->setPaper('a2', 'landscape');
-
-        return $pdf->stream('data_pendaftar_salut.pdf');
-    }
 
     public function admin()
     {
@@ -60,12 +53,14 @@ class AdminController extends Controller
     {
         $totalPendaftar = SalutPendaftaran::count();
         $jumlahDiterima = SalutPendaftaran::where('status_pendaftaran', 'diterima')->count();
-        $jumlahPending = SalutPendaftaran::where('status_pendaftaran', 'pending')->count();
+        $jumlahPending  = SalutPendaftaran::where('status_pendaftaran', 'pending')->count();
+        $jumlahDitolak  = SalutPendaftaran::where('status_pendaftaran', 'ditolak')->count();
 
         return view('admin.admin-dashboard', [
             'totalPendaftar' => $totalPendaftar,
             'jumlahDiterima' => $jumlahDiterima,
-            'jumlahPending' => $jumlahPending,
+            'jumlahPending'  => $jumlahPending,
+            'jumlahDitolak'  => $jumlahDitolak,
         ]);
     }
 
@@ -87,6 +82,26 @@ class AdminController extends Controller
         return view('admin.admin-diterima', ['datapendaftar' => $pendaftarDiterima]);
     }
 
+    public function ditolakIndex(Request $request)
+    {
+        $search = $request->input('search');
+
+        $pendaftarDitolak = SalutPendaftaran::query()
+            ->where('status_pendaftaran', 'ditolak')
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($q) use ($search) {
+                    $q->where('nama', 'like', "%{$search}%")
+                        ->orWhereHas('user', function ($q) use ($search) {
+                            $q->where('email', 'like', "%{$search}%");
+                        });
+                });
+            })
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+
+        return view('admin.admin-ditolak', ['datapendaftar' => $pendaftarDitolak]);
+    }
+
     /**
      * Mengubah status pendaftar menjadi 'diterima'.
      */
@@ -94,9 +109,31 @@ class AdminController extends Controller
     {
         $pendaftar = SalutPendaftaran::findOrFail($id);
         $pendaftar->status_pendaftaran = 'diterima';
+        $pendaftar->alasan_penolakan   = null;
+        $pendaftar->file_ditolak       = null;
         $pendaftar->save();
 
         return redirect()->route('admin.index')->with('success', 'Siswa telah diterima dan dipindahkan ke halaman Siswa Diterima.');
+    }
+
+    /**
+     * Menolak pendaftar dengan alasan & daftar file yang perlu diperbaiki.
+     */
+    public function tolak(int $id, Request $request)
+    {
+        $request->validate([
+            'alasan_penolakan' => 'required|string|max:2000',
+            'file_ditolak'     => 'nullable|array',
+            'file_ditolak.*'   => 'string',
+        ]);
+
+        $pendaftar = SalutPendaftaran::findOrFail($id);
+        $pendaftar->status_pendaftaran = 'ditolak';
+        $pendaftar->alasan_penolakan   = $request->alasan_penolakan;
+        $pendaftar->file_ditolak       = $request->file_ditolak ?? [];
+        $pendaftar->save();
+
+        return redirect()->route('admin.index')->with('success', 'Pendaftar telah ditolak. Notifikasi penolakan sudah tersimpan.');
     }
 
     public function edit(int $id)
@@ -181,14 +218,14 @@ class AdminController extends Controller
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {
                 if ($record->$field) {
-                    $filePath = public_path('storage/' . $record->$field);
+                    $filePath = public_path('uploads/' . $record->$field);
                     if (file_exists($filePath)) {
                         unlink($filePath);
                     }
                 }
                 $file = $request->file($field);
                 $filename = time() . '_' . uniqid() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $file->getClientOriginalName());
-                $file->move(public_path('storage/pendaftar'), $filename);
+                $file->move(public_path('uploads/pendaftar'), $filename);
                 $validated[$field] = 'pendaftar/' . $filename;
             }
         }
@@ -245,11 +282,11 @@ class AdminController extends Controller
         // Hapus file dari storage jika ada
         foreach ($fileFields as $field) {
             if ($data->$field) {
-                $filePath = public_path('storage/' . $data->$field);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
+                    $filePath = public_path('uploads/' . $data->$field);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
                 }
-            }
         }
 
         // Hapus data pendaftaran dari database

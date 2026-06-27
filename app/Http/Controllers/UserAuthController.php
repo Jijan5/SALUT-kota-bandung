@@ -246,27 +246,27 @@ class UserAuthController extends Controller
             'file_foto.max' => 'Ukuran file foto terlalu besar. Maksimal 2MB.',
             'file_ktp.mimes' => 'File KTP harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_ktp.max' => 'Ukuran file KTP terlalu besar. Maksimal 2MB.',
-            'file_ijazah.mimes' => 'File Ijazah harus berformat PDF.',
+            'file_ijazah.mimes' => 'File Ijazah harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_ijazah.max' => 'Ukuran file Ijazah terlalu besar. Maksimal 2MB.',
-            'file_transkrip.mimes' => 'File Transkrip harus berformat PDF.',
+            'file_transkrip.mimes' => 'File Transkrip harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_transkrip.max' => 'Ukuran file Transkrip terlalu besar. Maksimal 2MB.',
-            'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, atau PNG.',
+            'file_bukti_pembayaran.mimes' => 'File Bukti Pembayaran harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_bukti_pembayaran.max' => 'Ukuran file Bukti Pembayaran terlalu besar. Maksimal 2MB.',
-            'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat PDF.',
+            'surat_pernyataan.mimes' => 'File Surat Pernyataan harus berformat JPG, JPEG, PNG, atau PDF.',
             'surat_pernyataan.max' => 'Ukuran file Surat Pernyataan terlalu besar. Maksimal 2MB.',
-            'file_cv.mimes' => 'File CV harus berformat PDF.',
+            'file_cv.mimes' => 'File CV harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_cv.max' => 'Ukuran file CV terlalu besar. Maksimal 2MB.',
-            'file_ss_pddikti.mimes' => 'File SS PDDIKTI harus berformat JPG, JPEG, atau PNG.',
+            'file_ss_pddikti.mimes' => 'File SS PDDIKTI harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_ss_pddikti.max' => 'Ukuran file SS PDDIKTI terlalu besar. Maksimal 2MB.',
-            'file_rpl_pembelajaran.mimes' => 'File RPL Pembelajaran harus berformat PDF.',
+            'file_rpl_pembelajaran.mimes' => 'File RPL Pembelajaran harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_rpl_pembelajaran.max' => 'Ukuran file RPL Pembelajaran terlalu besar. Maksimal 2MB.',
-            'file_rpl_administrasi.mimes' => 'File RPL Administrasi harus berformat PDF.',
+            'file_rpl_administrasi.mimes' => 'File RPL Administrasi harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_rpl_administrasi.max' => 'Ukuran file RPL Administrasi terlalu besar. Maksimal 2MB.',
-            'file_rpl_ekstrakulikuler.mimes' => 'File RPL Ekstrakurikuler harus berformat PDF.',
+            'file_rpl_ekstrakulikuler.mimes' => 'File RPL Ekstrakurikuler harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_rpl_ekstrakulikuler.max' => 'Ukuran file RPL Ekstrakurikuler terlalu besar. Maksimal 2MB.',
-            'file_rpl_prestasi.mimes' => 'File RPL Prestasi harus berformat PDF.',
+            'file_rpl_prestasi.mimes' => 'File RPL Prestasi harus berformat JPG, JPEG, PNG, atau PDF.',
             'file_rpl_prestasi.max' => 'Ukuran file RPL Prestasi terlalu besar. Maksimal 2MB.',
-            'surat_keterangan_pindah.mimes' => 'File Surat Keterangan Pindah harus berformat PDF.',
+            'surat_keterangan_pindah.mimes' => 'File Surat Keterangan Pindah harus berformat JPG, JPEG, PNG, atau PDF.',
             'surat_keterangan_pindah.max' => 'Ukuran file Surat Keterangan Pindah terlalu besar. Maksimal 2MB.',
         ];
 
@@ -301,9 +301,9 @@ class UserAuthController extends Controller
             'nik' => $request->nik ?? '',
             'tempat_lahir' => $request->tempat_lahir ?? '',
             'tanggal_lahir' => $request->tanggal_lahir ?? null,
-            'gender' => $request->gender ?? 'laki-laki',
+            'gender' => $request->gender ?? 'Laki-laki',
             'agama' => strtolower($request->agama ?? 'islam'),
-            'status' => $request->status ?? 'Belum Menikah',
+            'status' => $request->status ?? 'Belum Kawin',
             'no_hp' => $request->no_hp ?? '',
             'no_hp_alternatif' => $request->no_hp_alternatif ?? '',
             'nama_ibu_kandung' => $request->nama_ibu_kandung ?? '',
@@ -371,6 +371,59 @@ class UserAuthController extends Controller
         }
 
         return redirect()->route('user.profile')->with('success', 'Profil berhasil diperbarui!');
+    }
+
+    // ========== KIRIM ULANG BERKAS YANG DITOLAK ==========
+    public function resubmit(Request $request)
+    {
+        $user        = Auth::guard('web')->user();
+        $pendaftaran = SalutPendaftaran::where('user_id', $user->id)->firstOrFail();
+
+        if ($pendaftaran->status_pendaftaran !== 'ditolak') {
+            return back()->withErrors(['error' => 'Status pendaftaran tidak memungkinkan pengiriman ulang.']);
+        }
+
+        $fileDitolak = $pendaftaran->file_ditolak ?? [];
+        
+        $rules = [];
+        $messages = [];
+        foreach ($fileDitolak as $field) {
+            if ($field === 'file_foto') {
+                $rules[$field] = 'nullable|image|mimes:jpg,jpeg,png|max:2048';
+                $messages[$field . '.image'] = "File foto harus berupa gambar (JPG, JPEG, PNG).";
+                $messages[$field . '.mimes'] = "Format berkas $field harus JPG, JPEG, atau PNG.";
+            } else {
+                $rules[$field] = 'nullable|mimes:jpg,jpeg,png,pdf|max:2048';
+                $messages[$field . '.mimes'] = "Format berkas $field harus JPG, JPEG, PNG, atau PDF.";
+            }
+            $messages[$field . '.max'] = "Ukuran berkas $field maksimal 2MB.";
+        }
+        $request->validate($rules, $messages);
+
+        foreach ($fileDitolak as $field) {
+            if ($request->hasFile($field)) {
+                // Hapus file lama
+                if ($pendaftaran->$field) {
+                    $oldPath = public_path('uploads/' . $pendaftaran->$field);
+                    if (file_exists($oldPath)) {
+                        unlink($oldPath);
+                    }
+                }
+                // Upload file baru
+                $file     = $request->file($field);
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('uploads/pendaftar'), $filename);
+                $pendaftaran->$field = 'pendaftar/' . $filename;
+            }
+        }
+
+        // Kembalikan status ke pending & bersihkan penolakan
+        $pendaftaran->status_pendaftaran = 'pending';
+        $pendaftaran->alasan_penolakan   = null;
+        $pendaftaran->file_ditolak       = null;
+        $pendaftaran->save();
+
+        return redirect()->route('user.dashboard')->with('success', 'Berkas berhasil dikirim ulang! Pendaftaran Anda sedang ditinjau kembali oleh Admin.');
     }
 
     public function tryout()

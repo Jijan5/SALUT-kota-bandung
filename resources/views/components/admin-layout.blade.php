@@ -67,6 +67,14 @@
                     <span>Siswa Diterima</span>
                 </a>
 
+                <a href="{{ route('admin.ditolak') }}"
+                    class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium text-sm transition duration-200 {{ request()->routeIs('admin.ditolak') ? 'bg-white/15 text-white font-semibold' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Siswa Ditolak</span>
+                </a>
+
                 <div class="border-t border-white/10 my-4"></div>
                 <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 px-4 mb-3">Ekspor Data</p>
 
@@ -76,14 +84,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     <span>Export Excel</span>
-                </a>
-
-                <a href="{{ route('admin.export.pdf') }}"
-                    class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-red-600/30 hover:text-red-300 font-medium text-sm transition duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                    <span>Export PDF</span>
                 </a>
             </nav>
 

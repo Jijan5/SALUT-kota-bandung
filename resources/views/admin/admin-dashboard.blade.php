@@ -7,7 +7,7 @@
         <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,_#fff_1px,_transparent_1px)] [background-size:22px_22px]"></div>
             <div class="relative z-10">
-                <h2 class="font-outfit text-2xl font-bold mb-1">Selamat Datang, Admin! 👋</h2>
+                <h2 class="font-outfit text-2xl font-bold mb-1">Selamat Datang, Admin!</h2>
                 <p class="text-blue-200 text-sm">Berikut adalah ringkasan data pendaftaran calon mahasiswa terkini di SALUT Kota Bandung.</p>
             </div>
             <div class="absolute right-6 top-1/2 -translate-y-1/2 opacity-20 hidden sm:block">
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Stats Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
             <!-- Total Pendaftar -->
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
@@ -72,10 +72,28 @@
                     <div class="h-1 bg-amber-500 rounded-full" style="width: {{ $pctPending }}%"></div>
                 </div>
             </div>
+
+            <!-- Ditolak -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+                    <span class="text-xs font-semibold text-red-400 uppercase tracking-wider">Ditolak</span>
+                </div>
+                <p class="text-4xl font-extrabold font-outfit text-slate-800 mb-1">{{ $jumlahDitolak ?? 0 }}</p>
+                <p class="text-sm text-slate-500 font-medium">Perlu Diperbaiki</p>
+                @php $pctDitolak = $totalPendaftar > 0 ? round(($jumlahDitolak / $totalPendaftar) * 100) : 0; @endphp
+                <div class="mt-4 h-1 bg-red-100 rounded-full">
+                    <div class="h-1 bg-red-500 rounded-full" style="width: {{ $pctDitolak }}%"></div>
+                </div>
+            </div>
         </div>
 
         <!-- Quick Actions -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
             <a href="{{ route('admin.index') }}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:border-blue-200 transition duration-300 flex items-center space-x-4 group">
                 <div class="w-12 h-12 rounded-xl bg-blue-700 group-hover:bg-blue-800 flex items-center justify-center transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,7 +103,7 @@
                 </div>
                 <div>
                     <p class="font-bold text-slate-800">Lihat Semua Pendaftar</p>
-                    <p class="text-xs text-slate-500">Verifikasi & kelola berkas pendaftar</p>
+                    <p class="text-xs text-slate-500">Verifikasi & kelola berkas</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300 group-hover:text-blue-500 ml-auto transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -100,9 +118,24 @@
                 </div>
                 <div>
                     <p class="font-bold text-slate-800">Siswa Diterima</p>
-                    <p class="text-xs text-slate-500">Daftar mahasiswa yang sudah disetujui</p>
+                    <p class="text-xs text-slate-500">Daftar siswa disetujui</p>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300 group-hover:text-emerald-500 ml-auto transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+
+            <a href="{{ route('admin.ditolak') }}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:border-red-200 transition duration-300 flex items-center space-x-4 group">
+                <div class="w-12 h-12 rounded-xl bg-red-600 group-hover:bg-red-700 flex items-center justify-center transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-800">Siswa Ditolak</p>
+                    <p class="text-xs text-slate-500">Daftar perlu diperbaiki</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300 group-hover:text-red-500 ml-auto transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </a>

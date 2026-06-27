@@ -6,7 +6,11 @@
         pendaftarToDeleteName: '',
         pendaftarToDeleteUrl: '',
         showDrawer: false,
-        drawerData: {}
+        drawerData: {},
+        showTolakModal: false,
+        tolakId: null,
+        tolakNama: '',
+        fileDitolakList: {}
     }" class="max-w-full">
 
         @if (session('success'))
@@ -51,11 +55,11 @@
                     <thead>
                         <tr class="bg-slate-800 text-white">
                             <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider w-10">No</th>
-                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Nama</th>
-                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Email</th>
-                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">No. HP</th>
+                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Nama / NIK</th>
+                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider hidden md:table-cell">Email</th>
+                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider hidden sm:table-cell">No. HP</th>
                             <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Jalur</th>
-                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Status</th>
+                            <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider hidden sm:table-cell">Status</th>
                             <th class="px-4 py-3 text-center font-semibold text-xs uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
@@ -68,8 +72,8 @@
                                     <div class="font-semibold text-slate-800">{{ $pendaftar->nama }}</div>
                                     <div class="text-xs text-slate-400">NIK: {{ $pendaftar->nik }}</div>
                                 </td>
-                                <td class="px-4 py-3 text-slate-600 text-xs">{{ $pendaftar->email }}</td>
-                                <td class="px-4 py-3 text-slate-600 text-xs">{{ $pendaftar->no_hp }}</td>
+                                <td class="px-4 py-3 text-slate-600 text-xs hidden md:table-cell">{{ $pendaftar->user->email ?? $pendaftar->email }}</td>
+                                <td class="px-4 py-3 text-slate-600 text-xs hidden sm:table-cell">{{ $pendaftar->no_hp }}</td>
                                 <td class="px-4 py-3">
                                     <span
                                         class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold
@@ -77,11 +81,10 @@
                                         {{ $pendaftar->jalur_program }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3">
-                                    <span
-                                        class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold
-                                    {{ $pendaftar->status === 'diterima' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700' }}">
-                                        {{ $pendaftar->status ?? 'Pending' }}
+                                <td class="px-4 py-3 hidden sm:table-cell">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold
+                                    {{ $pendaftar->status_pendaftaran === 'diterima' ? 'bg-emerald-100 text-emerald-700' : ($pendaftar->status_pendaftaran === 'ditolak' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700') }}">
+                                        {{ ucfirst($pendaftar->status_pendaftaran ?? 'Pending') }}
                                     </span>
                                 </td>
                                 <td class="px-4 py-3">
@@ -113,19 +116,19 @@
                                             ibu: '{{ addslashes($pendaftar->nama_ibu_kandung) }}',
                                             ipk: '{{ $pendaftar->ipk }}',
                                             no_ijazah: '{{ $pendaftar->no_ijazah }}',
-                                            file_foto: '{{ $pendaftar->file_foto ? asset('storage/' . $pendaftar->file_foto) : '' }}',
-                                            file_ktp: '{{ $pendaftar->file_ktp ? asset('storage/' . $pendaftar->file_ktp) : '' }}',
-                                            file_ijazah: '{{ $pendaftar->file_ijazah ? asset('storage/' . $pendaftar->file_ijazah) : '' }}',
-                                            file_transkrip: '{{ $pendaftar->file_transkrip ? asset('storage/' . $pendaftar->file_transkrip) : '' }}',
-                                            surat_pernyataan: '{{ $pendaftar->surat_pernyataan ? asset('storage/' . $pendaftar->surat_pernyataan) : '' }}',
-                                            file_cv: '{{ $pendaftar->file_cv ? asset('storage/' . $pendaftar->file_cv) : '' }}',
-                                            file_ss_pddikti: '{{ $pendaftar->file_ss_pddikti ? asset('storage/' . $pendaftar->file_ss_pddikti) : '' }}',
-                                            file_bukti: '{{ $pendaftar->file_bukti_pembayaran ? asset('storage/' . $pendaftar->file_bukti_pembayaran) : '' }}',
-                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset('storage/' . $pendaftar->surat_keterangan_pindah) : '' }}',
-                                            file_rpl_pembelajaran: '{{ $pendaftar->file_rpl_pembelajaran ? asset('storage/' . $pendaftar->file_rpl_pembelajaran) : '' }}',
-                                            file_rpl_administrasi: '{{ $pendaftar->file_rpl_administrasi ? asset('storage/' . $pendaftar->file_rpl_administrasi) : '' }}',
-                                            file_rpl_ekstrakulikuler: '{{ $pendaftar->file_rpl_ekstrakulikuler ? asset('storage/' . $pendaftar->file_rpl_ekstrakulikuler) : '' }}',
-                                            file_rpl_prestasi: '{{ $pendaftar->file_rpl_prestasi ? asset('storage/' . $pendaftar->file_rpl_prestasi) : '' }}',
+                                            file_foto: '{{ $pendaftar->file_foto ? asset('uploads/' . $pendaftar->file_foto) : '' }}',
+                                            file_ktp: '{{ $pendaftar->file_ktp ? asset('uploads/' . $pendaftar->file_ktp) : '' }}',
+                                            file_ijazah: '{{ $pendaftar->file_ijazah ? asset('uploads/' . $pendaftar->file_ijazah) : '' }}',
+                                            file_transkrip: '{{ $pendaftar->file_transkrip ? asset('uploads/' . $pendaftar->file_transkrip) : '' }}',
+                                            surat_pernyataan: '{{ $pendaftar->surat_pernyataan ? asset('uploads/' . $pendaftar->surat_pernyataan) : '' }}',
+                                            file_cv: '{{ $pendaftar->file_cv ? asset('uploads/' . $pendaftar->file_cv) : '' }}',
+                                            file_ss_pddikti: '{{ $pendaftar->file_ss_pddikti ? asset('uploads/' . $pendaftar->file_ss_pddikti) : '' }}',
+                                            file_bukti: '{{ $pendaftar->file_bukti_pembayaran ? asset('uploads/' . $pendaftar->file_bukti_pembayaran) : '' }}',
+                                            surat_pindah: '{{ $pendaftar->surat_keterangan_pindah ? asset('uploads/' . $pendaftar->surat_keterangan_pindah) : '' }}',
+                                            file_rpl_pembelajaran: '{{ $pendaftar->file_rpl_pembelajaran ? asset('uploads/' . $pendaftar->file_rpl_pembelajaran) : '' }}',
+                                            file_rpl_administrasi: '{{ $pendaftar->file_rpl_administrasi ? asset('uploads/' . $pendaftar->file_rpl_administrasi) : '' }}',
+                                            file_rpl_ekstrakulikuler: '{{ $pendaftar->file_rpl_ekstrakulikuler ? asset('uploads/' . $pendaftar->file_rpl_ekstrakulikuler) : '' }}',
+                                            file_rpl_prestasi: '{{ $pendaftar->file_rpl_prestasi ? asset('uploads/' . $pendaftar->file_rpl_prestasi) : '' }}',
                                             alamat_pengirim_modul: '{{ $pendaftar->alamat_pengirim_modul }}',
                                             alamat_lengkap_ktp: {{ Js::from($pendaftar->alamat) }},
                                             desa_kelurahan: {{ Js::from($pendaftar->desa_kelurahan) }},
@@ -156,6 +159,27 @@
                                             </button>
                                         </form>
 
+                                        <!-- Tolak -->
+                                        <button
+                                            @click="showTolakModal=true; tolakId={{ $pendaftar->id }}; tolakNama='{{ addslashes($pendaftar->nama) }}'; fileDitolakList={
+                                                file_foto: {{ $pendaftar->file_foto ? 'true' : 'false' }},
+                                                file_ktp: {{ $pendaftar->file_ktp ? 'true' : 'false' }},
+                                                file_ijazah: {{ $pendaftar->file_ijazah ? 'true' : 'false' }},
+                                                file_transkrip: {{ $pendaftar->file_transkrip ? 'true' : 'false' }},
+                                                file_bukti_pembayaran: {{ $pendaftar->file_bukti_pembayaran ? 'true' : 'false' }},
+                                                surat_pernyataan: {{ $pendaftar->surat_pernyataan ? 'true' : 'false' }},
+                                                file_cv: {{ $pendaftar->file_cv ? 'true' : 'false' }},
+                                                file_ss_pddikti: {{ $pendaftar->file_ss_pddikti ? 'true' : 'false' }},
+                                                file_rpl_pembelajaran: {{ $pendaftar->file_rpl_pembelajaran ? 'true' : 'false' }},
+                                                file_rpl_administrasi: {{ $pendaftar->file_rpl_administrasi ? 'true' : 'false' }},
+                                                file_rpl_ekstrakulikuler: {{ $pendaftar->file_rpl_ekstrakulikuler ? 'true' : 'false' }},
+                                                file_rpl_prestasi: {{ $pendaftar->file_rpl_prestasi ? 'true' : 'false' }},
+                                                surat_keterangan_pindah: {{ $pendaftar->surat_keterangan_pindah ? 'true' : 'false' }}
+                                            }"
+                                            class="bg-red-50 hover:bg-red-100 text-red-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition">
+                                            Tolak
+                                        </button>
+
                                         <!-- Hapus -->
                                         <button
                                             @click="showConfirmModal=true; pendaftarToDeleteName='{{ addslashes($pendaftar->nama) }}'; pendaftarToDeleteUrl='{{ route('admin.delete', $pendaftar->id) }}'"
@@ -185,7 +209,7 @@
             <div
                 class="px-5 py-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
                 <span>Menampilkan
-                    <strong>{{ $datapendaftar->firstItem() ?? 0 }}</strong>–<strong>{{ $datapendaftar->lastItem() ?? 0 }}</strong>
+                    <strong>{{ $datapendaftar->firstItem() ?? 0 }}</strong>â€“<strong>{{ $datapendaftar->lastItem() ?? 0 }}</strong>
                     dari <strong>{{ $datapendaftar->total() }}</strong> data</span>
                 {{ $datapendaftar->appends(request()->only('search'))->links('pagination::tailwind') }}
             </div>
@@ -259,15 +283,13 @@
                                 <p class="text-sm font-semibold text-slate-700 mt-0.5" x-text="drawerData.ukuran"></p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Alamat -->
+                    </div                    <!-- Alamat -->
                     <div>
                         <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Alamat</h4>
 
                         <!-- Alamat KTP -->
                         <div class="bg-slate-50 rounded-xl p-4 mb-3">
-                            <p class="text-xs font-semibold text-blue-600 mb-2">📍 Alamat Sesuai KTP</p>
+                            <p class="text-xs font-semibold text-blue-600 mb-2">Alamat Sesuai KTP</p>
                             <p class="text-sm text-slate-700"
                                 x-text="drawerData.alamat_lengkap_ktp + ', ' + drawerData.desa_kelurahan + ', Kec. ' + drawerData.kecamatan + ', ' + drawerData.kab_kota + ', ' + drawerData.provinsi + ' - ' + drawerData.kode_pos">
                             </p>
@@ -282,13 +304,13 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
-                                    <p class="text-xs font-bold text-blue-800">📦 Alamat Pengiriman Modul</p>
+                                    <p class="text-xs font-bold text-blue-800">Alamat Pengiriman Modul</p>
                                 </div>
                                 <p class="text-sm text-slate-700 pl-7"
                                     x-text="drawerData.alamat_pengirim_modul.toLowerCase() === 'ya' ? (drawerData.alamat_lengkap_ktp + ', ' + drawerData.desa_kelurahan + ', Kec. ' + drawerData.kecamatan + ', ' + drawerData.kab_kota + ', ' + drawerData.provinsi) : (drawerData.alamat_lain && drawerData.alamat_lain !== 'NULL' ? drawerData.alamat_lain : '-')">
                                 </p>
                             </div>
-                        </template>
+                        </template>    </template>
                     </div>
 
                     <!-- Contact & Address -->
@@ -347,7 +369,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Pas Foto Resmi</span>
                                     <a :href="drawerData.file_foto" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -356,7 +378,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Scan KTP Asli</span>
                                     <a :href="drawerData.file_ktp" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -365,7 +387,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Scan Ijazah</span>
                                     <a :href="drawerData.file_ijazah" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -374,7 +396,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Transkrip Nilai / SKHUN</span>
                                     <a :href="drawerData.file_transkrip" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -384,7 +406,7 @@
                                     <span class="text-xs font-medium text-slate-600">Surat Pernyataan Keabsahan
                                         Berkas</span>
                                     <a :href="drawerData.surat_pernyataan" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -393,7 +415,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Bukti Transfer Pembayaran</span>
                                     <a :href="drawerData.file_bukti" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -402,7 +424,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Daftar Riwayat Hidup (CV)</span>
                                     <a :href="drawerData.file_cv" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -411,7 +433,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Screenshot PDDIKTI</span>
                                     <a :href="drawerData.file_ss_pddikti" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -421,7 +443,7 @@
                                     <span class="text-xs font-medium text-slate-600">Surat Keterangan Pindah (Dari
                                         Kampus Asal)</span>
                                     <a :href="drawerData.surat_pindah" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -431,7 +453,7 @@
                                     <span class="text-xs font-medium text-slate-600">Dokumen Perangkat
                                         Pembelajaran</span>
                                     <a :href="drawerData.file_rpl_pembelajaran" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -440,7 +462,7 @@
                                 <div class="bg-slate-50 rounded-xl p-3 flex items-center justify-between">
                                     <span class="text-xs font-medium text-slate-600">Dokumen Administrasi Kelas</span>
                                     <a :href="drawerData.file_rpl_administrasi" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -450,7 +472,7 @@
                                     <span class="text-xs font-medium text-slate-600">Dokumen Pembina
                                         Ekstrakurikuler</span>
                                     <a :href="drawerData.file_rpl_ekstrakulikuler" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
 
@@ -460,7 +482,7 @@
                                     <span class="text-xs font-medium text-slate-600">Sertifikat Penghargaan /
                                         Prestasi</span>
                                     <a :href="drawerData.file_rpl_prestasi" target="_blank"
-                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat ↗</a>
+                                        class="text-xs font-bold text-blue-600 hover:text-blue-800">Lihat â†—</a>
                                 </div>
                             </template>
                         </div>
@@ -503,6 +525,142 @@
                             class="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold transition">Hapus</button>
                     </form>
                 </div>
+            </div>
+        </div>
+
+        <!-- ===== MODAL TOLAK ===== -->
+        <div x-show="showTolakModal" x-cloak
+            class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            @keydown.escape.window="showTolakModal=false">
+            <div @click.away="showTolakModal=false"
+                class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+
+                <div class="p-6 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-slate-800">Tolak Pendaftaran</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Pendaftar: <span class="font-semibold text-slate-700" x-text="tolakNama"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <form :action="'/admin/pendaftar/' + tolakId + '/tolak'" method="POST" class="p-6 space-y-5">
+                    @csrf
+
+                    <!-- Alasan Penolakan -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">
+                            Alasan Penolakan <span class="text-red-500">*</span>
+                        </label>
+                        <textarea name="alasan_penolakan" rows="4" required
+                            placeholder="Jelaskan alasan penolakan secara detail agar pendaftar bisa memperbaiki berkasnya..."
+                            class="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-400 resize-none"></textarea>
+                    </div>
+
+                    <!-- Checkbox File yang Perlu Diperbaiki -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-3">
+                            Pilih Berkas yang Perlu Diperbaiki
+                            <span class="text-xs font-normal text-slate-400">(hanya berkas yang sudah diupload)</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <template x-if="fileDitolakList.file_foto">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_foto" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Foto</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_ktp">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_ktp" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">🪪 KTP</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_ijazah">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_ijazah" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Ijazah</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_transkrip">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_transkrip" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Transkrip Nilai</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_bukti_pembayaran">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_bukti_pembayaran" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Bukti Pembayaran</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.surat_pernyataan">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="surat_pernyataan" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Surat Pernyataan</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_cv">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_cv" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">CV / Daftar Riwayat Hidup</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_ss_pddikti">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_ss_pddikti" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">SS PDDIKTI</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_rpl_pembelajaran">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_rpl_pembelajaran" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">RPL Pembelajaran</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_rpl_administrasi">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_rpl_administrasi" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">RPL Administrasi</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_rpl_ekstrakulikuler">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_rpl_ekstrakulikuler" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">RPL Ekstrakulikuler</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.file_rpl_prestasi">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="file_rpl_prestasi" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">RPL Prestasi</span>
+                                </label>
+                            </template>
+                            <template x-if="fileDitolakList.surat_keterangan_pindah">
+                                <label class="flex items-center gap-2.5 p-3 border border-slate-200 rounded-xl hover:bg-red-50 hover:border-red-200 cursor-pointer transition">
+                                    <input type="checkbox" name="file_ditolak[]" value="surat_keterangan_pindah" class="rounded text-red-500">
+                                    <span class="text-sm text-slate-700">Surat Ket. Pindah</span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button type="button" @click="showTolakModal=false"
+                            class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50 transition">
+                            Batal
+                        </button>
+                        <button type="submit"
+                            class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold transition">
+                            Konfirmasi Tolak
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 

@@ -58,11 +58,11 @@
                     <div class="text-xs text-blue-300 mt-0.5">Verifikasi</div>
                 </div>
                 <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-2xl p-3">
-                    <div class="text-2xl font-bold font-outfit text-white">📂</div>
+                    <div class="text-2xl font-bold font-outfit text-white"></div>
                     <div class="text-xs text-blue-300 mt-0.5">Berkas</div>
                 </div>
                 <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-2xl p-3">
-                    <div class="text-2xl font-bold font-outfit text-white">📊</div>
+                    <div class="text-2xl font-bold font-outfit text-white"></div>
                     <div class="text-xs text-blue-300 mt-0.5">Laporan</div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
 
             <!-- Heading -->
             <div class="mb-8">
-                <h1 class="font-outfit text-3xl font-extrabold text-slate-900 mb-2">Selamat Datang 👋</h1>
+                <h1 class="font-outfit text-3xl font-extrabold text-slate-900 mb-2">Selamat Datang</h1>
                 <p class="text-slate-500 text-sm">Masuk ke panel administrator untuk mengelola data pendaftar mahasiswa.</p>
             </div>
 

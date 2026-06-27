@@ -70,7 +70,7 @@
 
     <!-- No Results -->
     <div id="no-results" class="hidden text-center py-20">
-        <div class="text-6xl mb-4">🔍</div>
+        <div class="text-6xl mb-4"></div>
         <h3 class="font-outfit text-xl font-bold text-slate-600 mb-2">Program Studi Tidak Ditemukan</h3>
         <p class="text-slate-400 text-sm">Coba kata kunci lain atau pilih fakultas yang berbeda.</p>
     </div>
@@ -80,7 +80,7 @@
         'FHISIP' => [
             'name' => 'Fakultas Hukum, Ilmu Sosial, dan Ilmu Politik',
             'color' => 'purple',
-            'icon' => '⚖️',
+            'icon' => '',
             'programs' => [
                 ['name' => 'Ilmu Hukum', 'jenjang' => 'S1', 'sks' => 144],
                 ['name' => 'Ilmu Komunikasi', 'jenjang' => 'S1', 'sks' => 144],
@@ -95,7 +95,7 @@
         'FEKON' => [
             'name' => 'Fakultas Ekonomi',
             'color' => 'blue',
-            'icon' => '📈',
+            'icon' => '',
             'programs' => [
                 ['name' => 'Manajemen', 'jenjang' => 'S1', 'sks' => 145],
                 ['name' => 'Akuntansi', 'jenjang' => 'S1', 'sks' => 144],
@@ -108,7 +108,7 @@
         'FKIP' => [
             'name' => 'Fakultas Keguruan dan Ilmu Pendidikan',
             'color' => 'emerald',
-            'icon' => '📚',
+            'icon' => '',
             'programs' => [
                 ['name' => 'Pendidikan Guru SD (PGSD)', 'jenjang' => 'S1', 'sks' => 144],
                 ['name' => 'Pendidikan Guru PAUD', 'jenjang' => 'S1', 'sks' => 144],
@@ -129,7 +129,7 @@
         'FST' => [
             'name' => 'Fakultas Sains dan Teknologi',
             'color' => 'amber',
-            'icon' => '🔬',
+            'icon' => '',
             'programs' => [
                 ['name' => 'Statistika', 'jenjang' => 'S1', 'sks' => 144],
                 ['name' => 'Matematika', 'jenjang' => 'S1', 'sks' => 144],
