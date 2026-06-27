@@ -181,7 +181,7 @@
 
             <div class="mt-6 text-center">
                 <p class="text-xs text-slate-500 bg-slate-100 p-3 rounded-xl border border-slate-200">
-                    <span class="font-semibold text-slate-700">Catatan:</span> Jika Anda belum pernah mengisi formulir data diri pendaftaran sama sekali, fitur ini tidak dapat digunakan. Silakan hubungi Admin via WhatsApp (+62 819-3133-7070) untuk bantuan.
+                    <span class="font-semibold text-slate-700">Catatan:</span> Jika Anda belum pernah mengisi formulir data diri pendaftaran sama sekali, fitur ini tidak dapat digunakan. Silakan hubungi Admin via WhatsApp (+62 812-1112-1855) untuk bantuan.
                 </p>
             </div>
 
