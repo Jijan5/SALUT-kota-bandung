@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $prefix = DB::getTablePrefix();
-        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NULL");
+        if (Schema::hasColumn('data-pendaftar', 'email')) {
+            $prefix = DB::getTablePrefix();
+            DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NULL");
+        }
     }
 
     public function down(): void
     {
-        $prefix = DB::getTablePrefix();
-        DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NOT NULL");
+        if (Schema::hasColumn('data-pendaftar', 'email')) {
+            $prefix = DB::getTablePrefix();
+            DB::statement("ALTER TABLE `{$prefix}data-pendaftar` MODIFY `email` VARCHAR(255) NOT NULL");
+        }
     }
 };
