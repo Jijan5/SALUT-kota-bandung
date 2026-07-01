@@ -23,12 +23,15 @@
     </style>
 </head>
 <body class="bg-slate-100 antialiased">
-    <div x-data="{ sidebarOpen: true }">
+    <div x-data="{ sidebarOpen: window.innerWidth >= 1024 }" @resize.window="if (window.innerWidth >= 1024) { sidebarOpen = true } else { sidebarOpen = false }">
+
+        <!-- Mobile Backdrop -->
+        <div x-show="sidebarOpen" x-cloak class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-20 lg:hidden" @click="sidebarOpen = false" x-transition.opacity></div>
 
         <!-- ===== SIDEBAR ===== -->
         <aside
             class="fixed inset-y-0 left-0 z-30 w-64 flex flex-col bg-gradient-to-b from-slate-900 to-blue-950 text-white transform transition-transform duration-300 ease-in-out shadow-2xl"
-            :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }">
+            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
             <!-- Logo -->
             <div class="flex items-center space-x-3 p-6 border-b border-white/10">
@@ -75,16 +78,7 @@
                     <span>Siswa Ditolak</span>
                 </a>
 
-                <div class="border-t border-white/10 my-4"></div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 px-4 mb-3">Ekspor Data</p>
 
-                <a href="{{ route('admin.export.excel') }}"
-                    class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-300 hover:bg-emerald-600/30 hover:text-emerald-300 font-medium text-sm transition duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span>Export Excel</span>
-                </a>
             </nav>
 
             <!-- User/Logout section -->
@@ -110,8 +104,8 @@
         </aside>
 
         <!-- ===== MAIN CONTENT ===== -->
-        <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out min-h-screen"
-            :class="sidebarOpen ? 'ml-64' : 'ml-0'">
+        <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out min-h-screen ml-0"
+            :class="sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'">
 
             <!-- Top Header Bar -->
             <header class="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm h-16 flex items-center px-6">

@@ -51,12 +51,15 @@
 </head>
 
 <body class="bg-slate-100 antialiased">
-    <div x-data="{ sidebarOpen: true }">
+    <div x-data="{ sidebarOpen: window.innerWidth >= 1024 }" @resize.window="if (window.innerWidth >= 1024) { sidebarOpen = true } else { sidebarOpen = false }">
+
+        <!-- Mobile Backdrop -->
+        <div x-show="sidebarOpen" x-cloak class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-20 lg:hidden" @click="sidebarOpen = false" x-transition.opacity></div>
 
         <!-- ===== SIDEBAR ===== -->
         <aside
             class="fixed inset-y-0 left-0 z-30 w-64 flex flex-col bg-gradient-to-b from-slate-900 to-blue-950 text-white transform transition-transform duration-300 ease-in-out shadow-2xl"
-            :class="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }">
+            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
 
             <!-- Logo -->
             <div class="flex items-center space-x-3 p-6 border-b border-white/10">
@@ -149,8 +152,8 @@
         </aside>
 
         <!-- ===== MAIN CONTENT ===== -->
-        <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out min-h-screen"
-            :class="sidebarOpen ? 'ml-64' : 'ml-0'">
+        <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out min-h-screen ml-0"
+            :class="sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'">
 
             <!-- Top Header Bar -->
             <header

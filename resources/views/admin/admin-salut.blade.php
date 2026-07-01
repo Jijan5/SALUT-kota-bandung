@@ -32,20 +32,27 @@
                     <h2 class="font-outfit text-xl font-bold text-slate-800">Data Pendaftar Baru</h2>
                     <p class="text-xs text-slate-500 mt-0.5">Kelola dan verifikasi berkas calon mahasiswa</p>
                 </div>
-                <form action="{{ route('admin.index') }}" method="GET" id="searchForm">
-                    <div class="relative">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <div class="flex flex-col sm:flex-row items-center gap-3">
+                    <form action="{{ route('admin.index') }}" method="GET" id="searchForm" class="w-full sm:w-auto">
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" name="search" value="{{ request('search') }}"
+                                class="w-full sm:w-80 pl-9 pr-4 py-2 border border-slate-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition shadow-sm"
+                                placeholder="Cari nama, NIK, email, no HP, jalur...">
+                        </div>
+                    </form>
+                    <a href="{{ route('admin.export.csv') }}" class="flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full font-semibold text-sm transition shadow-sm w-full sm:w-auto justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
-                        <input type="text" name="search" placeholder="Cari nama, NIK, email, no HP, jalur..."
-                            value="{{ request('search') }}"
-                            class="pl-9 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-72"
-                            autocomplete="off">
-                    </div>
-                </form>
+                        <span>Export CSV</span>
+                    </a>
+                </div>
             </div>
         </div>
 

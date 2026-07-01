@@ -19,9 +19,44 @@ class AdminController extends Controller
         return view('admin.admin-salut', ['data-pendaftar' => $pendaftar]);
     }
 
-    public function exportExcel()
+    public function exportCSV()
     {
-        return Excel::download(new ExportPendaftaran, 'data_pendaftar.xlsx');
+        $headers = [
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=data_pendaftar.csv',
+            'Expires'             => '0',
+            'Pragma'              => 'public'
+        ];
+
+        $columns = [
+            'nama', 'tempat_lahir', 'tanggal_lahir', 'agama', 'gender', 'status', 'nik', 'provinsi', 
+            'kab_kota', 'kecamatan', 'desa_kelurahan', 'kode_pos', 'alamat', 'alamat_lain', 
+            'lokasi_ujian_provinsi', 'lokasi_ujian_kab_kota', 'alamat_pengirim_modul', 'ukuran_almat', 
+            'nama_ibu_kandung', 'no_hp', 'no_hp_alternatif', 'email', 'jalur_program', 'file_ijazah', 
+            'no_ijazah', 'ipk', 'file_bukti_pembayaran', 'surat_pernyataan', 'file_foto', 'file_ktp', 
+            'file_ss_pddikti', 'file_transkrip', 'file_rpl_pembelajaran', 'file_rpl_administrasi', 
+            'file_rpl_ekstrakulikuler', 'file_rpl_prestasi', 'surat_keterangan_pindah', 'file_cv'
+        ];
+
+        $callback = function() use($columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            SalutPendaftaran::chunk(100, function($pendaftar) use($file, $columns) {
+                foreach ($pendaftar as $p) {
+                    $row = [];
+                    foreach ($columns as $col) {
+                        $row[] = $p->{$col};
+                    }
+                    fputcsv($file, $row);
+                }
+            });
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
     public function index(Request $request)

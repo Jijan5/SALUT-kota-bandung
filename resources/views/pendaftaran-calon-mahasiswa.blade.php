@@ -488,10 +488,10 @@
                         <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
                             <span class="block text-sm font-bold text-slate-700 mb-1">Foto / Scan KTP Asli <span
                                     class="text-red-500">*</span></span>
-                            <span class="block text-xs text-slate-400 mb-3">Format: PDF (Maks 25MB).
+                            <span class="block text-xs text-slate-400 mb-3">Format: JPG, JPEG, PNG (Maks 25MB).
                                 Pastikan NIK dan tulisan terbaca jelas.</span>
                             <input type="file" name="file_ktp" id="file_ktp" required
-                                accept=".pdf,application/pdf"
+                                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
                         </div>
                         <div class="border border-slate-200 rounded-2xl p-5 hover:bg-slate-50 transition duration-300">
@@ -550,7 +550,7 @@
                                 <span class="block text-xs text-slate-400 mb-3">Format: JPG, JPEG, PNG (Maks
                                     25MB).</span>
                                 <input type="file" name="file_ss_pddikti" id="file_ss_pddikti"
-                                    accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg"
+                                    accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                     class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition bg-white">
                             </div>
                             <div
@@ -710,10 +710,10 @@
                             </div>
                             <span class="block text-base font-bold text-slate-800 mb-1">Unggah Tanda Bukti Transfer
                                 Pembayaran <span class="text-red-500">*</span></span>
-                            <span class="block text-xs text-slate-400 mb-4">Format berkas: PDF (Maksimal 25
+                            <span class="block text-xs text-slate-400 mb-4">Format berkas: PDF, JPG, JPEG, PNG (Maksimal 25
                                 MB).</span>
                             <input type="file" name="file_bukti_pembayaran" id="file_bukti_pembayaran" required
-                                accept=".pdf,application/pdf"
+                                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                                 class="w-full text-xs text-slate-500 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-700 transition">
                         </div>
                     </div>

@@ -455,7 +455,7 @@
                             <!-- Scan KTP -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">Foto / Scan KTP Asli <span class="text-red-500">*</span></label>
-                                <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Pastikan NIK dan tulisan terbaca jelas.</p>
+                                <p class="text-xs text-slate-400 mb-2">Format: JPG, JPEG, PNG (Maks 2MB). Pastikan NIK dan tulisan terbaca jelas.</p>
                                 @if ($pendaftaran && $pendaftaran->file_ktp)
                                     <div class="mb-2">
                                         <a href="{{ asset('uploads/' . $pendaftaran->file_ktp) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
@@ -467,7 +467,7 @@
                                         </a>
                                     </div>
                                 @endif
-                                <input type="file" name="file_ktp" accept=".pdf,application/pdf" class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <input type="file" name="file_ktp" accept=".jpg,.jpeg,.png,image/jpeg,image/png" class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
                                 <p class="text-xs text-slate-500 mt-1">Kosongkan jika tidak ingin mengganti file. Maks 2MB</p>
                             </div>
 
@@ -512,7 +512,7 @@
                             <!-- Bukti Pembayaran -->
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-2">Bukti Transfer Pembayaran <span class="text-red-500">*</span></label>
-                                <p class="text-xs text-slate-400 mb-2">Format: PDF (Maks 2MB). Foto/scan bukti transfer biaya pendaftaran.</p>
+                                <p class="text-xs text-slate-400 mb-2">Format: PDF, JPG, JPEG, PNG (Maks 2MB). Foto/scan bukti transfer biaya pendaftaran.</p>
                                 @if ($pendaftaran && $pendaftaran->file_bukti_pembayaran)
                                     <div class="mb-2">
                                         <a href="{{ asset('uploads/' . $pendaftaran->file_bukti_pembayaran) }}" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-1">
@@ -524,7 +524,7 @@
                                         </a>
                                     </div>
                                 @endif
-                                <input type="file" name="file_bukti_pembayaran" accept=".pdf,application/pdf" class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
+                                <input type="file" name="file_bukti_pembayaran" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" class="w-full px-3 py-2 border rounded-lg file:mr-3 file:py-2 file:px-4 file:rounded-lg file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700">
                                 <p class="text-xs text-slate-500 mt-1">Kosongkan jika tidak ingin mengganti file. Maks 2MB</p>
                             </div>
 
