@@ -299,42 +299,115 @@ class AdminController extends Controller
 
         // Daftar field yang menyimpan file
         $fileFields = [
-            'file_foto',
-            'file_ktp',
-            'file_ijazah',
-            'file_transkrip',
-            'file_bukti_pembayaran',
-            'surat_pernyataan',
-            'file_ss_pddikti',
-            'file_cv',
-            'file_rpl_pembelajaran',
-            'file_rpl_administrasi',
-            'file_rpl_ekstrakulikuler',
-            'file_rpl_prestasi',
-            'surat_keterangan_pindah'
+            'file_foto', 'file_ktp', 'file_ijazah', 'file_transkrip', 'file_bukti_pembayaran',
+            'surat_pernyataan', 'file_ss_pddikti', 'file_rpl_pembelajaran', 'file_rpl_administrasi',
+            'file_rpl_ekstrakulikuler', 'file_rpl_prestasi', 'surat_keterangan_pindah', 'file_cv'
         ];
 
-        // Hapus file dari storage jika ada
         foreach ($fileFields as $field) {
             if ($data->$field) {
-                    $filePath = public_path('uploads/' . $data->$field);
-                    if (file_exists($filePath)) {
-                        unlink($filePath);
-                    }
+                $filePath = public_path('uploads/' . $data->$field);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
                 }
+            }
         }
 
         // Hapus data pendaftaran dari database
         $data->delete();
 
-        // Hapus user terkait dari tabel users
-        if ($userId) {
-            $user = \App\Models\User::find($userId);
-            if ($user) {
-                $user->delete();
+        return back()->with('success', 'Data pendaftar beserta akun user dan semua file pendukung berhasil dihapus!');
+    }
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+        if (empty($ids)) {
+            return redirect()->back()->with('error', 'Tidak ada data yang dipilih untuk dihapus.');
+        }
+
+        $pendaftars = SalutPendaftaran::whereIn('id', $ids)->get();
+
+        $fileFields = [
+            'file_foto', 'file_ktp', 'file_ijazah', 'file_transkrip', 'file_bukti_pembayaran',
+            'surat_pernyataan', 'file_ss_pddikti', 'file_rpl_pembelajaran', 'file_rpl_administrasi',
+            'file_rpl_ekstrakulikuler', 'file_rpl_prestasi', 'surat_keterangan_pindah', 'file_cv'
+        ];
+
+        foreach ($pendaftars as $data) {
+            $userId = $data->user_id;
+
+            foreach ($fileFields as $field) {
+                if ($data->$field) {
+                    $filePath = public_path('uploads/' . $data->$field);
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                }
+            }
+            $data->delete();
+
+            if ($userId) {
+                $user = \App\Models\User::find($userId);
+                if ($user) {
+                    $user->delete();
+                }
             }
         }
 
-        return back()->with('success', 'Data pendaftar beserta akun user dan semua file pendukung berhasil dihapus!');
+        return redirect()->back()->with('success', 'Data pendaftar yang dipilih berhasil dihapus!');
+    }
+
+    public function downloadZip($id)
+    {
+        $pendaftar = SalutPendaftaran::findOrFail($id);
+        
+        $zip = new \ZipArchive();
+        $safeName = preg_replace('/[^a-zA-Z0-9_-]/', '_', str_replace(' ', '_', $pendaftar->nama));
+        $zipFileName = 'Berkas_' . $safeName . '_' . time() . '.zip';
+        $zipFilePath = public_path('uploads/' . $zipFileName);
+
+        if ($zip->open($zipFilePath, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === TRUE) {
+            
+            $fileFields = [
+                'file_foto' => 'Foto_Profil',
+                'file_ktp' => 'KTP',
+                'file_ijazah' => 'Ijazah',
+                'file_transkrip' => 'Transkrip_Nilai',
+                'file_bukti_pembayaran' => 'Bukti_Pembayaran',
+                'surat_pernyataan' => 'Surat_Pernyataan',
+                'file_ss_pddikti' => 'SS_PDDIKTI',
+                'file_cv' => 'Curriculum_Vitae',
+                'file_rpl_pembelajaran' => 'RPL_Daftar_Mata_Kuliah',
+                'file_rpl_administrasi' => 'RPL_Sertifikat_Pelatihan',
+                'file_rpl_ekstrakulikuler' => 'RPL_Surat_Keterangan_Bekerja',
+                'file_rpl_prestasi' => 'RPL_Dokumen_Pendukung_Lainnya',
+                'surat_keterangan_pindah' => 'Surat_Keterangan_Pindah',
+            ];
+
+            $hasFiles = false;
+            foreach ($fileFields as $field => $label) {
+                if ($pendaftar->$field) {
+                    $filePath = public_path('uploads/' . $pendaftar->$field);
+                    if (file_exists($filePath)) {
+                        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                        $zip->addFile($filePath, $label . '.' . $extension);
+                        $hasFiles = true;
+                    }
+                }
+            }
+
+            $zip->close();
+
+            if ($hasFiles) {
+                return response()->download($zipFilePath)->deleteFileAfterSend(true);
+            } else {
+                if (file_exists($zipFilePath)) {
+                    unlink($zipFilePath);
+                }
+                return redirect()->back()->with('error', 'Tidak ada berkas yang ditemukan untuk pendaftar ini.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Gagal membuat file ZIP.');
+        }
     }
 }

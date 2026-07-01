@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="title">Siswa Diterima</x-slot>
 
-    <div x-data="{ showConfirmModal: false, pendaftarToDeleteName: '', pendaftarToDeleteUrl: '' }" class="max-w-full">
+    <div x-data="{ showConfirmModal: false, pendaftarToDeleteName: '', pendaftarToDeleteUrl: '', selectedIds: [], selectAll: false, showBulkDeleteModal: false }" class="max-w-full">
 
         @if (session('success'))
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" x-cloak
@@ -36,12 +36,29 @@
             </div>
         </div>
 
-        <!-- Table -->
+        <!-- Bulk Action & Table -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <!-- Bulk Action Header -->
+            <div x-show="selectedIds.length > 0" x-cloak class="bg-red-50 px-5 py-3 border-b border-red-100 flex items-center justify-between transition-all">
+                <span class="text-sm font-semibold text-red-700">
+                    <span x-text="selectedIds.length"></span> data dipilih
+                </span>
+                <button @click="showBulkDeleteModal = true" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    Hapus Terpilih
+                </button>
+            </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead>
                         <tr class="bg-slate-800 text-white">
+                            <th class="px-4 py-3 text-left w-12">
+                                <input type="checkbox" x-model="selectAll" 
+                                    @change="
+                                        selectedIds = selectAll ? Array.from(document.querySelectorAll('.row-checkbox')).map(cb => cb.value) : []
+                                    " 
+                                    class="rounded border-slate-500 text-blue-600 focus:ring-blue-500 bg-slate-700">
+                            </th>
                             <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider w-10">No</th>
                             <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Nama</th>
                             <th class="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">Email</th>
@@ -55,7 +72,10 @@
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         @forelse($datapendaftar as $index => $pendaftar)
-                        <tr class="hover:bg-slate-50 transition">
+                        <tr class="hover:bg-slate-50 transition" :class="{'bg-blue-50/50 hover:bg-blue-50': selectedIds.includes('{{ $pendaftar->id }}')}">
+                            <td class="px-4 py-3">
+                                <input type="checkbox" value="{{ $pendaftar->id }}" x-model="selectedIds" class="row-checkbox rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                            </td>
                             <td class="px-4 py-3 text-slate-500 text-xs">{{ $datapendaftar->firstItem() + $index }}</td>
                             <td class="px-4 py-3">
                                 <div class="font-semibold text-slate-800">{{ $pendaftar->nama }}</div>
@@ -108,7 +128,9 @@
 
         <!-- Delete Confirm Modal -->
         <div x-show="showConfirmModal" x-cloak class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50" @keydown.escape.window="showConfirmModal=false">
-            <div @click.away="showConfirmModal=false" class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm mx-4">
+            <div @click.away="showConfirmModal=false" class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm mx-4"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
                 <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                 </div>
@@ -120,6 +142,29 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold transition">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Delete Confirm Modal -->
+        <div x-show="showBulkDeleteModal" x-cloak class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-50" @keydown.escape.window="showBulkDeleteModal=false">
+            <div @click.away="showBulkDeleteModal=false" class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm mx-4"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                </div>
+                <h2 class="text-lg font-bold text-center text-slate-800 mb-2">Hapus Massal</h2>
+                <p class="text-sm text-slate-500 text-center mb-6">Yakin hapus <strong class="text-slate-700" x-text="selectedIds.length"></strong> data pendaftar yang dipilih beserta seluruh file pendukungnya?</p>
+                <div class="flex gap-3">
+                    <button @click="showBulkDeleteModal=false" class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-50 transition">Batal</button>
+                    <form action="{{ route('admin.bulkDelete') }}" method="POST" class="flex-1">
+                        @csrf
+                        <template x-for="id in selectedIds" :key="id">
+                            <input type="hidden" name="ids[]" :value="id">
+                        </template>
+                        <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold transition">Hapus Semua</button>
                     </form>
                 </div>
             </div>

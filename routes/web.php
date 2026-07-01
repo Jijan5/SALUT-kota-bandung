@@ -44,6 +44,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::post('/admin/bulk-delete', [AdminController::class, 'bulkDelete'])->name('admin.bulkDelete');
+    Route::get('/admin/pendaftar/{id}/download-zip', [AdminController::class, 'downloadZip'])->name('admin.downloadZip');
     Route::get('/admin/export/csv', [AdminController::class, 'exportCSV'])->name('admin.export.csv');
     Route::post('/admin/pendaftar/{id}/terima', [AdminController::class, 'terima'])->name('admin.terima');
     Route::post('/admin/pendaftar/{id}/tolak', [AdminController::class, 'tolak'])->name('admin.tolak');

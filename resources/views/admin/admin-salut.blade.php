@@ -101,6 +101,7 @@
                                         <button
                                             @click="
                                         drawerData = {
+                                            id: '{{ $pendaftar->id }}',
                                             nama: '{{ addslashes($pendaftar->nama) }}',
                                             nik: '{{ $pendaftar->nik }}',
                                             email: '{{ $pendaftar->user->email ?? $pendaftar->email }}',
@@ -232,14 +233,25 @@
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">NIK: <span x-text="drawerData.nik"></span></p>
                     </div>
-                    <button @click="showDrawer=false"
-                        class="p-2 rounded-xl hover:bg-slate-200 transition text-slate-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                    <div class="flex items-center gap-2">
+                        <!-- Tombol Unduh ZIP -->
+                        <a :href="'/admin/pendaftar/' + drawerData.id + '/download-zip'" 
+                           class="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-semibold transition"
+                           title="Unduh semua berkas dalam format .zip">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Unduh .zip
+                        </a>
+                        <button @click="showDrawer=false"
+                            class="p-2 rounded-xl hover:bg-slate-200 transition text-slate-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Drawer Body -->
